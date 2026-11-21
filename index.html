@@ -303,11 +303,30 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 .kcl i.on{background:radial-gradient(circle at 35% 30%,#ffe9a8,#ff8a1f 55%,#c2410c);box-shadow:0 0 18px 4px #ff8a1fcc}
 .khc.go .kcl i.on{background:radial-gradient(circle at 35% 30%,#f4ffd0,#8fe04a 55%,#3f9a1a);box-shadow:0 0 18px 4px #8fe04acc}
 .kcw{position:relative;display:grid;place-items:center}
-.kcn{font:400 clamp(90px,24vw,190px)/1 Bungee,Fraunces,Impact,sans-serif;background:linear-gradient(#fff3b0,#ffb21f 45%,#f26b1d 75%,#c2410c);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:3px #5a1e05;filter:drop-shadow(0 6px 0 #5a1e05) drop-shadow(0 0 26px #ff8a1f);animation:kpop .9s cubic-bezier(.2,1.5,.4,1) both}
+.kcn{font:400 clamp(90px,24vw,190px)/1 Bungee,Impact,sans-serif;color:#ffb21f;text-shadow:0 3px 0 #ff8a1f,0 6px 0 #c2410c,0 9px 0 #7c2d0a,0 16px 26px #000a,0 0 44px #ff8a1fcc;animation:kpop .9s cubic-bezier(.2,1.5,.4,1) both}
 .khc.go .kcn{font-size:clamp(70px,19vw,150px);letter-spacing:.04em}
 @keyframes kpop{0%{transform:scale(2.6) rotate(-6deg);opacity:0}35%{transform:scale(.92) rotate(2deg);opacity:1}55%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
 .kcr{position:absolute;width:30vmin;height:30vmin;border-radius:50%;border:6px solid #ff8a1f;animation:kring .9s ease-out both}
 @keyframes kring{from{transform:scale(.3);opacity:.9}to{transform:scale(2.2);opacity:0}}
+
+.khd{position:absolute;inset:0;pointer-events:none}
+#kcd,#kpn{position:absolute;inset:0;pointer-events:none}
+.kpos{position:absolute;left:12px;top:10px;display:flex;align-items:baseline;gap:4px;font:400 58px/1 Bungee,Impact,sans-serif;color:#ffb21f;text-shadow:0 3px 0 #c2410c,0 6px 0 #5a1e05,0 8px 16px #0008}
+.kpos span{font-size:22px;color:#fff;text-shadow:0 2px 0 #5a1e05}
+.klap{position:absolute;left:12px;top:78px;background:#1a0d08b8;border:2px solid #ffb21f66;border-radius:12px;padding:6px 12px;color:#fff;font:600 14px/1.35 Inter,sans-serif}
+.klap b{display:block;font:400 15px Bungee,Impact,sans-serif;color:#ffd36b}
+.kmm{position:absolute;left:12px;top:140px;width:104px;height:104px;border-radius:14px;background:#1a0d08a6;border:2px solid #ffb21f66}
+.kitm{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:78px;height:78px;border-radius:20px;background:radial-gradient(circle,#3a2412,#150a05);border:3px solid #ffb21f;display:grid;place-items:center;font-size:42px;box-shadow:0 6px 18px #0008}
+.kitm.on{animation:kpl 1s ease-in-out infinite}.kitm.rl{animation:krl .3s linear infinite}
+@keyframes kpl{50%{box-shadow:0 0 0 5px #ff8a1f66,0 0 26px #ff8a1f}}
+@keyframes krl{50%{transform:translateX(-50%) rotate(8deg) scale(1.06)}}
+.kspd{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:118px;height:118px;border-radius:50%;background:conic-gradient(#ff8a1f calc(var(--p,0)*1%),#3a2412 0);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 3px #1a0d08,0 6px 18px #0008;isolation:isolate}
+.kspd::before{content:"";position:absolute;inset:9px;border-radius:50%;background:#150a05;z-index:-1}
+.kspd b{font:400 34px/1 Bungee,Impact,sans-serif;color:#ffd36b}.kspd span{font:600 11px Inter,sans-serif;color:#c9a35b;letter-spacing:.1em}
+.ksl{position:absolute;inset:0;opacity:0;transition:opacity .25s;background:repeating-conic-gradient(from 0deg at 50% 50%,#ffb21f00 0 3deg,#ffb21f77 3deg 3.6deg);-webkit-mask-image:radial-gradient(circle,#0000 40%,#000 90%);mask-image:radial-gradient(circle,#0000 40%,#000 90%)}
+.ksl.on{opacity:1;animation:ksp .16s steps(2) infinite}
+@keyframes ksp{50%{transform:scale(1.07) rotate(1.5deg)}}
+@media(max-width:560px){.kpos{font-size:40px}.klap{top:58px}.kmm{top:112px;width:84px;height:84px}.kitm{width:62px;height:62px;font-size:32px}.kspd{width:92px;height:92px;bottom:116px;left:auto;right:12px;transform:none}.kspd b{font-size:26px}}
 </style></head>
 <body><div id="app"></div>
 <script>
@@ -342,6 +361,7 @@ const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
 const VERSION='2026-11-20.1';
 const CHANGELOG=[
+ {v:'2026-11-21.2',t:'Kart-Rennen: Boosts, Items und neues Cockpit',items:['Neu: Item-Boxen auf der Strecke. Fährst du durch, bekommst du einen Boost (Blitz oder Rakete), der über deinem Auto schwebt. Mit Leertaste, Shift oder dem Blitz-Knopf löst du ihn aus.','Orange Boost-Pfeile auf der Straße geben dir einen kleinen Schub. Beim Boost gibt es Flammen, Funken, Speedlines und einen Zoom.','Neues Cockpit mit Platz, Runde und Zeit, Tacho, Minikarte und Item-Anzeige. Der Countdown erscheint nur noch einmal.','Pylonen am Straßenrand, Zielstreifen auf der Straße und ein flüssigeres Fahrgefühl.']},
  {v:'2026-11-21.1',t:'Mitschriften als Zeitleiste, neuer Kart-Countdown',items:['Mitschriften sind jetzt eine Zeitleiste nach Datum der Stunde, gruppiert nach Woche und Monat. Wer gefehlt hat, wählt oben "Verpasst? Ab" und sieht den ganzen Stoff seit dem Tag.','Beim Hochladen wählst du Art (Arbeitsblatt, Tafelbild, Mitschrift, Hausaufgabe) und Datum der Stunde. Filtern geht nach Fach.','Kart-Rennen: Der Countdown hat jetzt orange Startlichter, eine große animierte Zahl und ein LOS! zum Start.']},
  {v:'2026-11-20.1',t:'Bookies, Item-Shop und Bookie Clicker',items:['Neu: Bookies. In Spielen sammelst du jetzt Punkte, die Bookies heißen. Du bekommst sie für Siege bei Tic Tac Toe und Schach, für Platzierungen im Kart-Rennen und im neuen Bookie Clicker.','Neu: Bookie Clicker. Klicke Bücher, kaufe Helfer und Verbesserungen und lass deine Bibliothek nach und nach von selbst wachsen.','Neu: Item-Shop (Knopf links neben der Glocke). Dort kaufst du Profil-Rahmen und neue Schachbretter, zum Beispiel ein lila oder ein goldenes. Mit dem i-Zeichen siehst du, wie du Bookies verdienst.','Deine Bookies siehst du in deinem Profil. In den Einstellungen unter Privatsphäre legst du fest, ob andere sie sehen. Standard ist privat.']},
  {v:'2026-11-19.9',t:'Neu: Schach',items:['Bei Spiele gibt es jetzt Schach im orangen STUDIQ-Look. Du spielst gegen den Computer (Leicht, Mittel, Schwer), zu zweit an einem Gerät oder online mit Freunden.','Online hat jeder sein eigenes Gerät. Du siehst, wann du dran bist, und kannst Remis anbieten oder aufgeben.','Alle Regeln sind dabei: Rochade, en passant, Umwandlung, Patt und Remis.']},
@@ -1506,7 +1526,8 @@ const nd=a=>{while(a>Math.PI)a-=2*Math.PI;while(a<-Math.PI)a+=2*Math.PI;return a
 function kT0(i){const t=KTR[i];if(!t.pts){const P=t.p,n=P.length,pts=[];
  const op=t.open;for(let i=0;i<(op?n-1:n);i++){const a=P[op?Math.max(i-1,0):(i+n-1)%n],b=P[i],c=P[op?i+1:(i+1)%n],d=P[op?Math.min(i+2,n-1):(i+2)%n];for(let q=0;q<24;q++){const u=q/24,u2=u*u,u3=u2*u;pts.push([0,1].map(k=>.5*(2*b[k]+(-a[k]+c[k])*u+(2*a[k]-5*b[k]+4*c[k]-d[k])*u2+(-a[k]+3*b[k]-3*c[k]+d[k])*u3)))}}
  if(op)pts.push(P[n-1].slice());t.pts=pts;t.oil=[.12,.33,.55,.78].map((f,i)=>{const j=Math.floor(f*pts.length),a=pts[j],b=pts[(j+1)%pts.length],l=Math.hypot(b[0]-a[0],b[1]-a[1])||1,d=(i%2?1:-1)*t.hw*.35;return{x:a[0]-(b[1]-a[1])/l*d,y:a[1]+(b[0]-a[0])/l*d}});t.b=[Math.min(...pts.map(q=>q[0])),Math.min(...pts.map(q=>q[1])),Math.max(...pts.map(q=>q[0])),Math.max(...pts.map(q=>q[1]))]}return t}
-function kT(i){const t=KTR[i];if(!t.pts){kT0(i);const pts=t.pts,N=pts.length,at=(f,d)=>{const j=Math.min(N-2,Math.floor(f*N)),a=pts[j],b=pts[j+1],l=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return{x:a[0]-(b[1]-a[1])/l*d,y:a[1]+(b[0]-a[0])/l*d}};
+function kT(i){const t=KTR[i];if(!t.pts){kT0(i);const pts=t.pts,N=pts.length,at=(f,d)=>{const j=Math.min(N-2,Math.floor(f*N)),a=pts[j],b=pts[j+1],l=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return{x:a[0]-(b[1]-a[1])/l*d,y:a[1]+(b[0]-a[0])/l*d,a:Math.atan2(b[1]-a[1],b[0]-a[0])}};
+ t.itm=[.11,.3,.5,.68,.88].flatMap(f=>[-.5,0,.5].map(d=>at(f,d*t.hw)));t.pad=[.17,.37,.57,.77].map(f=>at(f,0));
  t.blk=t.ice?[.08,.14,.2,.27,.33,.4,.47,.54,.6,.67,.74,.8,.86,.92].map((f,i)=>({...at(f,[-.4,.45,0,-.5,.3,.5,-.2,.4,-.45,.1,-.35,.45,0,-.4][i]*t.hw),k:'ice'})):t.cac?[.1,.2,.3,.42,.52,.63,.74,.85].map((f,i)=>({...at(f,(i%2?1:-1)*t.hw*.92),k:'cac'})):[];
  if(t.ice)t.oil=[]}return t}
 function k3Load(){return window.THREE?Promise.resolve():new Promise((ok,no)=>{const e=document.createElement('script');e.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';e.onload=ok;e.onerror=no;document.head.append(e)})}
@@ -1519,7 +1540,16 @@ function k3Kart(ci,si,hi){
  [[-11*L,-12],[-11*L,12],[11*L,-12],[11*L,12]].forEach(([x,z])=>{A(CY,P(0x151515,10),x,5,z,5,2.6,5,Math.PI/2);A(CY,P(0xd0d0d0,90),x,5,z+(z>0?1.5:-1.5),2.6,.4,2.6,Math.PI/2)});
  A(SP,P(sh,30),-3,16,0,5,6,5.5);A(SP,P(SK[si]||SK[0],20),-3,24,0,4.6,4.8,4.6);A(HM,P(sh,90),-3,24.5,0,5.3,5.3,5.3);A(SP,P(0x111111,120),.2,24.2,0,2.4,1.7,4);
  A(new th.TorusGeometry(2.6,.5,6,14),P(0x222222),5,17,0,1,1,1,1.1);
- const sd=new th.Mesh(new th.CircleGeometry(15,18),new th.MeshBasicMaterial({color:0,transparent:true,opacity:.28}));sd.rotation.x=-Math.PI/2;sd.position.y=.3;sd.scale.set(1.3*L,.8,1);g.add(sd);return g
+ const sd=new th.Mesh(new th.CircleGeometry(15,18),new th.MeshBasicMaterial({color:0,transparent:true,opacity:.28}));sd.rotation.x=-Math.PI/2;sd.position.y=.3;sd.scale.set(1.3*L,.8,1);g.add(sd);
+ const fl=new th.Group(),FM=c=>new th.MeshBasicMaterial({color:c,transparent:true,opacity:.9,blending:th.AdditiveBlending,depthWrite:false});
+ [-5,5].forEach(z=>{const c1=new th.Mesh(new th.ConeGeometry(3.4,20,10),FM(0xff6a00)),c2=new th.Mesh(new th.ConeGeometry(1.8,13,8),FM(0xffe066));[c1,c2].forEach(c=>{c.rotation.z=Math.PI/2;c.position.set(-27*L-(c==c1?10:6),8,z);fl.add(c)})});fl.visible=false;g.add(fl);
+ const ig=new th.Group(),tb=new th.Group(),mg=new th.Group(),rl=new th.Mesh(new th.SphereGeometry(7,14,10),new th.MeshPhongMaterial({color:0xff8a1f,emissive:0x7a2a00,transparent:true,opacity:.7})),bs=new th.Shape();
+ [[3,12],[-6,0],[-1,0],[-5,-12],[7,3],[1,3],[6,12]].forEach(([x,y],i)=>i?bs.lineTo(x,y):bs.moveTo(x,y));
+ const bolt=new th.Mesh(new th.ExtrudeGeometry(bs,{depth:4,bevelEnabled:true,bevelSize:.8,bevelThickness:.8,bevelSegments:2}),new th.MeshPhongMaterial({color:0xffc02e,emissive:0xb45309,shininess:120}));bolt.position.z=-2;tb.add(bolt,new th.Mesh(new th.TorusGeometry(11,1,8,24),new th.MeshBasicMaterial({color:0xffd36b})));
+ const rb=new th.Mesh(new th.CylinderGeometry(4,4,16,14),P(0xf8f9fa,90)),rn=new th.Mesh(new th.ConeGeometry(4,8,14),P(0xd62828,90));rn.position.y=12;
+ [0,2.1,4.2].forEach(a=>{const f=new th.Mesh(new th.SphereGeometry(1,8,6),P(0xd62828));f.scale.set(.6,4,3);f.position.set(Math.cos(a)*4.5,-5,Math.sin(a)*4.5);f.rotation.y=-a;mg.add(f)});mg.add(rb,rn);mg.rotation.z=.6;mg.scale.setScalar(1.15);
+ [tb,mg,rl].forEach(o=>{o.visible=false;ig.add(o)});ig.position.y=48;ig.visible=false;g.add(ig);g.userData={fl,ig,tb,mg,rl};
+ return g
 }
 function k3Build(){
  if(!KT.R||!KT.T)return;const th=THREE,T=KT.T,p=T.pts,N=p.length,op=!!T.open,sl=T.sl||0,Y=z=>-sl*z,C=c=>new th.Color(c),LM=(c,o)=>new th.MeshLambertMaterial(Object.assign({color:c},o)),
@@ -1537,6 +1567,7 @@ function k3Build(){
  const cv=document.createElement('canvas');cv.width=128;cv.height=32;{const x=cv.getContext('2d');for(let i=0;i<16;i++)for(let j=0;j<4;j++){x.fillStyle=(i+j)%2?'#111':'#fff';x.fillRect(i*8,j*8,8,8)}}
  const ck=new th.CanvasTexture(cv),gate=(a,b)=>{const g=new th.Group(),m=LM(0xd62828);[-1,1].forEach(s=>{const o=new th.Mesh(new th.CylinderGeometry(4,5,76,14),m);o.position.set(0,38,s*(T.hw+12));g.add(o)});
   const bn=new th.Mesh(new th.PlaneGeometry(T.hw*2+30,18),new th.MeshBasicMaterial({map:ck,side:th.DoubleSide}));bn.rotation.y=Math.PI/2;bn.position.y=76;g.add(bn);
+  const sg=new th.Group(),sp=new th.Mesh(new th.PlaneGeometry(T.hw*2,14),new th.MeshBasicMaterial({map:ck}));sp.rotation.x=-Math.PI/2;sg.rotation.y=Math.PI/2;sg.position.y=4;sg.add(sp);g.add(sg);
   g.position.set(a[0],Y(a[1]),a[1]);g.rotation.y=-Math.atan2(b[1]-a[1],b[0]-a[0]);S.add(g)};
  gate(p[0],p[1]);if(op)gate(p[N-1],[2*p[N-1][0]-p[N-2][0],2*p[N-1][1]-p[N-2][1]]);
  const mk=(x,z,s,ry,y)=>new th.Matrix4().compose(v3.set(x,y===undefined?Y(z):y,z),q4.setFromEuler(e4.set(0,ry||0,0)),s3.set(s,s,s)),
@@ -1557,13 +1588,29 @@ function k3Build(){
  for(let i=0;i<16;i++){const a=Math.random()*6.283,rr=600+Math.random()*R,x=x0+Math.cos(a)*rr,z=z0+Math.sin(a)*rr,y=Y(z)+650+Math.random()*350;for(let k=0;k<3;k++)CL.push(mk(x+k*55-55,z+Math.random()*40,70+Math.random()*50,0,y+Math.random()*20))}
  inst(new th.SphereGeometry(1,10,8),LM(0xffffff,{transparent:true,opacity:.9}),CL);
  T.oil.forEach(o=>{const m=new th.Mesh(new th.CircleGeometry(34,24),new th.MeshBasicMaterial({color:0x0b0b12}));m.rotation.x=-Math.PI/2;m.position.set(o.x,Y(o.y)+3.6,o.y);S.add(m)});
- KT.w=0
+ const CN=[];for(let i=0;i<N;i+=3){const j=op&&i==N-1?N-2:i,a=p[j],b=p[op?j+1:(j+1)%N],l=Math.hypot(b[0]-a[0],b[1]-a[1])||1,nx=-(b[1]-a[1])/l,nz=(b[0]-a[0])/l;[-1,1].forEach(sd=>{const d=sd*(T.hw+18),x=p[i][0]+nx*d,z=p[i][1]+nz*d;CN.push(mk(x,z,1,0,Y(z)+7))})}
+ inst(new th.ConeGeometry(4.5,14,10),LM(0xff6a00),CN);
+ const pc=document.createElement('canvas');pc.width=pc.height=128;{const x=pc.getContext('2d'),gd=x.createLinearGradient(0,0,128,0);gd.addColorStop(0,'#c2410c');gd.addColorStop(1,'#ff8a1f');x.fillStyle=gd;x.fillRect(0,0,128,128);x.strokeStyle='#fff';x.lineWidth=14;x.lineCap='round';x.lineJoin='round';[18,56,94].forEach(o=>{x.beginPath();x.moveTo(o,22);x.lineTo(o+28,64);x.lineTo(o,106);x.stroke()})}
+ const pt=new th.CanvasTexture(pc);(T.pad||[]).forEach(d=>{const m=new th.Mesh(new th.PlaneGeometry(80,T.hw*1.3),new th.MeshBasicMaterial({map:pt})),g=new th.Group();m.rotation.x=-Math.PI/2;g.add(m);g.position.set(d.x,Y(d.y)+4,d.y);g.rotation.y=-d.a;S.add(g)});
+ const qc=document.createElement('canvas');qc.width=qc.height=64;{const x=qc.getContext('2d');x.font='900 52px Bungee,Impact,sans-serif';x.textAlign='center';x.textBaseline='middle';x.lineWidth=7;x.strokeStyle='#7c2d0a';x.strokeText('?',32,36);x.fillStyle='#fff';x.fillText('?',32,36)}
+ const qt=new th.CanvasTexture(qc);KT.bm=(T.itm||[]).map(o=>{const g=new th.Group(),s=new th.Mesh(new th.SphereGeometry(13,18,12),new th.MeshPhongMaterial({color:0xff8a1f,emissive:0x7a2a00,transparent:true,opacity:.62,shininess:100})),r=new th.Mesh(new th.TorusGeometry(17,1.6,8,24),new th.MeshBasicMaterial({color:0xffd36b})),q=new th.Sprite(new th.SpriteMaterial({map:qt,depthWrite:false}));q.scale.set(15,15,1);r.rotation.x=Math.PI/2;g.add(s,r,q);g.position.set(o.x,Y(o.y)+17,o.y);g.userData.y0=g.position.y;S.add(g);return g});
+ kPart(S);KT.w=0
 }
+function kPart(S){const th=THREE,n=160,g=new th.BufferGeometry();g.setAttribute('position',new th.BufferAttribute(new Float32Array(n*3),3));g.setAttribute('color',new th.BufferAttribute(new Float32Array(n*3),3));const m=new th.Points(g,new th.PointsMaterial({size:9,vertexColors:true,transparent:true,blending:th.AdditiveBlending,depthWrite:false}));m.frustumCulled=false;S.add(m);KT.pt={m,n,i:0,v:Array.from({length:n},()=>({l:0,m:1,x:0,y:0,z:0,vx:0,vy:0,vz:0}))}}
+function kEmit(x,y,z,c,sp,l){const P=KT.pt;if(!P)return;const o=P.v[P.i=(P.i+1)%P.n];Object.assign(o,{x,y,z,vx:(Math.random()-.5)*sp,vy:Math.random()*sp*.6,vz:(Math.random()-.5)*sp,l,m:l,c:new THREE.Color(c)})}
+function kPUpd(dt){const P=KT.pt;if(!P)return;const a=P.m.geometry.attributes;P.v.forEach((o,i)=>{if(o.l>0){o.l-=dt;o.x+=o.vx*dt;o.y+=o.vy*dt;o.z+=o.vz*dt;const f=Math.max(0,o.l/o.m);a.position.setXYZ(i,o.x,o.y,o.z);a.color.setXYZ(i,o.c.r*f,o.c.g*f,o.c.b*f)}else a.position.setXYZ(i,0,-9999,0)});a.position.needsUpdate=a.color.needsUpdate=true}
+function kFx(k){const u=k.m.userData,loc='item' in k,it=loc?(k.roll>0?3:k.item):k.it||0,bo=loc?k.boost>0:!!k.bo,t=performance.now(),dt=KT.dt||.016;
+ u.fl.visible=bo;if(bo){u.fl.scale.set(.8+Math.random()*.6,.8+Math.random()*.4,1);for(let q=0;q<2;q++)kEmit(k.x-Math.cos(k.a)*26,9-(KT.T.sl||0)*k.y,k.y-Math.sin(k.a)*26,q?0xffd43b:0xff6a00,50,.5)}
+ u.ig.visible=!!it;u.tb.visible=it==1;u.mg.visible=it==2;u.rl.visible=it==3;u.ig.rotation.y+=dt*2.4;u.ig.position.y=48+Math.sin(t/230)*3.5;u.ig.scale.setScalar(it==3?1+.15*Math.sin(t/90):1)}
+function kMini(c){const T=KT.T,b=T.b,w=c.width,pd=18,sc=Math.min((w-2*pd)/(b[2]-b[0]||1),(w-2*pd)/(b[3]-b[1]||1)),X=x=>pd+(x-b[0])*sc+((w-2*pd)-(b[2]-b[0])*sc)/2,Z=z=>pd+(z-b[1])*sc+((w-2*pd)-(b[3]-b[1])*sc)/2,g=c.getContext('2d');
+ g.clearRect(0,0,w,w);g.lineJoin=g.lineCap='round';g.beginPath();T.pts.forEach((q,i)=>i?g.lineTo(X(q[0]),Z(q[1])):g.moveTo(X(q[0]),Z(q[1])));if(!T.open)g.closePath();g.strokeStyle='#ffffff66';g.lineWidth=11;g.stroke();g.strokeStyle='#ff8a1f';g.lineWidth=5;g.stroke();
+ const dot=(k,c2,r)=>{g.fillStyle=c2;g.beginPath();g.arc(X(k.x),Z(k.y),r,0,7);g.fill()};KT.ks.slice(1).forEach(k=>dot(k,'#cbd5e1',6));Object.values(KT.o).forEach(o=>dot(o,o.c||'#fab005',6));dot(KT.ks[0],'#fff',10);dot(KT.ks[0],'#f26b1d',7)}
+
 function kNear(k,all){const p=KT.T.pts,N=p.length;let best=1e12,bi=k.idx;for(let q=all?0:-8;q<(all?N:9);q++){const j=all?q:KT.T.open?Math.max(0,Math.min(N-1,k.idx+q)):(k.idx+q+N)%N,dx=p[j][0]-k.x,dy=p[j][1]-k.y,d=dx*dx+dy*dy;if(d<best){best=d;bi=j}}k.idx=bi;k.d=Math.sqrt(best)}
 function kMk(o,s){const T=KT.T,p=T.pts,a=Math.atan2(p[1][1]-p[0][1],p[1][0]-p[0][0]),back=40+s*38,lat=(s%2?1:-1)*T.hw*.4;
- return Object.assign({x:p[0][0]-Math.cos(a)*back-Math.sin(a)*lat,y:p[0][1]-Math.sin(a)*back+Math.cos(a)*lat,a,ha:a,sp:-9,top:330,acc:260,trn:2.5,ci:0,si:0,hi:0,v:0,lap:0,half:1,idx:0,d:0,hit:0},o)}
+ return Object.assign({x:p[0][0]-Math.cos(a)*back-Math.sin(a)*lat,y:p[0][1]-Math.sin(a)*back+Math.cos(a)*lat,a,ha:a,sp:-9,top:330,acc:260,trn:2.5,ci:0,si:0,hi:0,v:0,lap:0,half:1,idx:0,d:0,hit:0,item:0,roll:0,boost:0},o)}
 function kStart(tr){
- KT.tr=tr;KT.T=kT(tr);const solo=!KT.ch;
+ KT.tr=tr;KT.T=kT(tr);KT.ib=KT.T.itm.map(o=>({x:o.x,y:o.y,cd:0}));const solo=!KT.ch;
  KT.ks=[kMk({me:1,n:'Du',ci:KT.car,si:KT.skin,hi:KT.col,top:300+10*KCAR[KT.car].t,acc:140+40*KCAR[KT.car].a,trn:1.9+.2*KCAR[KT.car].l},solo?0:Math.floor(Math.random()*4))];
  if(solo)['Bot Max','Bot Lia','Bot Tom'].forEach((n,i)=>KT.ks.push(kMk({bot:1,f:[.8,.87,.93][i],n,ci:i+1,si:(i*2+1)%5,hi:i+2},i+1)));
  KT.ks.forEach(k=>kNear(k,1));
@@ -1588,7 +1635,7 @@ function kNet(){
  KT.ch=sb.channel('kart:'+r)
   .on('broadcast',{event:'p'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;
    const o=KT.o[q.id]||(KT.o[q.id]={x:q.x,y:q.y,a:q.a,c:KPAL[[...q.id].reduce((a,c)=>a+c.charCodeAt(0),0)%5]});
-   Object.assign(o,{tx:q.x,ty:q.y,ta:q.a,p:q.p,r:q.r,ci:q.ci,si:q.si,hi:q.hi,n:q.n,seen:performance.now()})})
+   Object.assign(o,{tx:q.x,ty:q.y,ta:q.a,p:q.p,r:q.r,ci:q.ci,si:q.si,hi:q.hi,it:q.it,bo:q.bo,n:q.n,seen:performance.now()})})
   .on('broadcast',{event:'go'},m=>{if(KTR[m.payload.tr])kStart(m.payload.tr)})
   .on('broadcast',{event:'fin'},m=>{const q=m.payload;if(q&&!KT.fin.some(r=>r.n==q.n))KT.fin.push({n:q.n,t:q.t})})
   .subscribe()
@@ -1654,8 +1701,13 @@ function kUpd(k,dt,ts){
  const T=KT.T,p=T.pts,N=p.length;let s=0,b=0,mx=T.ice?k.top*.88:k.top,g=1;k.sp-=dt;if(T.open&&k.fin)k.top=Math.max(0,k.top-260*dt);
  if(k.bot){const t=p[T.open?Math.min(k.idx+9,N-1):(k.idx+9)%N],d=nd(Math.atan2(t[1]-k.y,t[0]-k.x)-k.a);s=Math.max(-1,Math.min(1,d*2.5));mx=mx*k.f*(1-.35*Math.min(1,Math.abs(d)))}
  else{s=(KT.in.r?1:0)-(KT.in.l?1:0);b=KT.in.b;g=KT.in.g}
+ if(k.boost>0)k.boost-=dt;
+ if(k.roll>0){k.roll-=dt;if(k.roll<=0)k.item=Math.random()<.7?1:2}else if(!k.item&&!k.fin&&KT.ib)for(const x of KT.ib)if(x.cd<=0&&Math.hypot(x.x-k.x,x.y-k.y)<30){x.cd=5;k.roll=1.1;break}
+ for(const d of T.pad)if(k.boost<.9&&Math.hypot(d.x-k.x,d.y-k.y)<36)k.boost=1.3;
+ if(k.item&&k.roll<=0&&(k.me?KT.in.u:k.bot&&Math.abs(s)<.12&&Math.random()<dt*.7)){k.boost=k.item==2?4.2:2.2;k.item=0}
+ const bo=k.boost>0;if(bo)mx=Math.max(mx,k.top)*1.5;
  const m=k.d<=T.hw?mx:mx*.45;
- k.v+=(b?-480:g?(k.v<m?(T.ice?k.acc*.65:k.acc):-320):-120)*dt;k.v=Math.max(0,Math.min(k.top,k.v));
+ k.v+=(b?-480:g||bo?(k.v<m?(bo?900:T.ice?k.acc*.65:k.acc):-320):-120)*dt;k.v=Math.max(0,Math.min(bo?k.top*1.55:k.top,k.v));
  if(k.sp>0){k.a+=10*dt;k.v*=1-1.3*dt}else k.a+=s*k.trn*dt*Math.min(1,k.v/110);
  k.ha+=nd(k.a-k.ha)*Math.min(1,dt*(T.ice?1.5:9));
  k.x+=Math.cos(k.ha)*k.v*dt;k.y+=Math.sin(k.ha)*k.v*dt;
@@ -1672,42 +1724,49 @@ function kStep(dt,ts){
  const me=KT.ks[0];
  if(KT.state=='lobby'){const os=Object.values(KT.o);if(me.rdy&&os.every(o=>o.r)&&(KT.mode!='multi'||os.length)){KT.state='count';KT.t0=ts}}
  if(KT.state=='count'&&ts-KT.t0>=3000){KT.state='race';KT.t0=ts}
+ if(KT.ib&&(KT.state=='race'||KT.state=='done'))KT.ib.forEach(b=>b.cd-=dt);
  if(KT.state=='race'||KT.state=='done')KT.ks.forEach(k=>kUpd(k,dt,ts));
  KT.ca+=nd(me.a-KT.ca)*Math.min(1,dt*7);
  for(const id in KT.o){const o=KT.o[id];if(ts-o.seen>3000){if(o.m&&KT.S)KT.S.remove(o.m);delete KT.o[id];continue}const f=Math.min(1,dt*12);o.x+=(o.tx-o.x)*f;o.y+=(o.ty-o.y)*f;o.a+=nd(o.ta-o.a)*f}
- if(KT.ch&&ts-KT.sent>90){KT.sent=ts;KT.ch.send({type:'broadcast',event:'p',payload:{id:ME.id,n:nm(ME.id),x:me.x|0,y:me.y|0,a:+me.a.toFixed(2),p:kProg(me),r:me.rdy?1:0,ci:me.ci,si:me.si,hi:me.hi}})}
+ if(KT.ch&&ts-KT.sent>90){KT.sent=ts;KT.ch.send({type:'broadcast',event:'p',payload:{id:ME.id,n:nm(ME.id),x:me.x|0,y:me.y|0,a:+me.a.toFixed(2),p:kProg(me),r:me.rdy?1:0,ci:me.ci,si:me.si,hi:me.hi,it:me.roll>0?3:me.item,bo:me.boost>0?1:0}})}
 }
 function kHud(){
- const h=$('#kh');if(!h)return;let t='';
- if(KT.state!='idle'){
-  const me=KT.ks[0],ps=[kProg(me),...KT.ks.slice(1).map(kProg),...Object.values(KT.o).map(o=>o.p||0)],pl=ps.filter(q=>q>ps[0]).length+1,now=performance.now(),sec=((KT.state=='count'?0:(me.fin||now-KT.t0))/1000).toFixed(1);
-  t=`<div class="khb">${KT.T.open?'Abfahrt '+Math.min(100,Math.round(me.idx/(KT.T.pts.length-1)*100))+' %':'Runde '+Math.min(LAPS,Math.max(1,me.lap))+'/'+LAPS}<br>Platz ${pl}/${ps.length}<br>${sec} s</div>`;
+ const h=$('#kh');if(!h)return;
+ if(!h.firstChild||h.firstChild.className!='khd'){h.innerHTML='<div class="khd"><div class="kpos"><b id="kp1">1</b><span id="kp2">/1</span></div><div class="klap"><b id="kl1"></b><span id="kl2"></span></div><canvas id="kmm" class="kmm" width="208" height="208"></canvas><div class="kitm" id="kit"></div><div class="kspd" id="ksp"><b id="ks1">0</b><span>km/h</span></div><div class="ksl" id="ksl"></div><div id="kcd"></div><div id="kpn"></div></div>';h.k={e:{}}}
+ const K=h.k,E=id=>K.e[id]||(K.e[id]=h.querySelector('#'+id)),X=(id,v)=>{if(K[id]!==v){K[id]=v;E(id).textContent=v}},w=h.firstChild;
+ w.style.display=KT.state=='idle'?'none':'';if(KT.state=='idle')return;
+ const me=KT.ks[0],ps=[kProg(me),...KT.ks.slice(1).map(kProg),...Object.values(KT.o).map(o=>o.p||0)],pl=ps.filter(q=>q>ps[0]).length+1,now=performance.now(),sec=((KT.state=='count'?0:(me.fin||now-KT.t0))/1000).toFixed(1);
+ X('kp1',pl);X('kp2','/'+ps.length);X('kl1',KT.T.open?'Abfahrt '+Math.min(100,Math.round(me.idx/(KT.T.pts.length-1)*100))+' %':'Runde '+Math.min(LAPS,Math.max(1,me.lap))+'/'+LAPS);X('kl2',sec+' s');X('ks1',Math.round(me.v*.55));
+ const pct=Math.min(100,Math.round(me.v/(me.top*1.5)*100));if(K.p!==pct){K.p=pct;E('ksp').style.setProperty('--p',pct)}
+ const it=me.roll>0?'❓':me.item==1?'⚡':me.item==2?'🚀':'';if(K.it!==it||K.rl!==(me.roll>0)){K.it=it;K.rl=me.roll>0;const e=E('kit');e.textContent=it;e.className='kitm'+(it?' on':'')+(me.roll>0?' rl':'')}
+ E('ksl').className='ksl'+(me.boost>0?' on':'');
+ const n=3-Math.floor((now-KT.t0)/1000),ck=KT.state=='count'?'c'+n:KT.state=='race'&&now-KT.t0<900?'go':'';if(K.cd!==ck){K.cd=ck;E('kcd').innerHTML=ck?kcd(ck=='go'?0:n):''}
+ let t='';
   if(KT.state=='lobby'){const os=Object.values(KT.o);t+=`<div class="khp" style="pointer-events:auto"><b>Startaufstellung</b><div>Du: ${me.rdy?'✓ bereit':'noch nicht bereit'}</div>${os.map(o=>`<div>${esc(o.n||'Spieler')}: ${o.r?'✓ bereit':'wartet …'}</div>`).join('')}${KT.mode!='multi'?'<div>Computer-Fahrer: ✓ bereit</div>':os.length?'':'<div>Warte auf Mitspieler …</div>'}${me.rdy?'':'<p style="margin:12px 0 0"><button class="btn o" onclick="kReady()">Bereit</button></p>'}</div>`}
-  if(KT.state=='count')t+=kcd(3-Math.floor((now-KT.t0)/1000));if(KT.state=='race'&&now-KT.t0<900)t+=kcd(0);
   if(KT.state=='done'){const f=[...KT.fin].sort((a,b)=>a.t-b.t).slice(0,6);t+=`<div class="khp" style="pointer-events:auto"><b>Im Ziel!</b>${KT.rec?`<div style="color:#f59f00;margin-bottom:6px">${KT.rec}</div>`:''}${f.map((r,i)=>`<div>${i+1}. ${esc(r.n)} · ${(r.t/1000).toFixed(1)} s</div>`).join('')}<p style="margin:10px 0 0"><button class="btn g" onclick="kBest()">Bestenliste</button></p></div>`}
- }
- if(h.dataset.s!=t){h.dataset.s=t;h.innerHTML=t}
+ if(K.pn!==t){K.pn=t;E('kpn').innerHTML=t}
+ kMini(E('kmm'))
 }
 function kDraw(){
  const c=KT.c,R=KT.R,S=KT.S;if(!R||!S)return;
  const W=c.clientWidth,H=c.clientHeight,cam=KT.cam;if(!W||!H)return;
  if(KT.w!=W||KT.h!=H){KT.w=W;KT.h=H;R.setSize(W,H,false);cam.aspect=W/H;cam.updateProjectionMatrix()}
- if(KT.state=='idle'){const t=performance.now()/5000,b=KT.T.b,cx=(b[0]+b[2])/2,cz=(b[1]+b[3])/2,z=Math.max(b[2]-b[0],b[3]-b[1]);const oy=-(KT.T.sl||0)*cz;cam.position.set(cx+Math.cos(t)*z*.8,oy+z*.55,cz+Math.sin(t)*z*.8);cam.lookAt(cx,oy,cz)}
+ if(KT.state=='idle'){const t=performance.now()/5000,b=KT.T.b,cx=(b[0]+b[2])/2,cz=(b[1]+b[3])/2,z=Math.max(b[2]-b[0],b[3]-b[1]);if(cam.fov!=70){cam.fov=70;cam.updateProjectionMatrix()}const oy=-(KT.T.sl||0)*cz;cam.position.set(cx+Math.cos(t)*z*.8,oy+z*.55,cz+Math.sin(t)*z*.8);cam.lookAt(cx,oy,cz)}
  else{
   const me=KT.ks[0],fx=Math.cos(KT.ca),fz=Math.sin(KT.ca);
-  const gy=z=>-(KT.T.sl||0)*z;cam.position.set(me.x-fx*95,gy(me.y-fz*95)+48,me.y-fz*95);cam.lookAt(me.x+fx*40,gy(me.y+fz*40)+10,me.y+fz*40);
-  [...KT.ks,...Object.values(KT.o)].forEach(k=>{if(!k.m){k.m=k3Kart(k.ci,k.si,k.hi);S.add(k.m)}k.m.position.set(k.x,1-(KT.T.sl||0)*k.y,k.y);k.m.rotation.order='YXZ';k.m.rotation.set(0,-k.a,Math.atan(-(KT.T.sl||0)*Math.sin(k.a)))})
+  const gy=z=>-(KT.T.sl||0)*z;cam.position.set(me.x-fx*95,gy(me.y-fz*95)+48,me.y-fz*95);cam.lookAt(me.x+fx*40,gy(me.y+fz*40)+10,me.y+fz*40);const bs=me.boost>0,tf=70+(bs?16:Math.min(10,me.v/50));cam.fov+=(tf-cam.fov)*Math.min(1,(KT.dt||.016)*5);cam.updateProjectionMatrix();if(bs){cam.position.x+=(Math.random()-.5)*1.6;cam.position.y+=(Math.random()-.5)*1.6}
+  [...KT.ks,...Object.values(KT.o)].forEach(k=>{if(!k.m){k.m=k3Kart(k.ci,k.si,k.hi);S.add(k.m)}k.m.position.set(k.x,1-(KT.T.sl||0)*k.y,k.y);k.m.rotation.order='YXZ';k.m.rotation.set(0,-k.a,Math.atan(-(KT.T.sl||0)*Math.sin(k.a)));kFx(k)})
  }
- if(KT.sky)KT.sky.position.copy(cam.position);R.render(S,cam);kHud()
+ if(KT.sky)KT.sky.position.copy(cam.position);if(KT.bm&&KT.ib){const t=performance.now(),dt=KT.dt||.016;KT.bm.forEach((m,i)=>{m.visible=KT.ib[i].cd<=0;m.rotation.y+=dt*1.6;m.position.y=m.userData.y0+Math.sin(t/300+i)*3})}kPUpd(KT.dt||.016);R.render(S,cam);kHud()
 }
 function kLoop(ts){
  if(V!='kart'||$('#kc')!==KT.c){kStop();return}
- const dt=Math.min(.05,(ts-KT.ts)/1000||0);KT.ts=ts;kStep(dt,ts);kDraw();KT.raf=requestAnimationFrame(kLoop)
+ const dt=Math.min(.05,(ts-KT.ts)/1000||0);KT.ts=ts;KT.dt=dt;kStep(dt,ts);kDraw();KT.raf=requestAnimationFrame(kLoop)
 }
 function kKey(e){
  if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
  if(e.type=='keydown'&&(e.key=='Enter'||e.key==' ')&&KT.state=='lobby'){kReady();e.preventDefault();return}
- const k={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowDown:'b',s:'b',ArrowUp:'g',w:'g'}[e.key];
+ const k={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowDown:'b',s:'b',ArrowUp:'g',w:'g',' ':'u',Shift:'u',e:'u'}[e.key];
  if(k){KT.in[k]=e.type=='keydown'?1:0;if(KT.state!='idle')e.preventDefault()}
 }
 async function kInit(){
@@ -1786,7 +1845,7 @@ fwd:()=>{const x=DB.find(i=>i.id==P.id),fr=frs().friends,my=GRP.filter(gmine),b=
 return `<h1>Weiterleiten</h1><p class="m">${esc(x.title)}</p><h2>An Freunde</h2><div class="card" style="padding:6px 24px;max-width:none">${fr.map(id=>`<div class="row"><span>${pn(byId(id))}</span>${b('u',id)}</div>`).join('')||'<p class="m">Noch keine Freunde.</p>'}</div><h2>An Gruppen</h2><div class="card" style="padding:6px 24px;max-width:none">${my.map(g=>`<div class="row"><span style="display:flex;gap:12px;align-items:center">${gav(g,36)}${esc(g.name)}</span>${b('g',g.id)}</div>`).join('')||'<p class="m">Du bist in keiner Gruppe.</p>'}</div>`},
 kart:()=>{const cpu=KT.mode!='multi',tb=(i,t)=>`<button class="tab" data-s="${i}" onclick="kStepTo(${i})">${i+1}. ${t}</button>`,dots=n=>'●'.repeat(n)+'○'.repeat(5-n),
  sw=(t,a,l)=>a.map((c,i)=>`<button class="ksw ${i==KT[t]?'on':''}" data-p="${t}" data-i="${i}" style="background:${c}" aria-label="${l} ${i+1}" onclick="kPick('${t}',${i})"></button>`).join('');
-return `<h1>Kart-Rennen 3D</h1><div id="kmenu"><div class="bar" style="margin-top:0"><div class="seg" role="group" aria-label="Modus"><button class="${cpu?'on':''}" onclick="kMode('cpu')">Gegen Computer</button><button class="${cpu?'':'on'}" onclick="kMode('multi')">Mehrspieler</button></div><button class="btn g" onclick="kBest()">Bestenliste</button></div><div class="tabs">${tb(0,'Auto')}${tb(1,'Charakter')}${tb(2,'Strecke')}</div><div class="card" style="max-width:none;margin-top:16px"><div class="ksp" data-s="0"><div class="kgrid">${KCAR.map((c,i)=>`<div class="kc ${i==KT.car?'on':''}" data-p="car" data-i="${i}" onclick="kPick('car',${i})"><span class="kpv" style="--c:${c.c}"></span><b>${c.n}</b><span class="m" style="display:block;font-size:13px">Tempo ${dots(c.t)}<br>Start ${dots(c.a)}<br>Lenkung ${dots(c.l)}</span></div>`).join('')}</div></div><div class="ksp" data-s="1"><div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center"><span class="kch" id="kchp" style="--sk:${SK[KT.skin]};--sh:${SC[KT.col]}"><i></i></span><div><label style="margin-top:0">Hautton</label><div class="kw">${sw('skin',SK,'Hautton')}</div><label>Farbe</label><div class="kw">${sw('col',SC,'Farbe')}</div></div></div></div><div class="ksp" data-s="2"><label style="margin-top:0">Strecke</label><div class="bar" style="margin:0" id="ktr">${KTR.map((t,i)=>`<button class="btn ${i==KT.tr?'o':'g'}" onclick="kSel(${i})">${t.n}</button>`).join('')}</div><p class="m" id="ktd" style="margin:10px 0 0">${KTR[KT.tr].d}</p>${cpu?'':`<label>Raumcode (alle Mitspieler geben denselben Code ein)</label><div class="bar" style="margin:0"><input id="kr" maxlength="12" value="${esc(KT.room)}" placeholder="z. B. kart1" onchange="KT.room=this.value.trim().toLowerCase();kNet()"><button class="btn g" onclick="kRand()">Zufälliger Code</button></div><div class="bar" style="margin:14px 0 0"><select id="kf">${frs().friends.map(id=>`<option value="${id}">${esc(nm(id))}</option>`).join('')}</select><button class="btn g" onclick="kInv()">Freund einladen</button></div>`}<p style="margin:16px 0 0"><button class="btn o" onclick="kGo()">Zur Startaufstellung</button></p></div><div class="bar" style="margin:18px 0 0"><button class="btn g" id="kpv0" onclick="kStepTo(KT.step-1)">Zurück</button><button class="btn o" id="knx" onclick="kStepTo(KT.step+1)">Weiter</button></div></div><p class="m">Am PC: ↑ Gas, ↓ Bremse, ← → lenken. Auf dem iPad: links lenken, rechts Gas und Bremse.</p></div><div id="kgame" style="position:relative;margin-top:14px"><canvas id="kc" style="width:100%;height:min(76vh,720px);min-height:300px;border-radius:14px;touch-action:none;background:#222;display:block"></canvas><div id="kh" style="position:absolute;inset:0;pointer-events:none"></div><div id="kback" style="position:absolute;right:10px;top:10px;display:none;gap:8px"><button class="btn g" id="kfs" onclick="kFS(!KT.fs)">Vollbild beenden</button><button class="btn g" onclick="kBack()">Menü</button></div><div id="kctl"><div><button class="kp" data-k="l" style="width:84px;height:84px;background:#334155" aria-label="Links">◀</button><button class="kp" data-k="r" style="width:84px;height:84px;background:#334155" aria-label="Rechts">▶</button></div><div><button class="kp" data-k="b" style="width:84px;height:100px;background:#d62828">Bremse</button><button class="kp" data-k="g" style="width:96px;height:150px;background:#2f9e44">Gas</button></div></div></div>`},
+return `<h1>Kart-Rennen 3D</h1><div id="kmenu"><div class="bar" style="margin-top:0"><div class="seg" role="group" aria-label="Modus"><button class="${cpu?'on':''}" onclick="kMode('cpu')">Gegen Computer</button><button class="${cpu?'':'on'}" onclick="kMode('multi')">Mehrspieler</button></div><button class="btn g" onclick="kBest()">Bestenliste</button></div><div class="tabs">${tb(0,'Auto')}${tb(1,'Charakter')}${tb(2,'Strecke')}</div><div class="card" style="max-width:none;margin-top:16px"><div class="ksp" data-s="0"><div class="kgrid">${KCAR.map((c,i)=>`<div class="kc ${i==KT.car?'on':''}" data-p="car" data-i="${i}" onclick="kPick('car',${i})"><span class="kpv" style="--c:${c.c}"></span><b>${c.n}</b><span class="m" style="display:block;font-size:13px">Tempo ${dots(c.t)}<br>Start ${dots(c.a)}<br>Lenkung ${dots(c.l)}</span></div>`).join('')}</div></div><div class="ksp" data-s="1"><div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center"><span class="kch" id="kchp" style="--sk:${SK[KT.skin]};--sh:${SC[KT.col]}"><i></i></span><div><label style="margin-top:0">Hautton</label><div class="kw">${sw('skin',SK,'Hautton')}</div><label>Farbe</label><div class="kw">${sw('col',SC,'Farbe')}</div></div></div></div><div class="ksp" data-s="2"><label style="margin-top:0">Strecke</label><div class="bar" style="margin:0" id="ktr">${KTR.map((t,i)=>`<button class="btn ${i==KT.tr?'o':'g'}" onclick="kSel(${i})">${t.n}</button>`).join('')}</div><p class="m" id="ktd" style="margin:10px 0 0">${KTR[KT.tr].d}</p>${cpu?'':`<label>Raumcode (alle Mitspieler geben denselben Code ein)</label><div class="bar" style="margin:0"><input id="kr" maxlength="12" value="${esc(KT.room)}" placeholder="z. B. kart1" onchange="KT.room=this.value.trim().toLowerCase();kNet()"><button class="btn g" onclick="kRand()">Zufälliger Code</button></div><div class="bar" style="margin:14px 0 0"><select id="kf">${frs().friends.map(id=>`<option value="${id}">${esc(nm(id))}</option>`).join('')}</select><button class="btn g" onclick="kInv()">Freund einladen</button></div>`}<p style="margin:16px 0 0"><button class="btn o" onclick="kGo()">Zur Startaufstellung</button></p></div><div class="bar" style="margin:18px 0 0"><button class="btn g" id="kpv0" onclick="kStepTo(KT.step-1)">Zurück</button><button class="btn o" id="knx" onclick="kStepTo(KT.step+1)">Weiter</button></div></div><p class="m">Am PC: ↑ Gas, ↓ Bremse, ← → lenken, Leertaste oder Shift für den Boost. Sammle Item-Boxen ein, das Item schwebt dann über deinem Auto. Orange Pfeile auf der Straße geben dir einen kleinen Schub. Auf dem iPad: links lenken, rechts Gas, Bremse und Boost.</p></div><div id="kgame" style="position:relative;margin-top:14px"><canvas id="kc" style="width:100%;height:min(76vh,720px);min-height:300px;border-radius:14px;touch-action:none;background:#222;display:block"></canvas><div id="kh" style="position:absolute;inset:0;pointer-events:none"></div><div id="kback" style="position:absolute;right:10px;top:10px;display:none;gap:8px"><button class="btn g" id="kfs" onclick="kFS(!KT.fs)">Vollbild beenden</button><button class="btn g" onclick="kBack()">Menü</button></div><div id="kctl"><div><button class="kp" data-k="l" style="width:84px;height:84px;background:#334155" aria-label="Links">◀</button><button class="kp" data-k="r" style="width:84px;height:84px;background:#334155" aria-label="Rechts">▶</button></div><div><button class="kp" data-k="u" style="width:84px;height:84px;background:#f26b1d;border-radius:50%;font-size:34px" aria-label="Boost">⚡</button><button class="kp" data-k="b" style="width:84px;height:100px;background:#d62828">Bremse</button><button class="kp" data-k="g" style="width:96px;height:150px;background:#2f9e44">Gas</button></div></div></div>`},
 kbest:()=>{const t=P.t||0,rows=KB.filter(r=>r.track==t).sort((a,b)=>a.ms-b.ms).slice(0,20);
 return `<h1>Bestenliste</h1><p class="m">Die schnellste Zeit jedes Spielers für 3 Runden.</p><div class="bar" style="margin-top:0">${KTR.map((x,i)=>`<button class="btn ${i==t?'o':'g'}" onclick="go('kbest',{t:${i}},1)">${x.n}</button>`).join('')}</div><div class="card" style="padding:6px 24px;max-width:none">${rows.length?rows.map((r,i)=>`<div class="row"><span><b>${i+1}.</b> ${r.user_id==ME.id?'<b>Du</b>':esc(nm(r.user_id))}<span class="m" style="font-size:13px"> · ${KCAR[r.car]?KCAR[r.car].n:''}</span></span><b>${kFmt(r.ms)}</b></div>`).join(''):'<p class="m">Noch keine Zeiten. Fahr das erste Rennen!</p>'}</div>`},
 spiele:()=>`<h1>Spiele</h1><p class="m">Eine kleine Pause zwischendurch.</p><div class="tiles" style="margin-top:20px">${tl([['game','Tic Tac Toe','Gegen den Computer, zu zweit oder online','ttt'],['game','Kart-Rennen 3D','Gegen den Computer oder online mit Freunden','kart'],['chess','Schach','Gegen den Computer, zu zweit oder online','chess'],['book','Bookie Clicker','Klicke Bücher und baue deine Bibliothek aus','clicker'],['game','Bookie Slots','Dreh die Maschine und vermehre deine Bookies','slots']])}</div>`,
