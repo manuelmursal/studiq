@@ -368,6 +368,17 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 .bfem .emd{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px;border-radius:50%;background:#fff;box-shadow:0 0 6px #000}
 .bfem .emh{position:absolute;left:0;right:0;top:50%;transform:translateY(14px);text-align:center;font-size:12px;color:#fff9}
 .bfeb{position:absolute;left:12px;top:12px;z-index:6;pointer-events:auto}
+.bfl{position:absolute;inset:0;display:none;pointer-events:none;z-index:4;color:#fff}
+.bfl .lt{position:absolute;left:0;right:0;top:12px;text-align:center;text-shadow:0 2px 6px #000;font:400 22px Bungee,Impact,sans-serif}
+.bfl .lp{position:absolute;right:12px;top:56px;width:min(270px,46vw);background:#000b;border-radius:14px;padding:12px 16px;pointer-events:auto}
+.bfl .lp h3{margin:0 0 6px;font:400 17px Bungee,Impact,sans-serif;color:#ffd43b}
+.bfl .lr{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-size:15px}
+.bfl .lbb{position:absolute;left:0;right:0;bottom:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;pointer-events:auto}
+.bfl .btn:disabled{opacity:.5}
+.bfck{display:grid;gap:4px;max-height:140px;overflow:auto;font-size:15px;margin-top:4px}
+.bfck label{display:flex;gap:8px;align-items:center;margin:0;cursor:pointer}
+.bfck input{width:auto}
+#bfh.lob .bfx{display:none}
 .bfvt{display:grid;gap:10px;margin-top:12px}
 .bfvt button{width:100%;margin:0}
 #bfgame:fullscreen canvas{height:100vh!important;border-radius:0!important}
@@ -403,8 +414,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-23.3';
+const VERSION='2026-11-23.4';
 const CHANGELOG=[
+ {v:'2026-11-23.4',t:'Banana Fight: Lobby für mehrere Spieler',items:['Online lädst du jetzt mehrere Freunde gleichzeitig ein. Freunde können deiner Lobby auch direkt über die Liste „Lobbys deiner Freunde“ beitreten.','In der Lobby warten alle aufeinander. Mit „Bereit“ meldest du dich an und kannst dich wieder abmelden. Wenn alle bereit sind, geht es los.','Der Lobby-Leiter (👑) hat neben „Bereit“ den Knopf „Bereit, ohne zu warten“ und startet damit sofort.','In der Lobby kannst du Emotes machen, neu auch „Banane essen“. Danach stimmt ihr über die Map ab.','Nach einer Runde geht es zurück in die Lobby.']},
  {v:'2026-11-23.3',t:'Banana Fight: Emotes',items:['Mit B öffnest du das Emote-Rad: Moonwalk mit Drehung, Peace-Zeichen, Winken und „mäßig Pistole zielen“. Mit der Maus wählst du aus und klickst.','Während des Emotes siehst du deine Banane von vorn. Mit B, beim Laufen, Nachladen oder wenn du getroffen wirst, hörst du auf. Andere sehen dein Emote auch.','Auf dem iPad gibt es oben links einen Emote-Knopf zum Antippen.']},
  {v:'2026-11-23.2',t:'Banana Fight: Sniper, Zielrohr und Map-Abstimmung',items:['Neue Waffe: die Sniper (Taste 4). Sie macht viel Schaden, lädt langsam und ist nur mit Zielrohr richtig genau.','Mit gedrückter rechter Maustaste zielst du mit jeder Waffe durch ein Zielrohr. Das zoomt heran und macht dich genauer, aber langsamer.','Vor jeder Runde stimmst du über die Map ab: Wüstenarena, Dschungeltempel oder Eisfestung.','Beim Nachladen isst du jetzt die Banane-Waffe auf. Danach wächst eine neue nach.','Gegen Bots gewinnst am Ende immer du.']},
  {v:'2026-11-23.1',t:'Neues Spiel: Banana Fight',items:['Banana Fight ist ein 3D-Shooter in der Ich-Perspektive: Du bist eine Banane mit Waffen und kämpfst in einer Arena mit Kisten, Fässern, Mauern und einem Turm.','Drei Waffen (Pistole, Maschinenpistole, Schrotflinte), Kopftreffer machen mehr Schaden. Wer zuerst 15 Treffer hat, gewinnt.','Spielbar gegen Bots oder online mit Raumcode und Freunde-Einladung.']},
@@ -1387,7 +1399,7 @@ const BF={mode:'cpu',room:'',o:{},sc:{},fd:[],k:{},st:'idle',w:0,bx:[]};
 const BFW=[{n:'Pistole',dmg:22,rt:.28,mag:12,rl:1.5,sp:.008,pel:1,f:200},{n:'Maschinenpistole',dmg:11,rt:.085,mag:30,rl:1.9,sp:.03,pel:1,f:260},{n:'Schrotflinte',dmg:9,rt:.85,mag:6,rl:2.2,sp:.07,pel:8,f:120},{n:'Sniper',dmg:70,rt:1.25,mag:5,rl:2.8,sp:.0006,pel:1,f:80}];
 const BFC=[0xe03131,0x1c7ed6,0x2f9e44,0x9c36b5,0xf76707,0x0ca678],bfCol=id=>BFC[[...String(id)].reduce((a,c)=>a+c.charCodeAt(0),0)%BFC.length];
 const BFS=[[-24,-24],[24,-24],[-24,24],[24,24],[0,-24],[0,24],[-24,0],[24,0]];
-const BFM=[{n:'Wüstenarena',e:'🏜️',d:'Turm in der Mitte, Kisten und Fässer',sky:0x9fd3ff,f:['#e8d48b','#cdb768','#dcc67a'],wl:0x5a7d3a},{n:'Dschungeltempel',e:'🌴',d:'Stufenpyramide, Ruinenmauern und hohe Stämme',sky:0x8fcf9a,f:['#3f7d3a','#2f6a2e','#38722f'],wl:0x2d5a34},{n:'Eisfestung',e:'🧊',d:'Eisplattform mit Rampen und Türmen in den Ecken',sky:0xcfe8ff,f:['#e8f4fb','#c9e3f2','#dcecf6'],wl:0x7fb6d6}];
+const BFM=[{n:'Wüstenarena',e:'🏜️',d:'Turm in der Mitte, Kisten und Fässer',sky:0x9fd3ff,f:['#e8d48b','#cdb768','#dcc67a'],wl:0x5a7d3a},{n:'Dschungeltempel',e:'🌴',d:'Stufenpyramide, Ruinenmauern und hohe Stämme',sky:0x8fcf9a,f:['#3f7d3a','#2f6a2e','#38722f'],wl:0x2d5a34},{n:'Eisfestung',e:'🧊',d:'Eisplattform mit Rampen und Türmen in den Ecken',sky:0xcfe8ff,f:['#e8f4fb','#c9e3f2','#dcecf6'],wl:0x7fb6d6},{n:'Lobby',e:'🍌',d:'',sky:0xffe9a8,f:['#f3e3b0','#e6d29a','#ecdba5'],wl:0x8a6a3a}];
 function bfBar(x,z,c){const th=THREE,m=new th.Mesh(new th.CylinderGeometry(.5,.5,1.1,16),new th.MeshPhongMaterial({color:c,shininess:50}));m.position.set(x,.55,z);m.castShadow=true;BF.S.add(m);BF.bx.push({x0:x-.5,x1:x+.5,z0:z-.5,z1:z+.5,y0:0,y1:1.1})}
 function bfDisp(S){S.traverse(o=>{if(o.geometry)o.geometry.dispose();const m=o.material;(Array.isArray(m)?m:m?[m]:[]).forEach(x=>{if(x.map)x.map.dispose();x.dispose()})})}
 function bfSnd(f,d){try{const a=BF.ac||(BF.ac=new(window.AudioContext||window.webkitAudioContext)()),o=a.createOscillator(),g=a.createGain();o.type='square';o.frequency.setValueAtTime(f,a.currentTime);o.frequency.exponentialRampToValueAtTime(40,a.currentTime+d);g.gain.setValueAtTime(.1,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+d)}catch(e){}}
@@ -1412,13 +1424,13 @@ function bfMap(id){id=id||0;const M=BFM[id]||BFM[0],old=BF.S,th=THREE,S=BF.S=new
  [[-15,0,.8,10],[15,0,.8,10],[0,-15,10,.8],[0,15,10,.8]].forEach(([x,z,w,d])=>bfBox(x,z,w,d,2.4,0,ST,1));
  [[-20,-10,3,3,2],[20,10,3,3,2],[-20,12,2.5,2.5,2.5],[20,-12,2.5,2.5,2.5],[-8,-20,3,2,1.8],[8,20,3,2,1.8],[-12,18,2,2,1.4],[12,-18,2,2,1.4]].forEach(([x,z,w,d,h])=>bfBox(x,z,w,d,h,0,CR,1));
  [[-5,-12,0xe03131],[5,12,0x1c7ed6],[17,-6,0xf76707],[-17,6,0x2f9e44]].forEach(([x,z,c])=>bfBar(x,z,c))
-}else{const IC=0x9bd3ee,SN=0xd7ecf7;
+}else if(id==2){const IC=0x9bd3ee,SN=0xd7ecf7;
  bfBox(0,0,9,9,1.2,0,IC,1);
  for(let i=0;i<4;i++){bfBox(0,5.2+(3-i)*.9,3,.9,.3*(i+1),0,IC,1);bfBox(0,-5.2-(3-i)*.9,3,.9,.3*(i+1),0,IC,1)}
  [[-16,-16],[16,-16],[-16,16],[16,16]].forEach(([x,z])=>bfBox(x,z,5,5,3,0,SN,1));
  [[-12,0,.8,8],[12,0,.8,8],[-8,-12,6,.8],[8,12,6,.8]].forEach(([x,z,w,d])=>bfBox(x,z,w,d,2.6,0,IC,1));
  [[-22,-10,2.4,2.4,2.4],[22,10,2.4,2.4,2.4],[-6,-20,2.4,2.4,2.4],[6,20,2.4,2.4,2.4],[-20,8,2,2,1.6],[20,-8,2,2,1.6]].forEach(([x,z,w,d,h])=>bfBox(x,z,w,d,h,0,SN,1));
- [[-4,-9,0xe03131],[4,9,0x1c7ed6],[14,0,0xf76707],[-14,0,0x2f9e44]].forEach(([x,z,c])=>bfBar(x,z,c))}
+ [[-4,-9,0xe03131],[4,9,0x1c7ed6],[14,0,0xf76707],[-14,0,0x2f9e44]].forEach(([x,z,c])=>bfBar(x,z,c))}else{bfBox(0,-9,26,1,6,0,0xc99a5b,1);[[-10,-7],[10,-7]].forEach(([x,z])=>bfBox(x,z,1.4,1.4,5,0,0x6b4a2a));[[-5,-5],[5,-5],[-7,2],[7,2]].forEach(([x,z],i)=>bfBar(x,z,[0xe03131,0x1c7ed6,0xf76707,0x2f9e44][i]))}
  BF.cam=BF.cam||new th.PerspectiveCamera(75,1,.05,300);S.add(BF.cam);BF.gun=null;BF.tr=[];for(let i=0;i<14;i++){const g=new th.BufferGeometry();g.setAttribute('position',new th.Float32BufferAttribute(6,3));const l=new th.Line(g,new th.LineBasicMaterial({color:0xffe066}));l.visible=false;l.frustumCulled=false;l.ttl=0;S.add(l);BF.tr.push(l)}BF.ti=0;bfWS();if(old)bfDisp(old)}
 function bfGun(i){const th=THREE,g=new th.Group(),A=(geo,c,x,y,z,rx)=>{const m=new th.Mesh(geo,new th.MeshPhongMaterial({color:c,shininess:80}));m.position.set(x,y,z);if(rx)m.rotation.x=rx;g.add(m)},L=[.26,.4,.58,.95][i];
  A(new th.BoxGeometry(.06,.08,L),0xf2c200,0,0,-L/2);A(new th.CylinderGeometry(.022,.022,L*.55,10),0x5a3a14,0,.015,-L-L*.2,Math.PI/2);A(new th.BoxGeometry(.055,.13,.07),0x6b4a1a,0,-.09,-.02);A(new th.BoxGeometry(.062,.02,L*.6),0x6b4a1a,0,.05,-L*.55);if(i==1)A(new th.BoxGeometry(.05,.14,.05),0x2b2b2e,0,-.1,-L*.55);if(i==2)A(new th.BoxGeometry(.07,.05,L*.45),0x6b4a1a,0,-.045,-L*.7);if(i==3){A(new th.CylinderGeometry(.032,.032,L*.5,12),0x222222,0,.085,-L*.5,Math.PI/2);A(new th.BoxGeometry(.04,.05,.04),0x222222,0,.06,-L*.3);A(new th.BoxGeometry(.04,.05,.04),0x222222,0,.06,-L*.65);A(new th.BoxGeometry(.07,.06,L*.3),0x6b4a1a,0,-.045,-L*.85)}return g}
@@ -1427,39 +1439,70 @@ function bfBanana(o){const th=THREE,g=new th.Group(),Y=new th.MeshPhongMaterial(
  A(new th.Mesh(new th.TubeGeometry(cu,26,.26,14,false),Y),0,0,0);A(new th.Mesh(new th.SphereGeometry(.26,14,10),Y),.1,1.66,0);A(new th.Mesh(new th.SphereGeometry(.13,10,8),B),0,.24,0);A(new th.Mesh(new th.CylinderGeometry(.07,.09,.26,10),B),.14,1.92,0).rotation.z=-.5;
  [-1,1].forEach(s=>{A(new th.Mesh(new th.SphereGeometry(.085,10,8),new th.MeshBasicMaterial({color:0xffffff})),-.1+s*.1,1.27,.23);A(new th.Mesh(new th.SphereGeometry(.04,8,6),new th.MeshBasicMaterial({color:0x111111})),-.1+s*.1,1.27,.3);const lg=A(new th.Mesh(new th.CylinderGeometry(.06,.06,.3,8),new th.MeshPhongMaterial({color:0x222222})),-.1+s*.11,.1,0),sh=A(new th.Mesh(new th.SphereGeometry(.1,10,8),new th.MeshPhongMaterial({color:0xc92a2a})),-.1+s*.11,.03,.05);sh.scale.set(1,.6,1.4);(g.userData.ft=g.userData.ft||[]).push({lg,sh,s})});
  A(new th.Mesh(new th.TorusGeometry(.27,.05,8,18),new th.MeshPhongMaterial({color:bfCol(o.id)})),-.04,1.5,0).rotation.x=Math.PI/2;
- g.rotation.order='YXZ';const la=new th.Group();la.position.set(-.4,1.05,.1);const am=new th.Mesh(new th.CylinderGeometry(.05,.05,.4,8),Y),hd=new th.Mesh(new th.SphereGeometry(.08,10,8),Y),fg=new th.Group();am.position.y=-.2;hd.position.y=-.43;fg.visible=false;[-1,1].forEach(s=>{const f=new th.Mesh(new th.CylinderGeometry(.02,.02,.17,6),Y);f.position.set(s*.035,-.54,0);f.rotation.z=s*.3;fg.add(f)});la.add(am,hd,fg);g.add(la);g.userData.la=la;g.userData.fg=fg;g.userData.gw=o.w||0;
+ g.rotation.order='YXZ';const la=new th.Group();la.position.set(-.4,1.05,.1);const am=new th.Mesh(new th.CylinderGeometry(.05,.05,.4,8),Y),hd=new th.Mesh(new th.SphereGeometry(.08,10,8),Y),fg=new th.Group();am.position.y=-.2;hd.position.y=-.43;fg.visible=false;[-1,1].forEach(s=>{const f=new th.Mesh(new th.CylinderGeometry(.02,.02,.17,6),Y);f.position.set(s*.035,-.54,0);f.rotation.z=s*.3;fg.add(f)});const bp=new th.Group();bp.position.set(0,-.47,0);bp.visible=false;bp.add(new th.Mesh(new th.TubeGeometry(new th.CatmullRomCurve3([[0,0],[.02,-.1],[.01,-.2],[-.03,-.28]].map(([x,y])=>new th.Vector3(x,y,0))),12,.04,8,false),Y));la.add(am,hd,fg,bp);g.userData.bp=bp;g.add(la);g.userData.la=la;g.userData.fg=fg;g.userData.gw=o.w||0;
  const gn=bfGun(o.w||0);gn.scale.setScalar(1.5);gn.rotation.y=Math.PI;gn.position.set(.3,.85,.35);gn.rotation.set(0,Math.PI,0);g.add(gn);g.userData.gn=gn;
  const c=document.createElement('canvas');c.width=256;c.height=64;{const x=c.getContext('2d');x.font='700 30px Inter,sans-serif';x.textAlign='center';x.lineWidth=6;x.strokeStyle='#000a';x.strokeText(o.n||'Banane',128,42);x.fillStyle='#fff';x.fillText(o.n||'Banane',128,42)}
  const sp=new th.Sprite(new th.SpriteMaterial({map:new th.CanvasTexture(c),depthTest:false}));sp.scale.set(1.6,.4,1);sp.position.set(0,2.3,0);g.add(sp);BF.S.add(g);return g}
 function bfOv(h){const e=$('#bfo');if(e){e.innerHTML=h;e.style.display=h?'grid':'none'}}
-function bfMenu(){const m=BF.mode=='multi';bfOv(`<div class="bfmn"><h2>🍌 Banana Fight</h2><div class="seg" role="group"><button class="${m?'':'on'}" onclick="bfMode('cpu')">Gegen Bots</button><button class="${m?'on':''}" onclick="bfMode('multi')">Online</button></div>${m?`<label>Raumcode (alle geben denselben ein)</label><div class="bar" style="margin:0"><input id="bfr" maxlength="12" value="${esc(BF.room)}" placeholder="z. B. banane1" onchange="BF.room=this.value.trim().toLowerCase()"><button class="btn g" onclick="bfRand()">Zufall</button></div><div class="bar" style="margin:10px 0 0"><select id="bff">${frs().friends.map(id=>`<option value="${id}">${esc(nm(id))}</option>`).join('')}</select><button class="btn g" onclick="bfInv()">Einladen</button></div>`:''}<p style="margin:16px 0 0"><button class="btn o" onclick="bfPlay()">Spielen</button></p><small>Wer zuerst 15 Treffer hat, gewinnt. ${m?'':'Gegen Bots gewinnst am Ende immer du. '}Vor jeder Runde stimmst du über die Map ab.</small></div>`)}
-function bfMode(m){BF.mode=m;bfMenu()}
+function bfMenu(){const m=BF.mode=='multi',fr=frs().friends;bfOv(`<div class="bfmn"><h2>🍌 Banana Fight</h2><div class="seg" role="group"><button class="${m?'':'on'}" onclick="bfMode('cpu')">Gegen Bots</button><button class="${m?'on':''}" onclick="bfMode('multi')">Online</button></div>${m?`<label>Freunde einladen (mehrere möglich)</label><div class="bfck">${fr.length?fr.map(id=>`<label><input type="checkbox" class="bfci" value="${id}"> ${esc(nm(id))}</label>`).join(''):'<span class="m">Du hast noch keine Freunde.</span>'}</div><p style="margin:12px 0 0"><button class="btn o" onclick="bfCreate()">Lobby erstellen</button></p><label>Oder einer Lobby beitreten</label><div class="bar" style="margin:0"><input id="bfr" maxlength="12" value="${esc(BF.room)}" placeholder="Raumcode"><button class="btn g" onclick="bfJoin()">Beitreten</button></div><div id="bfls">${bfLobList()}</div>`:`<p style="margin:16px 0 0"><button class="btn o" onclick="bfPlay()">Spielen</button></p>`}<small>Wer zuerst 15 Treffer hat, gewinnt. ${m?'Online wartest du in einer Lobby auf deine Freunde. ':'Gegen Bots gewinnst am Ende immer du. '}Vor jeder Runde stimmst du über die Map ab.</small></div>`);if(m)bfPres()}
+function bfLobList(){const l=(BF.lobs||[]).filter(x=>/^[a-z0-9_-]{1,12}$/.test(x.room));return l.length?'<label>Lobbys deiner Freunde</label>'+l.map(x=>`<div class="row" style="padding:6px 0"><span>${esc(x.name)}<span class="m"> · ${+x.n||1} Spieler</span></span><button class="btn o" onclick="bfJoin('${x.room}')">Beitreten</button></div>`).join(''):''}
+function bfPres(){if(BF.pc||typeof sb=='undefined')return;try{const ch=BF.pc=sb.channel('bf-lobbies',{config:{presence:{key:ME.id}}});ch.on('presence',{event:'sync'},()=>{const fr=frs().friends;BF.lobs=Object.values(ch.presenceState()).flat().filter(x=>x&&x.room&&x.open&&x.host!=ME.id&&fr.includes(x.host));const e=document.getElementById('bfls');if(e&&BF.st=='menu')e.innerHTML=bfLobList()}).subscribe(s=>{if(s==='SUBSCRIBED')bfPresTrack()})}catch(e){}}
+function bfPresTrack(){if(!BF.pc)return;try{if(BF.st=='lobby'&&BF.host)BF.pc.track({room:BF.room,host:ME.id,name:nm(ME.id),open:1,n:bfMembers().length});else BF.pc.untrack()}catch(e){}}
+function bfCreate(){const ids=[...document.querySelectorAll('.bfci:checked')].map(x=>x.value);BF.room=Math.random().toString(36).slice(2,6);BF.host=1;bfInvSend(ids);bfPlay()}
+function bfJoin(room){const r=String(room||(document.getElementById('bfr')||{}).value||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'');if(!r)return toast('Gib einen Raumcode ein.');BF.room=r;BF.host=0;bfPlay()}
+async function bfInvSend(ids){if(!ids||!ids.length)return;const body=`🍌 Banana Fight! Komm in meine Lobby: Spiele, Banana Fight, Online, dann Code „${BF.room}“ eingeben oder bei „Lobbys deiner Freunde“ auf Beitreten tippen.`;const{error}=await sb.from('messages').insert(ids.map(id=>({recipient:id,body})));toast(error?'Die Einladungen gingen nicht raus.':'Einladungen gesendet.')}
+function bfMode(m){BF.mode=m;if(m!='multi'&&BF.pc){sb.removeChannel(BF.pc);BF.pc=null}bfMenu()}
 function bfRand(){const r=Math.random().toString(36).slice(2,6);BF.room=r;$('#bfr').value=r}
 async function bfInv(){const id=$('#bff')?.value;if(!id)return toast('Du hast noch keine Freunde.');let r=($('#bfr').value||'').trim();if(!r)r=bfRand()||BF.room;BF.room=r.toLowerCase();const{error}=await sb.from('messages').insert({recipient:id,body:`🍌 Banana Fight! Öffne Spiele, tippe auf Banana Fight, wähle Online und gib den Raumcode „${r}“ ein.`});toast(error?'Die Einladung ging nicht raus.':'Einladung gesendet.')}
 function bfFS(){const g=$('#bfgame');document.fullscreenElement?document.exitFullscreen():g&&g.requestFullscreen&&g.requestFullscreen()}
 function bfNet(){if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}if(BF.mode!='multi'||!BF.room)return;const nz=BF.room;
- BF.ch=sb.channel('bf:'+nz).on('broadcast',{event:'p'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;const o=BF.o[q.id]||(BF.o[q.id]={id:q.id,x:q.x,y:q.y,z:q.z,hp:100,m:null});const ne=q.e==null?-1:q.e;if(o.e!==ne)o.et=performance.now();Object.assign(o,{tx:q.x,ty:q.y,tz:q.z,fy:q.r+Math.PI,hp:q.hp,dead:!!q.d,n:q.n,w:q.w,e:ne,seen:performance.now()});BF.sc[q.id]=BF.sc[q.id]||{n:q.n,k:0,d:0}})
+ BF.ch=sb.channel('bf:'+nz).on('broadcast',{event:'p'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;const o=BF.o[q.id]||(BF.o[q.id]={id:q.id,x:q.x,y:q.y,z:q.z,hp:100,m:null});BF.live=performance.now();const ne=q.e==null?-1:q.e;if(o.e!==ne)o.et=performance.now();Object.assign(o,{tx:q.x,ty:q.y,tz:q.z,fy:q.r+Math.PI,hp:q.hp,dead:!!q.d,n:q.n,w:q.w,e:ne,seen:performance.now()});BF.sc[q.id]=BF.sc[q.id]||{n:q.n,k:0,d:0}})
  .on('broadcast',{event:'hit'},m=>{const q=m.payload;if(q&&q.to==ME.id)bfHurt(q.dmg,q.from)})
  .on('broadcast',{event:'kill'},m=>{const q=m.payload;if(q)bfScore(q.k,q.v,q.kn,q.vn)})
  .on('broadcast',{event:'shot'},m=>{const q=m.payload;if(q)bfTr(q.o,q.p)})
- .on('broadcast',{event:'vote'},m=>{const q=m.payload;if(q&&q.id!=ME.id&&BF.st=='vote'&&BF.vt&&BFM[q.m]){BF.vt.v[q.id]=q.m;bfVoteUI(1)}})
- .on('broadcast',{event:'map'},m=>{const q=m.payload;if(q&&BF.st=='vote'&&BF.vt&&BFM[q.m])bfVoteEnd(q.m)}).subscribe()}
+ .on('broadcast',{event:'vote'},m=>{const q=m.payload;if(q&&q.id!=ME.id&&BF.st=='vote'&&BF.vt&&BFM[q.m]){BF.vt.v[q.id]=q.m;bfVoteChk();bfVoteUI(1)}})
+ .on('broadcast',{event:'map'},m=>{const q=m.payload;if(q&&BF.st=='vote'&&BF.vt&&BFM[q.m])bfVoteEnd(q.m)})
+ .on('broadcast',{event:'lob'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;const o=BF.o[q.id]||(BF.o[q.id]={id:q.id,x:0,y:0,z:0,hp:100,m:null}),ne=q.e==null?-1:q.e,now=performance.now();if(o.e!==ne)o.et=now;Object.assign(o,{n:q.n,w:q.w,e:ne,lr:!!q.r,lh:!!q.h,jt:+q.jt||0,lb:now,seen:now,tx:o.tx==null?o.x:o.tx,ty:0,tz:o.tz==null?o.z:o.tz});BF.sc[q.id]=BF.sc[q.id]||{n:q.n,k:0,d:0}})
+ .on('broadcast',{event:'go'},m=>{if(BF.st=='lobby')bfLobbyGo()}).subscribe()}
 function bfTr(a,b){const l=BF.tr&&BF.tr[BF.ti=(BF.ti+1)%BF.tr.length];if(!l)return;const p=l.geometry.attributes.position;p.setXYZ(0,a[0],a[1],a[2]);p.setXYZ(1,b[0],b[1],b[2]);p.needsUpdate=true;l.visible=true;l.ttl=.09}
 function bfSpawn(){const s=BFS[Math.random()*BFS.length|0];BF.p={x:s[0]+(Math.random()-.5)*4,y:0,z:s[1]+(Math.random()-.5)*4,vy:0,yaw:Math.atan2(-s[0],-s[1]),pitch:0,hp:100};BF.dead=0;BF.am=BFW.map(w=>w.mag);BF.rl=0;BF.nf=0;BF.ads=0;BF.bi=0;BF.em=null;BF.wh=null;bfWheelUI();bfEmoteUI()}
 function bfPlay(){if(BF.mode=='multi'&&!BF.room)return toast('Gib einen Raumcode ein oder tippe auf Zufall.');
  Object.values(BF.o).forEach(o=>{if(o.m&&BF.S)BF.S.remove(o.m)});BF.o={};BF.sc={};BF.fd=[];BF.sc[ME.id]={n:nm(ME.id),k:0,d:0};
  if(BF.mode=='cpu')['Bananito','Chiquita','Gelbi'].forEach((n,i)=>{const s=BFS[(i*3+1)%8];BF.o['bot'+i]={id:'bot'+i,bot:1,n,x:s[0],y:0,z:s[1],hp:100,w:i%3,fy:0,sh:1,tm:0,tg:null};BF.sc['bot'+i]={n,k:0,d:0}});
- bfNet();bfVote()}
-function bfAgain(){Object.values(BF.sc).forEach(s=>{s.k=0;s.d=0});Object.values(BF.o).forEach(o=>{if(o.bot){o.hp=100;o.dead=0}});bfVote()}
+ bfNet();if(BF.mode=='multi'){BF.jt=Date.now();BF.r=0;bfLobby()}else bfVote()}
+function bfAgain(){if(BF.mode=='multi'){BF.r=0;bfLobby();return}Object.values(BF.sc).forEach(s=>{s.k=0;s.d=0});Object.values(BF.o).forEach(o=>{if(o.bot){o.hp=100;o.dead=0}});bfVote()}
+function bfMembers(){const now=performance.now(),a=[{id:ME.id,n:nm(ME.id),r:!!BF.r,h:!!BF.host,jt:BF.jt||0,me:1}];Object.values(BF.o).forEach(o=>{if(!o.bot&&o.lb&&now-o.lb<3000)a.push({id:o.id,n:o.n||'Banane',r:!!o.lr,h:!!o.lh,jt:o.jt||0})});return a.sort((x,y)=>(y.h-x.h)||(x.jt-y.jt)||(x.id<y.id?-1:1))}
+function bfLobby(){if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}BF.st='lobby';BF.r=0;BF.dead=0;BF.em=null;BF.wh=null;BF.ads=0;BF.fire=0;BF.al=0;BF.lt=0;BF.invOpen=0;BF.lkey='';BF.live=0;BF.pn=-1;
+ const h=document.getElementById('bfh');if(h)h.classList.add('lob');bfOv('');bfMap(3);bfWheelUI();bfEmoteUI();bfPres();bfLobbyTx()}
+function bfLobbyTx(){BF.lt=.8;if(BF.ch)BF.ch.send({type:'broadcast',event:'lob',payload:{id:ME.id,n:nm(ME.id),r:BF.r?1:0,e:BF.em?BF.em.id:-1,w:BF.w,h:BF.host?1:0,jt:BF.jt||0}})}
+function bfLobbyTick(dt,ts){const ms=bfMembers(),n=ms.length,sp=Math.min(1.5,11/n);BF.lt=(BF.lt||0)-dt;if(BF.lt<=0)bfLobbyTx();
+ ms.forEach((m,i)=>{const x=(i-(n-1)/2)*sp;if(m.me)BF.lx=x;else{const o=BF.o[m.id];if(o){o.tx=x;o.tz=0;o.ty=0;o.fy=0}}});
+ const lead=ms[0].id==ME.id,all=ms.every(m=>m.r),live=!!BF.live&&ts-BF.live<2500;
+ if(lead&&all&&!live){BF.al=(BF.al||0)+dt;if(BF.al>1)bfGoNow()}else BF.al=0;
+ if(BF.pn!=n){BF.pn=n;bfPresTrack()}
+ const key=JSON.stringify(ms.map(m=>[m.id,m.r,m.h,m.n]))+lead+live+BF.invOpen+(BF.al>0?1:0);if(key!=BF.lkey){BF.lkey=key;bfLobbyUI(ms,lead,live)}}
+function bfLobbyUI(ms,lead,live){const e=document.getElementById('bfl');if(!e)return;if(BF.st!='lobby'){e.style.display='none';return}e.style.display='block';ms=ms||bfMembers();if(lead==null)lead=ms[0].id==ME.id;
+ const me=ms.find(m=>m.me),rd=ms.filter(m=>m.r).length,fr=frs().friends.filter(id=>!ms.some(m=>m.id==id));
+ e.innerHTML=`<div class="lt">Lobby · Code ${esc(BF.room)}<div style="font:500 14px Inter,sans-serif;margin-top:2px">${live?'Eine Runde läuft gerade. Warte, bis sie vorbei ist.':BF.al>0?'Alle bereit, es geht los …':rd+' von '+ms.length+' bereit'}</div></div><div class="lp"><h3>Spieler (${ms.length})</h3>${ms.map((m,i)=>`<div class="lr"><span>${i==0?'👑 ':''}${esc(m.n)}${m.me?' (du)':''}</span><b>${m.r?'✓':'…'}</b></div>`).join('')}<p style="margin:10px 0 0"><button class="btn g" style="font-size:14px" onclick="bfInvToggle()">Freunde einladen</button></p>${BF.invOpen?`<div class="bfck">${fr.length?fr.map(id=>`<label><input type="checkbox" class="bfci2" value="${id}"> ${esc(nm(id))}</label>`).join('')+'<button class="btn o" style="font-size:14px;margin-top:6px" onclick="bfInvLobby()">Einladen</button>':'<span class="m">Alle deine Freunde sind schon da.</span>'}</div>`:''}</div><div class="lbb"><button class="btn ${me.r?'g':'o'}" ${live?'disabled':''} onclick="bfReady()">${me.r?'Nicht mehr bereit':'Bereit'}</button>${lead?`<button class="btn g" ${live?'disabled':''} onclick="bfGoNow()">Bereit, ohne zu warten</button>`:''}<button class="btn g" onclick="bfLeave()">Verlassen</button></div>`}
+function bfInvToggle(){BF.invOpen=!BF.invOpen;BF.lkey=''}
+function bfInvLobby(){bfInvSend([...document.querySelectorAll('.bfci2:checked')].map(x=>x.value));BF.invOpen=0;BF.lkey=''}
+function bfReady(){if(BF.st!='lobby'||(BF.live&&performance.now()-BF.live<2500))return;BF.r=BF.r?0:1;BF.al=0;BF.lkey='';bfLobbyTx()}
+function bfGoNow(){const ms=bfMembers();if(BF.st!='lobby'||ms[0].id!=ME.id||(BF.live&&performance.now()-BF.live<2500))return;if(BF.ch)BF.ch.send({type:'broadcast',event:'go',payload:{id:ME.id}});bfLobbyGo()}
+function bfLobbyGo(){const ids=bfMembers().map(m=>m.id);Object.values(BF.sc).forEach(s=>{s.k=0;s.d=0});BF.r=0;bfVote();BF.vt.mem=ids;const h=document.getElementById('bfh');if(h)h.classList.remove('lob');bfLobbyUI();bfPresTrack()}
+function bfLeave(){if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}BF.st='menu';BF.host=0;BF.em=null;BF.wh=null;BF.vt=null;bfWheelUI();bfEmoteUI();bfLobbyUI();bfPresTrack();const h=document.getElementById('bfh');if(h)h.classList.remove('lob');if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}BF.o={};if(BF.S)bfMap(0);bfMenu()}
+function bfLobbyCam(ts){const cam=BF.cam;if(cam.fov!=60){cam.fov=60;cam.updateProjectionMatrix()}BF.zm=0;bfScope(false);if(BF.gun)BF.gun.visible=false;
+ const m=bfMe();if(m){bfBite();m.visible=true;m.position.set(BF.lx||0,0,0);m.rotation.y=0;bfPose(m,BF.em?BF.em.id:-1,BF.em?(performance.now()-BF.em.t0)/1000:0)}
+ cam.position.set(0,1.6,6.5);cam.lookAt(0,1.05,0)}
 function bfVote(){if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}BF.st='vote';BF.ads=0;BF.fire=0;BF.em=null;BF.wh=null;bfWheelUI();bfEmoteUI();BF.vt={v:{},t:10,k:'',rb:0};
- if(BF.mode=='cpu')Object.values(BF.o).forEach(o=>{if(o.bot)BF.vt.v[o.id]=Math.random()*BFM.length|0});bfVoteUI(1)}
-function bfVoteSet(i){if(BF.st!='vote'||!BF.vt)return;BF.vt.v[ME.id]=i;if(BF.ch)BF.ch.send({type:'broadcast',event:'vote',payload:{id:ME.id,m:i}});if(BF.mode=='cpu')BF.vt.t=Math.min(BF.vt.t,1.2);bfVoteUI(1)}
-function bfVoteUI(f){const V=BF.vt;if(!V)return;const key=Math.ceil(V.t)+'|'+JSON.stringify(V.v);if(!f&&key==V.k)return;V.k=key;const n=BFM.map((_,i)=>Object.values(V.v).filter(x=>x==i).length),me=V.v[ME.id];
- bfOv(`<div class="bfmn"><h2>Map wählen</h2><p class="m" style="margin:0 0 8px">Die Map mit den meisten Stimmen gewinnt. Start in ${Math.max(0,Math.ceil(V.t))} s.</p><div class="bfvt">${BFM.map((m,i)=>`<button class="btn ${me==i?'o':'g'}" style="text-align:left" onclick="bfVoteSet(${i})"><b>${m.e} ${m.n}</b> <span style="float:right">${n[i]} ${n[i]==1?'Stimme':'Stimmen'}</span><br><span style="font-size:13px;font-weight:400">${m.d}</span></button>`).join('')}</div></div>`)}
-function bfVoteEnd(id){const V=BF.vt;if(!V)return;if(id==null){const n=BFM.map((_,i)=>Object.values(V.v).filter(x=>x==i).length),mx=Math.max(...n),tied=n.map((c,i)=>c==mx?i:-1).filter(i=>i>=0),h=[...(BF.room||'')].reduce((a,c)=>a+c.charCodeAt(0),0);id=tied[BF.mode=='cpu'?Math.random()*tied.length|0:h%tied.length];if(BF.ch)BF.ch.send({type:'broadcast',event:'map',payload:{m:id}})}
+ if(BF.mode=='cpu')Object.values(BF.o).forEach(o=>{if(o.bot)BF.vt.v[o.id]=Math.random()*3|0});bfVoteUI(1)}
+function bfVoteChk(){const V=BF.vt;if(V&&V.mem&&V.mem.every(id=>V.v[id]!=null))V.t=Math.min(V.t,1)}
+function bfVoteSet(i){if(BF.st!='vote'||!BF.vt)return;BF.vt.v[ME.id]=i;if(BF.ch)BF.ch.send({type:'broadcast',event:'vote',payload:{id:ME.id,m:i}});if(BF.mode=='cpu')BF.vt.t=Math.min(BF.vt.t,1.2);bfVoteChk();bfVoteUI(1)}
+function bfVoteUI(f){const V=BF.vt;if(!V)return;const key=Math.ceil(V.t)+'|'+JSON.stringify(V.v);if(!f&&key==V.k)return;V.k=key;const n=BFM.slice(0,3).map((_,i)=>Object.values(V.v).filter(x=>x==i).length),me=V.v[ME.id];
+ bfOv(`<div class="bfmn"><h2>Map wählen</h2><p class="m" style="margin:0 0 8px">Die Map mit den meisten Stimmen gewinnt. Start in ${Math.max(0,Math.ceil(V.t))} s.</p><div class="bfvt">${BFM.slice(0,3).map((m,i)=>`<button class="btn ${me==i?'o':'g'}" style="text-align:left" onclick="bfVoteSet(${i})"><b>${m.e} ${m.n}</b> <span style="float:right">${n[i]} ${n[i]==1?'Stimme':'Stimmen'}</span><br><span style="font-size:13px;font-weight:400">${m.d}</span></button>`).join('')}</div></div>`)}
+function bfVoteEnd(id){const V=BF.vt;if(!V)return;if(id==null){const n=BFM.slice(0,3).map((_,i)=>Object.values(V.v).filter(x=>x==i).length),mx=Math.max(...n),tied=n.map((c,i)=>c==mx?i:-1).filter(i=>i>=0),h=[...(BF.room||'')].reduce((a,c)=>a+c.charCodeAt(0),0);id=tied[BF.mode=='cpu'?Math.random()*tied.length|0:h%tied.length];if(BF.ch)BF.ch.send({type:'broadcast',event:'map',payload:{m:id}})}
  BF.vt=null;bfMap(id);bfSpawn();BF.st='play';bfOv('');try{BF.c.requestPointerLock()}catch(e){}setTimeout(()=>{if(BF.st=='play'&&!BF.lk&&!BF.touch)bfOv('<div class="bfmn"><h2>'+BFM[id].e+' '+BFM[id].n+'</h2><p>Klicke ins Bild, um zu spielen.</p></div>')},300)}
 function bfScore(k,v,kn,vn){const a=BF.sc[k]||(BF.sc[k]={n:kn,k:0,d:0}),b=BF.sc[v]||(BF.sc[v]={n:vn,k:0,d:0});a.k=BF.mode=='cpu'&&BF.o[k]&&BF.o[k].bot?Math.min(14,a.k+1):a.k+1;b.d++;BF.fd.push({t:5,h:`${esc(kn)} 🍌 ${esc(vn)}`});
- if(a.k>=15&&BF.st=='play'){BF.st='over';if(document.pointerLockElement)document.exitPointerLock();bfOv(`<div class="bfmn"><h2>🏆 ${k==ME.id?'Du gewinnst':esc(kn)+' gewinnt'}!</h2>${Object.values(BF.sc).sort((x,y)=>y.k-x.k).map(s=>`<div class="row" style="border:0;padding:3px 0"><span>${esc(s.n)}</span><b>${s.k} / ${s.d}</b></div>`).join('')}<p style="margin:16px 0 0"><button class="btn o" onclick="bfAgain()">Nochmal</button> <button class="btn g" onclick="BF.st='menu';bfMenu()">Menü</button></p></div>`)}}
+ if(a.k>=15&&BF.st=='play'){BF.st='over';if(document.pointerLockElement)document.exitPointerLock();bfOv(`<div class="bfmn"><h2>🏆 ${k==ME.id?'Du gewinnst':esc(kn)+' gewinnt'}!</h2>${Object.values(BF.sc).sort((x,y)=>y.k-x.k).map(s=>`<div class="row" style="border:0;padding:3px 0"><span>${esc(s.n)}</span><b>${s.k} / ${s.d}</b></div>`).join('')}<p style="margin:16px 0 0"><button class="btn o" onclick="bfAgain()">Nochmal</button> <button class="btn g" onclick="bfLeave()">Menü</button></p></div>`)}}
 function bfHurt(d,from){if(BF.dead>0||BF.st!='play')return;BF.p.hp-=d;BF.dmg=.35;if(BF.em)bfEmoteStop();bfSnd(90,.15);if(BF.p.hp<=0){BF.p.hp=0;BF.dead=3;BF.dby=(BF.o[from]||BF.sc[from]||{}).n||'?';const kn=BF.dby,vn=nm(ME.id);bfScore(from,ME.id,kn,vn);if(BF.ch)BF.ch.send({type:'broadcast',event:'kill',payload:{k:from,v:ME.id,kn,vn}});if(document.pointerLockElement&&0)document.exitPointerLock()}}
 function bfReload(){const w=BFW[BF.w];if(BF.rl>0||BF.am[BF.w]>=w.mag)return;BF.rl=w.rl;if(BF.em)bfEmoteStop();bfSnd(500,.08)}
 function bfFire(){const w=BFW[BF.w],now=performance.now()/1000;if(BF.dead>0||BF.rl>0||now<BF.nf||BF.st!='play'||!BF.lk)return;if(BF.am[BF.w]<=0){bfReload();return}
@@ -1471,7 +1514,7 @@ function bfFire(){const w=BFW[BF.w],now=performance.now()/1000;if(BF.dead>0||BF.
   bfTr(st,e);if(first&&BF.ch)BF.ch.send({type:'broadcast',event:'shot',payload:{o:st,p:e}});first=0;
   if(hit){const hs=e[1]>hit.y+1.35,dmg=Math.round(w.dmg*(hs?1.7:1));BF.hm=hs?-.2:.2;bfSnd(900,.05);
    if(hit.bot){hit.hp-=dmg;if(hit.hp<=0&&!hit.dead){hit.dead=3;bfScore(ME.id,hit.id,nm(ME.id),hit.n)}}else if(BF.ch)BF.ch.send({type:'broadcast',event:'hit',payload:{to:hit.id,from:ME.id,dmg}})}}}
-function bfKey(e){const dn=e.type=='keydown';if(BF.st!='play')return;if(['Space','Tab'].includes(e.code))e.preventDefault();BF.k[e.code]=dn;
+function bfKey(e){const dn=e.type=='keydown';if(BF.st=='lobby'){if(dn&&!e.repeat){if(e.code=='KeyB')bfB();else if(BF.em&&['KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code))bfEmoteStop()}return}if(BF.st!='play')return;if(['Space','Tab'].includes(e.code))e.preventDefault();BF.k[e.code]=dn;
  if(dn&&!e.repeat){if(e.code=='KeyR')bfReload();if(e.code=='KeyB')bfB();const n={Digit1:0,Digit2:1,Digit3:2,Digit4:3}[e.code];if(n!=null&&n!=BF.w){BF.w=n;BF.rl=0;bfWS()}}}
 function bfMM(e){if(BF.wh&&BF.lk){bfWhMove(e);return}if(BF.lk&&BF.st=='play'&&!(BF.dead>0)){const s=.0022*(BF.cam?BF.cam.fov/75:1);BF.p.yaw-=e.movementX*s;BF.p.pitch=Math.max(-1.5,Math.min(1.5,BF.p.pitch-e.movementY*s))}}
 function bfMD(e){if(e.button==0&&BF.lk){if(BF.wh){if(BF.wh.sel>=0)bfEmote(BF.wh.sel);else bfWheel(0);return}if(BF.em)bfEmoteStop();BF.fire=1;bfFire()}if(e.button==2&&BF.lk)BF.ads=1}function bfMU(e){if(e.button==0)BF.fire=0;if(e.button==2)BF.ads=0}
@@ -1479,17 +1522,18 @@ function bfCM(e){if(BF.st=='play'||BF.st=='vote')e.preventDefault()}
 function bfPL(){BF.lk=document.pointerLockElement===BF.c;if(!BF.lk){BF.ads=0;BF.fire=0}if(BF.st=='play')bfOv(BF.lk?'':'<div class="bfmn"><h2>Pausiert</h2><p>Klicke ins Bild, um weiterzuspielen.</p></div>')}
 function bfWh(e){if(BF.st=='play'){BF.w=(BF.w+(e.deltaY>0?1:3))%4;BF.rl=0;bfWS()}}
 async function bfInit(){const c=$('#bfc');if(!c)return;bfStop();BF.c=c;BF.touch=!c.requestPointerLock;BF.st='menu';BF.o={};BF.sc={};BF.fd=[];BF.w=0;BF.am=null;BF.k={};
- $('#bfh').innerHTML='<div class="bfsn" id="bfsn"><i></i><b></b></div>'+bfEmHTML()+'<div class="bfx"></div><div class="bfhp"><i id="bfhpi"></i><b id="bfhpt">100</b></div><div class="bfam"><b id="bfa">12</b><span id="bfwn">Pistole</span></div><div class="bfkf" id="bfkf"></div><div class="bfsb" id="bfsb"></div><div class="bfhm" id="bfhm"></div><div class="bfdm" id="bfdm"></div><button class="btn g bfeb" id="bfeb" onclick="bfB()">😎 Emote</button><div class="bfo" id="bfo"></div>';$('#bfo').onclick=e=>{if(BF.st=='play'&&!BF.lk&&!e.target.closest('button')){try{BF.c.requestPointerLock()}catch(x){}}};bfMenu();
+ $('#bfh').innerHTML='<div class="bfsn" id="bfsn"><i></i><b></b></div>'+bfEmHTML()+'<div class="bfx"></div><div class="bfhp"><i id="bfhpi"></i><b id="bfhpt">100</b></div><div class="bfam"><b id="bfa">12</b><span id="bfwn">Pistole</span></div><div class="bfkf" id="bfkf"></div><div class="bfsb" id="bfsb"></div><div class="bfhm" id="bfhm"></div><div class="bfdm" id="bfdm"></div><div class="bfl" id="bfl"></div><button class="btn g bfeb" id="bfeb" onclick="bfB()">😎 Emote</button><div class="bfo" id="bfo"></div>';$('#bfo').onclick=e=>{if(BF.st=='play'&&!BF.lk&&!e.target.closest('button')){try{BF.c.requestPointerLock()}catch(x){}}};bfMenu();
  try{await k3Load()}catch(e){return toast('Das 3D-Spiel konnte nicht geladen werden. Prüfe deine Internetverbindung.')}
  if($('#bfc')!==c)return;try{BF.R=new THREE.WebGLRenderer({canvas:c,antialias:true})}catch(e){return toast('Dein Gerät kann 3D im Browser nicht darstellen.')}
  BF.R.shadowMap.enabled=true;BF.R.setPixelRatio(Math.min(devicePixelRatio||1,1.5));BF.cam=new THREE.PerspectiveCamera(75,1,.05,300);bfMap();
  c.onclick=()=>{if(BF.st=='play'&&!BF.lk){try{c.requestPointerLock()}catch(e){}}};addEventListener('keydown',bfKey);addEventListener('keyup',bfKey);document.addEventListener('mousemove',bfMM);document.addEventListener('mousedown',bfMD);document.addEventListener('mouseup',bfMU);document.addEventListener('pointerlockchange',bfPL);document.addEventListener('contextmenu',bfCM);c.addEventListener('wheel',bfWh,{passive:true});
  BF.t=performance.now();BF.raf=requestAnimationFrame(bfLoop)}
 function bfStop(){cancelAnimationFrame(BF.raf);removeEventListener('keydown',bfKey);removeEventListener('keyup',bfKey);document.removeEventListener('mousemove',bfMM);document.removeEventListener('mousedown',bfMD);document.removeEventListener('mouseup',bfMU);document.removeEventListener('pointerlockchange',bfPL);document.removeEventListener('contextmenu',bfCM);
- if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}if(BF.R){BF.R.dispose();if(BF.R.forceContextLoss)BF.R.forceContextLoss();BF.R=null}BF.S=null;BF.cam=null;BF.gun=null;BF.c=null;BF.st='idle'}
+ if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}if(BF.pc){sb.removeChannel(BF.pc);BF.pc=null}if(BF.R){BF.R.dispose();if(BF.R.forceContextLoss)BF.R.forceContextLoss();BF.R=null}BF.S=null;BF.cam=null;BF.gun=null;BF.c=null;BF.st='idle'}
 function bfLoop(ts){if(V!='bf'||$('#bfc')!==BF.c){bfStop();return}const dt=Math.min(.05,(ts-BF.t)/1000||0);BF.t=ts;bfUpd(dt,ts);BF.raf=requestAnimationFrame(bfLoop)}
 function bfUpd(dt,ts){const c=BF.c,R=BF.R,cam=BF.cam,w=c.clientWidth,h=c.clientHeight;if(BF.sw!=w||BF.sh!=h){BF.sw=w;BF.sh=h;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
  const P=BF.p;
+ if(BF.st=='lobby')bfLobbyTick(dt,ts);
  if(BF.st=='vote'&&BF.vt){const V=BF.vt;V.t-=dt;V.rb-=dt;if(V.rb<=0){V.rb=1;if(BF.ch&&V.v[ME.id]!=null)BF.ch.send({type:'broadcast',event:'vote',payload:{id:ME.id,m:V.v[ME.id]}})}if(V.t<=0)bfVoteEnd();else bfVoteUI()}
  if(BF.st=='play'&&P){const k=BF.k;
   if(BF.dead>0){BF.dead-=dt;if(BF.dead<=0)bfSpawn()}
@@ -1503,22 +1547,23 @@ function bfUpd(dt,ts){const c=BF.c,R=BF.R,cam=BF.cam,w=c.clientWidth,h=c.clientH
     const dx=P.x-o.x,dz=P.z-o.z,di=Math.hypot(dx,dz),see=!(BF.dead>0)&&di<34&&bfLOS(o.x,1.3,o.z,P.x,P.y+1.2,P.z),tx=see&&di>9?P.x:o.tg[0],tz=see&&di>9?P.z:o.tg[1],an=Math.atan2(tx-o.x,tz-o.z);bfMove(o,Math.sin(an)*3.6*dt,Math.cos(an)*3.6*dt);o.fy=see?Math.atan2(dx,dz):an;
     if(see){o.sh-=dt;if(o.sh<=0){o.sh=.5+Math.random()*.5;bfSnd(160,.08);bfTr([o.x,1.2,o.z],[P.x+(Math.random()-.5),P.y+1.1,P.z+(Math.random()-.5)]);if(Math.random()<.4)bfHurt(9,o.id)}}}}
   else if(!o.bot){if(ts-o.seen>3500){if(o.m)BF.S.remove(o.m);delete BF.o[id];continue}const f=Math.min(1,dt*12);o.x+=(o.tx-o.x)*f;o.y+=(o.ty-o.y)*f;o.z+=(o.tz-o.z)*f}
-  if(BF.S&&!o.m)o.m=bfBanana(o);if(o.m){o.m.visible=!o.dead&&o.hp>0;o.m.position.set(o.x,o.y+Math.abs(Math.sin(ts/150+o.x))*.03,o.z);o.m.rotation.y=o.fy||0;bfPose(o.m,o.e==null?-1:o.e,o.et?(ts-o.et)/1000:0)}}
- if(P&&BF.st!='menu'&&BF.st!='vote'){cam.position.set(P.x,P.y+1.55-(BF.dead>0?1:0),P.z);cam.rotation.order='YXZ';cam.rotation.set(P.pitch+(BF.rc||0)*.02,P.yaw,BF.dead>0?.6:0);bfGunAnim(dt);bfEmoteTick(ts);if(BF.mf)BF.mf.visible=BF.mfT>0}
+  if(BF.S&&!o.m)o.m=bfBanana(o);if(o.m){o.m.visible=!o.dead&&o.hp>0;o.m.position.set(o.x,o.y+Math.abs(Math.sin(ts/150+o.x))*.03,o.z);o.m.rotation.y=o.fy||0;bfPose(o.m,o.e==null?-1:o.e,o.et?(ts-o.et)/1000:0);if(BF.st=='lobby')o.m.visible=!!o.lb&&ts-o.lb<3000}}
+ if(BF.st=='lobby'||(BF.st=='vote'&&BF.map==3))bfLobbyCam(ts);
+ else if(P&&BF.st!='menu'&&BF.st!='vote'){cam.position.set(P.x,P.y+1.55-(BF.dead>0?1:0),P.z);cam.rotation.order='YXZ';cam.rotation.set(P.pitch+(BF.rc||0)*.02,P.yaw,BF.dead>0?.6:0);bfGunAnim(dt);bfEmoteTick(ts);if(BF.mf)BF.mf.visible=BF.mfT>0}
  else{if(cam.fov!=75){cam.fov=75;cam.updateProjectionMatrix()}BF.zm=0;bfScope(false);if(BF.mm)BF.mm.visible=false;cam.position.set(Math.cos(ts/4000)*26,14,Math.sin(ts/4000)*26);cam.rotation.order='YXZ';cam.lookAt(0,2,0)}
  BF.rc=Math.max(0,(BF.rc||0)-dt*9);BF.mfT=(BF.mfT||0)-dt;BF.hm=BF.hm>0?BF.hm-dt:BF.hm<0?BF.hm+dt:0;BF.dmg=Math.max(0,(BF.dmg||0)-dt);BF.tr.forEach(l=>{if(l.ttl>0){l.ttl-=dt;if(l.ttl<=0)l.visible=false}});
  R.render(BF.S,cam);bfHud(dt)}
-const BFE=[{n:'Moonwalk',e:'🕺',p:'left:50%;top:17%'},{n:'Peace',e:'✌️',p:'left:83%;top:50%'},{n:'Winken',e:'👋',p:'left:50%;top:83%'},{n:'Mäßig zielen',e:'😏',p:'left:17%;top:50%'}];
+const BFE=[{n:'Moonwalk',e:'🕺',p:'left:50%;top:17%'},{n:'Peace',e:'✌️',p:'left:81%;top:40%'},{n:'Winken',e:'👋',p:'left:69%;top:77%'},{n:'Mäßig zielen',e:'😏',p:'left:31%;top:77%'},{n:'Banane essen',e:'🍌',p:'left:19%;top:40%'}];
 function bfEmHTML(){return '<div class="bfem" id="bfem"><i class="emr"></i>'+BFE.map((e,i)=>`<button class="emb" data-i="${i}" style="${e.p}" onclick="bfEmote(${i})"><span>${e.e}</span>${e.n}</button>`).join('')+'<div class="emh">B schließt</div><i class="emd" id="emd"></i></div>'}
 function bfWheelUI(){const e=document.getElementById('bfem');if(!e)return;const w=BF.wh;e.style.display=w?'block':'none';if(!w)return;e.querySelectorAll('.emb').forEach(b=>b.classList.toggle('on',+b.dataset.i===w.sel));const d=document.getElementById('emd');if(d)d.style.transform=`translate(${w.x}px,${w.y}px)`}
 function bfEmoteUI(){const b=document.getElementById('bfeb');if(b)b.textContent=BF.em?'⏹ Emote beenden':'😎 Emote'}
 function bfWheel(on){BF.wh=on?{x:0,y:0,sel:-1}:null;if(on){BF.fire=0;BF.ads=0}bfWheelUI()}
-function bfWhMove(e){const w=BF.wh;w.x+=e.movementX;w.y+=e.movementY;const r=Math.hypot(w.x,w.y);if(r>80){w.x*=80/r;w.y*=80/r}w.sel=Math.hypot(w.x,w.y)<28?-1:Math.abs(w.x)>Math.abs(w.y)?(w.x>0?1:3):(w.y<0?0:2);bfWheelUI()}
-function bfB(){if(BF.st!='play'||BF.dead>0)return;if(BF.em){bfEmoteStop();return}bfWheel(!BF.wh)}
-function bfEmote(i){if(BF.st!='play'||BF.dead>0||!BFE[i])return;BF.wh=null;bfWheelUI();BF.em={id:i,t0:performance.now()};BF.ads=0;BF.fire=0;bfEmoteUI()}
-function bfEmoteStop(){BF.em=null;bfEmoteUI()}
+function bfWhMove(e){const w=BF.wh;w.x+=e.movementX;w.y+=e.movementY;const r=Math.hypot(w.x,w.y);if(r>80){w.x*=80/r;w.y*=80/r}const a=Math.atan2(w.y,w.x)*180/Math.PI;let b=0,bd=999;[-90,-18,54,126,198].forEach((d,k)=>{const x=Math.abs(((a-d+540)%360)-180);if(x<bd){bd=x;b=k}});w.sel=Math.hypot(w.x,w.y)<28?-1:b;bfWheelUI()}
+function bfB(){if((BF.st!='play'&&BF.st!='lobby')||BF.dead>0)return;if(BF.em){bfEmoteStop();return}bfWheel(!BF.wh)}
+function bfEmote(i){if((BF.st!='play'&&BF.st!='lobby')||BF.dead>0||!BFE[i])return;BF.wh=null;bfWheelUI();BF.em={id:i,t0:performance.now()};BF.eb=0;BF.ads=0;BF.fire=0;bfEmoteUI();if(BF.st=='lobby')bfLobbyTx()}
+function bfEmoteStop(){BF.em=null;bfEmoteUI();if(BF.st=='lobby')bfLobbyTx()}
 function bfPose(m,id,t){const u=m.userData;if(!u.la)return;const S=Math.sin,C=Math.cos,PI=Math.PI,sm=x=>x*x*(3-2*x),ft=u.ft||[];
- let lz=0,hop=0,lean=0,roll=0,spin=0,gx=.3,gy=.85,gz=.35,gry=PI,grz=0,grx=0,arx=0,arz=0,fing=0,fd=[[0,0],[0,0]];
+ let bsz=1,lz=0,hop=0,lean=0,roll=0,spin=0,gx=.3,gy=.85,gz=.35,gry=PI,grz=0,grx=0,arx=0,arz=0,fing=0,fd=[[0,0],[0,0]];
  if(id==0){const c=t%7;
   if(c<3){const ph=t*5;lean=-.12;roll=S(ph)*.05;lz=-.45*(1-C(t*1.6))/2;arx=-.5;arz=-.55;fd=ft.map(f=>{const p=ph+(f.s>0?0:PI);return[-.1*C(p),Math.max(0,S(p))*.07]})}
   else if(c<4.2){const q=(c-3)/1.2;spin=2*PI*sm(q);hop=S(q*PI)*.12;arx=-3;arz=-.3;fd=[[0,.05],[0,.05]]}
@@ -1526,11 +1571,16 @@ function bfPose(m,id,t){const u=m.userData;if(!u.la)return;const S=Math.sin,C=Ma
  else if(id==1){arx=-2.3;arz=.4;fing=1;lean=.04;roll=S(t*2)*.04}
  else if(id==2){arx=-2.9;arz=-.45+S(t*9)*.35;roll=S(t*2)*.03}
  else if(id==3){lean=-.18;roll=.08;gx=.18;gy=1.2-Math.max(0,S(t*.7))*.2+S(t*1.9)*.02;gz=.5;grz=1.35;grx=-.1+S(t*1.7)*.05;gry=PI+S(t*1.2)*.25;arx=-.2;arz=-.6}
+ else if(id==4){const c=t%4.2,q=(c-1)/.8,S4=[1,.7,.42,.14],i=Math.min(3,Math.floor(q));arx=-.3-1.7*sm(Math.min(1,c/.6));arz=.3;
+  if(c>=1&&c<3.4){bsz=i<3?S4[i]+(S4[i+1]-S4[i])*sm(Math.min(1,(q-i)*5)):S4[3];arz+=S(c*45)*.04}else if(c>=3.4){bsz=c>3.8?.14+.86*sm(Math.min(1,(c-3.8)/.4)):.14}
+  roll=S(t*8)*.03;lean=.05}
  const ry=m.rotation.y;m.rotation.x=lean;m.rotation.z=roll;m.rotation.y=ry+spin;m.position.y+=hop;m.position.x+=S(ry)*lz;m.position.z+=C(ry)*lz;
- u.la.rotation.set(arx,0,arz);u.fg.visible=!!fing;u.gn.position.set(gx,gy,gz);u.gn.rotation.set(grx,gry,grz);
+ u.la.rotation.set(arx,0,arz);u.fg.visible=!!fing;u.bp.visible=id==4;u.bp.scale.set(1,bsz,1);u.gn.position.set(gx,gy,gz);u.gn.rotation.set(grx,gry,grz);
  ft.forEach((f,i)=>{const d=fd[i]||[0,0];f.lg.position.set(-.1+f.s*.11,.1+d[1],d[0]);f.sh.position.set(-.1+f.s*.11,.03+d[1],.05+d[0])})}
+function bfMe(){let m=BF.mm;if(!BF.S)return null;if(!m||m.userData.gw!=BF.w||m.parent!==BF.S){if(m&&m.parent)m.parent.remove(m);m=BF.mm=bfBanana({id:ME.id,n:nm(ME.id),w:BF.w})}return m}
+function bfBite(){if(BF.em&&BF.em.id==4){const c=((performance.now()-BF.em.t0)/1000)%4.2,nb=c<1?0:Math.min(3,Math.floor((c-1)/.8)+1);if(nb!=BF.eb){if(nb>0)bfSnd(220+nb*40,.09);BF.eb=nb}}}
 function bfEmoteTick(ts){const P=BF.p,cam=BF.cam;let m=BF.mm;
- if(BF.em&&BF.S&&P){if(!m||m.userData.gw!=BF.w||m.parent!==BF.S){if(m&&m.parent)m.parent.remove(m);m=BF.mm=bfBanana({id:ME.id,n:'',w:BF.w})}
+ if(BF.em&&BF.S&&P){m=bfMe();bfBite();
   m.visible=true;m.position.set(P.x,P.y,P.z);m.rotation.y=P.yaw+Math.PI;bfPose(m,BF.em.id,(performance.now()-BF.em.t0)/1000);
   const fx=-Math.sin(P.yaw),fz=-Math.cos(P.yaw),L=Math.hypot(fx,.15,fz),dx=fx/L,dy=.15/L,dz=fz/L,ox=P.x,oy=P.y+1.5,oz=P.z;let tm=3.4;
   for(const b of BF.bx){const t=bfRB(ox,oy,oz,dx,dy,dz,b);if(t!=null&&t>0&&t<tm)tm=t-.3}tm=Math.max(.9,tm);
