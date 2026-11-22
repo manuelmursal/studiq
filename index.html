@@ -382,6 +382,31 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 .bfvt{display:grid;gap:10px;margin-top:12px}
 .bfvt button{width:100%;margin:0}
 #bfgame:fullscreen canvas{height:100vh!important;border-radius:0!important}
+/* Banana Fight: Touch-Steuerung (iPad) */
+#bft{position:absolute;inset:0;display:none;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;font-family:Inter,system-ui,sans-serif}
+#bft.on{display:block}
+#bft .bfzl,#bft .bfzr{position:absolute;bottom:0;pointer-events:auto;touch-action:none}
+#bft .bfzl{left:0;top:22%;width:44%}
+#bft .bfzr{right:0;top:0;width:56%}
+#bft .bfjs{position:absolute;width:128px;height:128px;margin:-64px 0 0 -64px;border-radius:50%;border:2px solid #fff6;background:radial-gradient(circle,#fff1,#0004);opacity:.5;pointer-events:none;transition:opacity .15s}
+#bft .bfjs.on{opacity:1}
+#bft .bfjs i{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px;border-radius:50%;background:#fffc;box-shadow:0 2px 10px #0006}
+#bft .bfjs.run i{background:var(--acc,#f26b1d)}
+#bft .bfcl{position:absolute;right:calc(10px + env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));width:280px;height:210px;pointer-events:none}
+#bft .bfb{position:absolute;border-radius:50%;border:2px solid #fff7;background:#0006;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;line-height:1.1;text-align:center}
+#bft .bfb b{font-size:26px;font-weight:400}
+#bft .bfb small{font-size:11px;opacity:.9}
+#bft .bfb.dn,#bft .bfb.on{background:var(--acc,#f26b1d);border-color:#fff}
+#bft .bfb.dn{transform:scale(.94)}
+#bfh.tch .bfhp{left:12px;top:58px;bottom:auto;width:min(180px,30vw);height:24px}
+#bfh.tch .bfhp b{font-size:14px}
+#bfh.tch .bfam{left:50%;right:auto;transform:translateX(-50%);bottom:10px;text-align:center}
+#bfh.tch .bfam b{font-size:30px}
+#bfgame:-webkit-full-screen canvas{height:100vh!important;border-radius:0!important}
+#bfgame.bffs{position:fixed!important;inset:0;z-index:20;margin:0!important;background:#000}
+#bfgame.bffs canvas{height:100%!important;min-height:0!important;border-radius:0!important}
+#bfgame.bffs .bffb{top:calc(12px + env(safe-area-inset-top,0px))!important;right:calc(12px + env(safe-area-inset-right,0px))!important}
+#bfgame.bffs .bfeb{top:calc(12px + env(safe-area-inset-top,0px));left:calc(12px + env(safe-area-inset-left,0px))}
 </style></head>
 <body><div id="app"></div>
 <script>
@@ -414,8 +439,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-23.5';
+const VERSION='2026-11-23.6';
 const CHANGELOG=[
+ {v:'2026-11-23.6',t:'Banana Fight auf dem iPad',items:['Banana Fight hat jetzt eine Touch-Steuerung: Mit dem Joystick unten links läufst du (weit ziehen = rennen).','Rechts wischst du über den Bildschirm, um dich umzuschauen. Mit den Knöpfen rechts unten schießt du, springst, zielst, lädst nach und wechselst die Waffe.','Tippe auf „Vollbild“, damit du mehr Platz hast.']},
  {v:'2026-11-23.5',t:'Spanisch als Fach',items:['Spanisch gibt es jetzt in der Fächer-Auswahl, zum Beispiel bei Schulbüchern, Lernmaterial, Vokabeln und Noten.']},
  {v:'2026-11-23.4',t:'Banana Fight: Lobby für mehrere Spieler',items:['Online lädst du jetzt mehrere Freunde gleichzeitig ein. Freunde können deiner Lobby auch direkt über die Liste „Lobbys deiner Freunde“ beitreten.','In der Lobby warten alle aufeinander. Mit „Bereit“ meldest du dich an und kannst dich wieder abmelden. Wenn alle bereit sind, geht es los.','Der Lobby-Leiter (👑) hat neben „Bereit“ den Knopf „Bereit, ohne zu warten“ und startet damit sofort.','In der Lobby kannst du Emotes machen, neu auch „Banane essen“. Danach stimmt ihr über die Map ab.','Nach einer Runde geht es zurück in die Lobby.']},
  {v:'2026-11-23.3',t:'Banana Fight: Emotes',items:['Mit B öffnest du das Emote-Rad: Moonwalk mit Drehung, Peace-Zeichen, Winken und „mäßig Pistole zielen“. Mit der Maus wählst du aus und klickst.','Während des Emotes siehst du deine Banane von vorn. Mit B, beim Laufen, Nachladen oder wenn du getroffen wirst, hörst du auf. Andere sehen dein Emote auch.','Auf dem iPad gibt es oben links einen Emote-Knopf zum Antippen.']},
@@ -1397,6 +1423,58 @@ async function pinT(id){const x=DB.find(o=>String(o.id)==String(id));if(!x)retur
  if(error){console.error(error);x.pin=!v;render();toast(needSql(error)?'Bitte führe zuerst update15.sql in Supabase aus.':'Das hat nicht geklappt.')}}
 /* ===== Banana Fight ===== */
 const BF={mode:'cpu',room:'',o:{},sc:{},fd:[],k:{},st:'idle',w:0,bx:[]};
+/* ===== Banana Fight: Touch-Steuerung (iPad). Joystick links, Wischen rechts, Knöpfe rechts unten ===== */
+const BFT_SENS=.0042,BFT_R=60,BFT_SHORT=['Pistole','MP','Schrot','Sniper'];
+const BFT_HTML='<div id="bft"><div class="bfzl"></div><div class="bfzr"></div><div class="bfjs"><i></i></div><div class="bfcl">'
+ +'<div class="bfb" id="bfbF" style="right:4px;bottom:4px;width:108px;height:108px"><b>🔫</b><small>Feuer</small></div>'
+ +'<div class="bfb" id="bfbJ" style="right:30px;bottom:128px;width:72px;height:72px"><b>⬆️</b><small>Sprung</small></div>'
+ +'<div class="bfb" id="bfbA" style="right:124px;bottom:104px;width:66px;height:66px"><b>🎯</b><small>Zielen</small></div>'
+ +'<div class="bfb" id="bfbR" style="right:136px;bottom:12px;width:64px;height:64px"><b>🔄</b><small>Laden</small></div>'
+ +'<div class="bfb" id="bfbW" style="right:204px;bottom:60px;width:64px;height:64px"><b id="bfbWn" style="font-size:13px">Pistole</b><small>wechseln</small></div>'
+ +'</div></div>';
+function bfTouchReset(){BF.jx=BF.jy=0;BF.jrun=0;BF.jj=0;BF.fire=0;BF.jact=0;BF.jk=null;if(BF.tcReset)BF.tcReset()}
+function bfTouchSync(){
+ const on=BF.st=='play';BF.lk=on||document.pointerLockElement===BF.c;
+ const T=document.getElementById('bft');if(!T)return;
+ if(T.classList.contains('on')!==on){T.classList.toggle('on',on);if(!on)bfTouchReset()}
+ if(!on)return;
+ const js=T.querySelector('.bfjs');
+ if(!BF.jact&&BF.jk!==BF.sh){BF.jk=BF.sh;js.style.left='calc(104px + env(safe-area-inset-left,0px))';js.style.top=(BF.sh-104)+'px'}
+ const a=document.getElementById('bfbA'),w=document.getElementById('bfbWn'),n=BFT_SHORT[BF.w]||'';
+ if(a)a.classList.toggle('on',!!BF.ads);
+ if(w&&w.textContent!==n)w.textContent=n}
+function bfTouchInit(){
+ const T=document.getElementById('bft'),G=document.getElementById('bfgame');if(!T||!G)return;
+ const zl=T.querySelector('.bfzl'),zr=T.querySelector('.bfzr'),js=T.querySelector('.bfjs'),kn=js.firstElementChild,
+  stamp=()=>{BF.tcT=performance.now()},
+  look=(dx,dy)=>{const P=BF.p;if(BF.st!='play'||!P||BF.dead>0||BF.wh)return;const s=BFT_SENS*(BF.cam?BF.cam.fov/75:1);P.yaw-=dx*s;P.pitch=Math.max(-1.5,Math.min(1.5,P.pitch-dy*s))};
+ let jp=null,jo=null,lp=null,ll=null;
+ /* Jede Berührung merken, damit die Maus-Ersatzereignisse von iOS keinen Schuss auslösen */
+ G.addEventListener('pointerdown',e=>{if(e.pointerType=='touch')stamp()},true);
+ G.addEventListener('pointerup',e=>{if(e.pointerType=='touch')stamp()},true);
+ const jEnd=()=>{jp=null;BF.jx=BF.jy=0;BF.jrun=0;BF.jact=0;BF.jk=null;js.classList.remove('on','run');kn.style.transform=''};
+ /* Joystick: erscheint dort, wo du links den Finger aufsetzt */
+ zl.addEventListener('pointerdown',e=>{e.preventDefault();stamp();if(jp!=null)return;try{zl.setPointerCapture(e.pointerId)}catch(x){}jp=e.pointerId;jo=[e.clientX,e.clientY];const r=T.getBoundingClientRect();js.style.left=(e.clientX-r.left)+'px';js.style.top=(e.clientY-r.top)+'px';js.classList.add('on');BF.jact=1});
+ zl.addEventListener('pointermove',e=>{if(e.pointerId!==jp)return;e.preventDefault();stamp();const dx=e.clientX-jo[0],dy=e.clientY-jo[1],d=Math.hypot(dx,dy)||1,m=Math.min(1,d/BFT_R),dz=.14,a=m<dz?0:(m-dz)/(1-dz);BF.jx=dx/d*a;BF.jy=dy/d*a;BF.jrun=d>BFT_R*1.35?1:0;js.classList.toggle('run',!!BF.jrun);const k=Math.min(d,BFT_R);kn.style.transform='translate('+dx/d*k+'px,'+dy/d*k+'px)'});
+ ['pointerup','pointercancel'].forEach(t=>zl.addEventListener(t,e=>{if(e.pointerId===jp){stamp();jEnd()}}));
+ /* Umschauen: rechts wischen */
+ zr.addEventListener('pointerdown',e=>{e.preventDefault();stamp();if(BF.wh){bfWheel(0);return}if(lp!=null)return;try{zr.setPointerCapture(e.pointerId)}catch(x){}lp=e.pointerId;ll=[e.clientX,e.clientY]});
+ zr.addEventListener('pointermove',e=>{if(e.pointerId!==lp)return;e.preventDefault();stamp();look(e.clientX-ll[0],e.clientY-ll[1]);ll=[e.clientX,e.clientY]});
+ ['pointerup','pointercancel'].forEach(t=>zr.addEventListener(t,e=>{if(e.pointerId===lp){stamp();lp=null}}));
+ /* Knöpfe (jeder Knopf hat seinen eigenen Finger, Feuer kann nebenbei auch zielen) */
+ const btn=(id,dn,up,mv)=>{const el=document.getElementById(id);if(!el)return null;let pid=null,ls=null;
+  el.addEventListener('pointerdown',e=>{e.preventDefault();stamp();if(pid!=null)return;pid=e.pointerId;ls=[e.clientX,e.clientY];try{el.setPointerCapture(pid)}catch(x){}el.classList.add('dn');if(dn)dn()});
+  el.addEventListener('pointermove',e=>{if(e.pointerId!==pid||!mv)return;e.preventDefault();stamp();look(e.clientX-ls[0],e.clientY-ls[1]);ls=[e.clientX,e.clientY]});
+  const end=e=>{if(e.pointerId!==pid)return;stamp();pid=null;el.classList.remove('dn');if(up)up()};
+  el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+  return()=>{pid=null;el.classList.remove('dn')}};
+ const alive=()=>BF.st=='play'&&!(BF.dead>0),rs=[
+  btn('bfbF',()=>{if(BF.st!='play')return;if(BF.wh){bfWheel(0);return}if(BF.em)bfEmoteStop();BF.fire=1;bfFire()},()=>{BF.fire=0},1),
+  btn('bfbJ',()=>{BF.jj=1},()=>{BF.jj=0}),
+  btn('bfbA',()=>{if(alive()&&!BF.em)BF.ads=BF.ads?0:1}),
+  btn('bfbR',()=>{if(alive())bfReload()}),
+  btn('bfbW',()=>{if(alive())bfWh({deltaY:1})})];
+ BF.tcReset=()=>{jEnd();lp=null;rs.forEach(f=>{if(f)f()})}}
 const BFW=[{n:'Pistole',dmg:22,rt:.28,mag:12,rl:1.5,sp:.008,pel:1,f:200},{n:'Maschinenpistole',dmg:11,rt:.085,mag:30,rl:1.9,sp:.03,pel:1,f:260},{n:'Schrotflinte',dmg:9,rt:.85,mag:6,rl:2.2,sp:.07,pel:8,f:120},{n:'Sniper',dmg:70,rt:1.25,mag:5,rl:2.8,sp:.0006,pel:1,f:80}];
 const BFC=[0xe03131,0x1c7ed6,0x2f9e44,0x9c36b5,0xf76707,0x0ca678],bfCol=id=>BFC[[...String(id)].reduce((a,c)=>a+c.charCodeAt(0),0)%BFC.length];
 const BFS=[[-24,-24],[24,-24],[-24,24],[24,24],[0,-24],[0,24],[-24,0],[24,0]];
@@ -1455,7 +1533,11 @@ async function bfInvSend(ids){if(!ids||!ids.length)return;const body=`🍌 Banan
 function bfMode(m){BF.mode=m;if(m!='multi'&&BF.pc){sb.removeChannel(BF.pc);BF.pc=null}bfMenu()}
 function bfRand(){const r=Math.random().toString(36).slice(2,6);BF.room=r;$('#bfr').value=r}
 async function bfInv(){const id=$('#bff')?.value;if(!id)return toast('Du hast noch keine Freunde.');let r=($('#bfr').value||'').trim();if(!r)r=bfRand()||BF.room;BF.room=r.toLowerCase();const{error}=await sb.from('messages').insert({recipient:id,body:`🍌 Banana Fight! Öffne Spiele, tippe auf Banana Fight, wähle Online und gib den Raumcode „${r}“ ein.`});toast(error?'Die Einladung ging nicht raus.':'Einladung gesendet.')}
-function bfFS(){const g=$('#bfgame');document.fullscreenElement?document.exitFullscreen():g&&g.requestFullscreen&&g.requestFullscreen()}
+function bfFS(){const g=$('#bfgame');if(!g)return;const fe=document.fullscreenElement||document.webkitFullscreenElement,fb=()=>g.classList.add('bffs');
+ if(g.classList.contains('bffs')){g.classList.remove('bffs');return}
+ if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}
+ const rq=g.requestFullscreen||g.webkitRequestFullscreen;if(!rq){fb();return}
+ try{const p=rq.call(g);if(p&&p.catch)p.catch(fb)}catch(e){fb()}}
 function bfNet(){if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}if(BF.mode!='multi'||!BF.room)return;const nz=BF.room;
  BF.ch=sb.channel('bf:'+nz).on('broadcast',{event:'p'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;const o=BF.o[q.id]||(BF.o[q.id]={id:q.id,x:q.x,y:q.y,z:q.z,hp:100,m:null});BF.live=performance.now();const ne=q.e==null?-1:q.e;if(o.e!==ne)o.et=performance.now();Object.assign(o,{tx:q.x,ty:q.y,tz:q.z,fy:q.r+Math.PI,hp:q.hp,dead:!!q.d,n:q.n,w:q.w,e:ne,seen:performance.now()});BF.sc[q.id]=BF.sc[q.id]||{n:q.n,k:0,d:0}})
  .on('broadcast',{event:'hit'},m=>{const q=m.payload;if(q&&q.to==ME.id)bfHurt(q.dmg,q.from)})
@@ -1518,12 +1600,12 @@ function bfFire(){const w=BFW[BF.w],now=performance.now()/1000;if(BF.dead>0||BF.
 function bfKey(e){const dn=e.type=='keydown';if(BF.st=='lobby'){if(dn&&!e.repeat){if(e.code=='KeyB')bfB();else if(BF.em&&['KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code))bfEmoteStop()}return}if(BF.st!='play')return;if(['Space','Tab'].includes(e.code))e.preventDefault();BF.k[e.code]=dn;
  if(dn&&!e.repeat){if(e.code=='KeyR')bfReload();if(e.code=='KeyB')bfB();const n={Digit1:0,Digit2:1,Digit3:2,Digit4:3}[e.code];if(n!=null&&n!=BF.w){BF.w=n;BF.rl=0;bfWS()}}}
 function bfMM(e){if(BF.wh&&BF.lk){bfWhMove(e);return}if(BF.lk&&BF.st=='play'&&!(BF.dead>0)){const s=.0022*(BF.cam?BF.cam.fov/75:1);BF.p.yaw-=e.movementX*s;BF.p.pitch=Math.max(-1.5,Math.min(1.5,BF.p.pitch-e.movementY*s))}}
-function bfMD(e){if(e.button==0&&BF.lk){if(BF.wh){if(BF.wh.sel>=0)bfEmote(BF.wh.sel);else bfWheel(0);return}if(BF.em)bfEmoteStop();BF.fire=1;bfFire()}if(e.button==2&&BF.lk)BF.ads=1}function bfMU(e){if(e.button==0)BF.fire=0;if(e.button==2)BF.ads=0}
+function bfMD(e){if(BF.tcT&&performance.now()-BF.tcT<800)return;if(e.button==0&&BF.lk){if(BF.wh){if(BF.wh.sel>=0)bfEmote(BF.wh.sel);else bfWheel(0);return}if(BF.em)bfEmoteStop();BF.fire=1;bfFire()}if(e.button==2&&BF.lk)BF.ads=1}function bfMU(e){if(BF.tcT&&performance.now()-BF.tcT<800)return;if(e.button==0)BF.fire=0;if(e.button==2)BF.ads=0}
 function bfCM(e){if(BF.st=='play'||BF.st=='vote')e.preventDefault()}
 function bfPL(){BF.lk=document.pointerLockElement===BF.c;if(!BF.lk){BF.ads=0;BF.fire=0}if(BF.st=='play')bfOv(BF.lk?'':'<div class="bfmn"><h2>Pausiert</h2><p>Klicke ins Bild, um weiterzuspielen.</p></div>')}
 function bfWh(e){if(BF.st=='play'){BF.w=(BF.w+(e.deltaY>0?1:3))%4;BF.rl=0;bfWS()}}
-async function bfInit(){const c=$('#bfc');if(!c)return;bfStop();BF.c=c;BF.touch=!c.requestPointerLock;BF.st='menu';BF.o={};BF.sc={};BF.fd=[];BF.w=0;BF.am=null;BF.k={};
- $('#bfh').innerHTML='<div class="bfsn" id="bfsn"><i></i><b></b></div>'+bfEmHTML()+'<div class="bfx"></div><div class="bfhp"><i id="bfhpi"></i><b id="bfhpt">100</b></div><div class="bfam"><b id="bfa">12</b><span id="bfwn">Pistole</span></div><div class="bfkf" id="bfkf"></div><div class="bfsb" id="bfsb"></div><div class="bfhm" id="bfhm"></div><div class="bfdm" id="bfdm"></div><div class="bfl" id="bfl"></div><button class="btn g bfeb" id="bfeb" onclick="bfB()">😎 Emote</button><div class="bfo" id="bfo"></div>';$('#bfo').onclick=e=>{if(BF.st=='play'&&!BF.lk&&!e.target.closest('button')){try{BF.c.requestPointerLock()}catch(x){}}};bfMenu();
+async function bfInit(){const c=$('#bfc');if(!c)return;bfStop();BF.c=c;BF.touch=!c.requestPointerLock||matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/i.test(navigator.platform||''));BF.jx=BF.jy=BF.jrun=BF.jj=BF.jact=0;BF.jk=null;BF.st='menu';BF.o={};BF.sc={};BF.fd=[];BF.w=0;BF.am=null;BF.k={};
+ $('#bfh').innerHTML=BFT_HTML+'<div class="bfsn" id="bfsn"><i></i><b></b></div>'+bfEmHTML()+'<div class="bfx"></div><div class="bfhp"><i id="bfhpi"></i><b id="bfhpt">100</b></div><div class="bfam"><b id="bfa">12</b><span id="bfwn">Pistole</span></div><div class="bfkf" id="bfkf"></div><div class="bfsb" id="bfsb"></div><div class="bfhm" id="bfhm"></div><div class="bfdm" id="bfdm"></div><div class="bfl" id="bfl"></div><button class="btn g bfeb" id="bfeb" onclick="bfB()">😎 Emote</button><div class="bfo" id="bfo"></div>';$('#bfo').onclick=e=>{if(BF.st=='play'&&!BF.lk&&!e.target.closest('button')){try{BF.c.requestPointerLock()}catch(x){}}};$('#bfh').classList.toggle('tch',!!BF.touch);bfTouchInit();bfMenu();
  try{await k3Load()}catch(e){return toast('Das 3D-Spiel konnte nicht geladen werden. Prüfe deine Internetverbindung.')}
  if($('#bfc')!==c)return;try{BF.R=new THREE.WebGLRenderer({canvas:c,antialias:true})}catch(e){return toast('Dein Gerät kann 3D im Browser nicht darstellen.')}
  BF.R.shadowMap.enabled=true;BF.R.setPixelRatio(Math.min(devicePixelRatio||1,1.5));BF.cam=new THREE.PerspectiveCamera(75,1,.05,300);bfMap();
@@ -1534,13 +1616,14 @@ function bfStop(){cancelAnimationFrame(BF.raf);removeEventListener('keydown',bfK
 function bfLoop(ts){if(V!='bf'||$('#bfc')!==BF.c){bfStop();return}const dt=Math.min(.05,(ts-BF.t)/1000||0);BF.t=ts;bfUpd(dt,ts);BF.raf=requestAnimationFrame(bfLoop)}
 function bfUpd(dt,ts){const c=BF.c,R=BF.R,cam=BF.cam,w=c.clientWidth,h=c.clientHeight;if(BF.sw!=w||BF.sh!=h){BF.sw=w;BF.sh=h;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
  const P=BF.p;
+ if(BF.touch)bfTouchSync();
  if(BF.st=='lobby')bfLobbyTick(dt,ts);
  if(BF.st=='vote'&&BF.vt){const V=BF.vt;V.t-=dt;V.rb-=dt;if(V.rb<=0){V.rb=1;if(BF.ch&&V.v[ME.id]!=null)BF.ch.send({type:'broadcast',event:'vote',payload:{id:ME.id,m:V.v[ME.id]}})}if(V.t<=0)bfVoteEnd();else bfVoteUI()}
  if(BF.st=='play'&&P){const k=BF.k;
   if(BF.dead>0){BF.dead-=dt;if(BF.dead<=0)bfSpawn()}
-  else{if(BF.em&&(k.KeyW||k.KeyA||k.KeyS||k.KeyD||k.Space)&&performance.now()-BF.em.t0>250)bfEmoteStop();const ax=(k.KeyD?1:0)-(k.KeyA?1:0),az=(k.KeyS?1:0)-(k.KeyW?1:0),l=Math.hypot(ax,az)||1,sp=(k.ShiftLeft?7.4:5)*(BF.rl>0?.9:1)*(1-.4*(BF.zm||0)),cs=Math.cos(P.yaw),sn=Math.sin(P.yaw);if(BF.lk)bfMove(P,(ax*cs+az*sn)*sp/l*dt,(-ax*sn+az*cs)*sp/l*dt);
+  else{if(BF.em&&(k.KeyW||k.KeyA||k.KeyS||k.KeyD||k.Space||BF.jx||BF.jy||BF.jj)&&performance.now()-BF.em.t0>250)bfEmoteStop();const ax=(k.KeyD?1:0)-(k.KeyA?1:0)+(BF.jx||0),az=(k.KeyS?1:0)-(k.KeyW?1:0)+(BF.jy||0),l=Math.max(1,Math.hypot(ax,az)),sp=(k.ShiftLeft||BF.jrun?7.4:5)*(BF.rl>0?.9:1)*(1-.4*(BF.zm||0)),cs=Math.cos(P.yaw),sn=Math.sin(P.yaw);if(BF.lk)bfMove(P,(ax*cs+az*sn)*sp/l*dt,(-ax*sn+az*cs)*sp/l*dt);
    P.vy-=22*dt;P.y+=P.vy*dt;let top=0;for(const b of BF.bx)if(P.x+.3>b.x0&&P.x-.3<b.x1&&P.z+.3>b.z0&&P.z-.3<b.z1){if(b.y1<=P.y+.6&&b.y1>top)top=b.y1;else if(P.vy>0&&b.y0>=P.y+1.4&&P.y+1.75>b.y0){P.vy=0;P.y=b.y0-1.76}}
-   const gr=P.y<=top+.001;if(gr){P.y=top;P.vy=0}if(gr&&k.Space&&BF.lk)P.vy=7.6;
+   const gr=P.y<=top+.001;if(gr){P.y=top;P.vy=0}if(gr&&(k.Space||BF.jj)&&BF.lk)P.vy=7.6;
    if(BF.rl>0){BF.rl-=dt;if(BF.rl<=0)BF.am[BF.w]=BFW[BF.w].mag}if(BF.fire&&BF.w==1)bfFire()}
   if(!BF.fk||ts-BF.fk>60){BF.fk=ts;if(BF.ch)BF.ch.send({type:'broadcast',event:'p',payload:{id:ME.id,n:nm(ME.id),x:+P.x.toFixed(2),y:+P.y.toFixed(2),z:+P.z.toFixed(2),r:+P.yaw.toFixed(2),hp:P.hp,w:BF.w,d:BF.dead>0?1:0,e:BF.em?BF.em.id:-1}})}}
  for(const id in BF.o){const o=BF.o[id];
@@ -2188,7 +2271,7 @@ shop:()=>{
   prev=i.kind=='title'?`<div class="ttl" style="margin:14px 0">${i.id=='none'?'–':esc(i.name)}</div>`:i.kind=='frame'?`<div class="frm ${i.id=='none'?'':i.id}"><img src="${avOf(ME)}" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block"></div>`:i.kind=='ptheme'?`<div class="pt ${i.id=='none'?'':i.id}" style="height:64px;width:100%;padding:0;border-radius:14px;${i.id=='none'?'background:var(--line)':''}"></div>`:i.kind=='stheme'?`<div style="width:64px;height:64px;border-radius:50%;background:${STH[i.id]?STH[i.id].a:'#f26b1d'};box-shadow:0 0 0 4px ${STH[i.id]?STH[i.id].l:'#fafaf8'},0 0 0 5px var(--line)"></div>`:`<div class="chb mini ${i.id}">${Array.from({length:16},(_,k)=>`<span class="chs ${((k>>2)+k)%2?'d':'l'}"></span>`).join('')}</div>`;
   return `<div class="sic">${prev}<b style="font-weight:500">${esc(i.name)}</b>${have?'<span class="m" style="font-size:13px">'+(i.price?'Gekauft':'Gratis')+'</span>':`<span class="bkp">${bki(16)} ${bkn(i.price)}</span>`}<button class="btn ${on?'g':have||bal>=i.price?'o':'g'}" ${on?'disabled':''} onclick="${have?`bkEquip('${i.kind}','${i.id}')`:`bkBuy('${i.id}')`}">${on?'Aktiv':have?'Anziehen':'Kaufen'}</button></div>`};
  return `<div class="bar" style="margin-bottom:0"><h1 style="flex:1;margin:0">Item-Shop</h1><button class="ib" aria-label="So verdienst du Bookies" aria-expanded="${BKINFO}" onclick="BKINFO=!BKINFO;render()"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button></div><p style="display:flex;gap:8px;align-items:center;margin:8px 0 0">${bki(26)}<b style="font:500 24px Fraunces,Georgia,serif">${bkn(bal)}</b> Bookies</p>${BKINFO?`<div class="card" style="max-width:none;margin-top:16px"><h2 style="margin:0 0 8px;font-size:18px">So verdienst du Bookies</h2><ol style="margin:0;padding-left:20px;line-height:1.7"><li><b style="font-weight:500">Tic Tac Toe:</b> Sieg gegen den Computer 3 Bookies (Leicht) oder 6 (Schwer). Online mit Freunden gibt es 8 für einen Sieg und 3 für ein Unentschieden.</li><li><b style="font-weight:500">Schach:</b> Sieg gegen den Computer 3 (Leicht), 8 (Mittel) oder 15 (Schwer). Online mit Freunden gibt es 12 für einen Sieg und 4 für Remis.</li><li><b style="font-weight:500">Kart-Rennen:</b> 12 Bookies für Platz 1, 8 für Platz 2, 5 für Platz 3, sonst 3. Eine neue Bestzeit bringt 10 extra.</li><li><b style="font-weight:500">Bookie Clicker:</b> Klicke Bücher und baue deine Bibliothek aus. Ab 100 Büchern insgesamt bekommst du Bookies, je mehr Bücher, desto mehr. Ab 100 Mio. Büchern wird jedes weitere Level deutlich teurer.</li><li>Zu zweit am selben Gerät gibt es keine Bookies.</li></ol><p class="m" style="margin:12px 0 0;font-size:13px">Damit niemand es übertreibt, gibt es höchstens 200 Bookies pro Stunde und 800 pro Tag aus Spielen. Aus dem Clicker gibt es keine Obergrenze. Eine Partie bringt nur einmal Bookies.</p></div>`:''}${SHI.length?`<h2>Profil-Rahmen</h2><p class="m" style="margin:-4px 0 12px">Der Rahmen erscheint um dein Profilbild, für alle sichtbar.</p><div class="sgrid">${fl.map(card).join('')}</div><h2>Schachbretter</h2><p class="m" style="margin:-4px 0 12px">Das Brett siehst nur du in deinen Schachpartien.</p><div class="sgrid">${bd.map(card).join('')}</div><h2>Profil-Themes</h2>${SHI.some(i=>i.kind=='ptheme')?'':'<p class="m" style="color:var(--acc)">Die neuen Themes sind noch nicht eingerichtet. Bitte führe update11.sql in Supabase aus.</p>'}<p class="m" style="margin:-4px 0 12px">Das Theme erscheint auf deinem Profil, für alle sichtbar.</p><div class="sgrid">${pl.map(card).join('')}</div><h2>STUDIQ-Themes</h2><p class="m" style="margin:-4px 0 12px">Färbt die ganze Seite bei dir ein, mit Akzentfarbe und Hintergrund.</p><div class="sgrid">${sl.map(card).join('')}</div><h2>Titel</h2><p class="m" style="margin:-4px 0 12px">Dein Titel steht im Profil unter deinem Namen.</p>${SHI.some(i=>i.kind=='title')?'':'<p class="m" style="color:var(--acc)">Die Titel sind noch nicht eingerichtet. Bitte führe update14.sql in Supabase aus.</p>'}<div class="sgrid">${ti.map(card).join('')}</div>`:`<div class="card" style="max-width:none;margin-top:16px"><p class="m" style="margin:0">Der Shop ist noch nicht eingerichtet. Bitte führe update10.sql in Supabase aus.</p></div>`}`},
-bf:()=>`<h1>Banana Fight</h1><p class="m">Du bist eine Banane mit Waffen. Gegen Bots oder online mit Freunden. Wer zuerst 15 Treffer schafft, gewinnt. Vor jeder Runde stimmst du über die Map ab.</p><div id="bfgame" style="position:relative;margin-top:14px"><canvas id="bfc" style="width:100%;height:min(78vh,760px);min-height:320px;display:block;border-radius:14px;background:#1c1c1e;cursor:crosshair"></canvas><div id="bfh"></div><button class="btn g" style="position:absolute;right:12px;top:12px;z-index:6;pointer-events:auto" onclick="bfFS()">Vollbild</button></div><p class="m">WASD laufen, Maus zielen, Klick schießen, Leertaste springen, Shift rennen, R nachladen, 1 bis 4 oder Mausrad für die Waffe, rechte Maustaste halten zum Zielen, B für Emotes (auf dem iPad der Knopf oben links), Tab für die Rangliste. Am Computer mit Maus und Tastatur.</p>`,
+bf:()=>`<h1>Banana Fight</h1><p class="m">Du bist eine Banane mit Waffen. Gegen Bots oder online mit Freunden. Wer zuerst 15 Treffer schafft, gewinnt. Vor jeder Runde stimmst du über die Map ab.</p><div id="bfgame" style="position:relative;margin-top:14px"><canvas id="bfc" style="width:100%;height:min(78vh,760px);min-height:320px;display:block;border-radius:14px;background:#1c1c1e;cursor:crosshair"></canvas><div id="bfh"></div><button class="btn g bffb" style="position:absolute;right:12px;top:12px;z-index:6;pointer-events:auto" onclick="bfFS()">Vollbild</button></div><p class="m">WASD laufen, Maus zielen, Klick schießen, Leertaste springen, Shift rennen, R nachladen, 1 bis 4 oder Mausrad für die Waffe, rechte Maustaste halten zum Zielen, B für Emotes (auf dem iPad der Knopf oben links), Tab für die Rangliste. Am Computer mit Maus und Tastatur. Auf dem iPad: Joystick links zum Laufen (weit ziehen = rennen), rechts wischen zum Umschauen, Knöpfe rechts unten zum Schießen, Springen, Zielen, Nachladen und Waffenwechsel. Tipp: Tippe auf „Vollbild“.</p>`,
 slots:()=>`<h1>Bookie Slots</h1><p class="m">Setze Bookies und zieh am Hebel. Drei gleiche Symbole bringen richtig viel.</p><div class="slo"><div class="slm" id="slm" onpointerdown="slSpark(event)"><div class="slt">BOOKIE SLOTS</div><div class="sbl">${'<i></i>'.repeat(13)}</div><div class="sw">${[0,1,2].map(slReel).join('')}<div class="sp"></div></div><p class="sms" id="slmsg" role="status">Viel Glück!</p><div class="lcd"><div><span>Guthaben</span><b>${bki(18)} <span id="slb" style="font-size:22px;letter-spacing:0;text-transform:none;color:inherit">0</span></b></div><div><span>Gewinn</span><b id="slw">0</b></div></div><div class="sctl"><button class="sbtn" onclick="slBet(-1)" aria-label="Einsatz senken">−</button><div class="sbet"><span>Einsatz</span><b id="slbet">25</b></div><button class="sbtn" onclick="slBet(1)" aria-label="Einsatz erhöhen">+</button><button class="sbtn" onclick="slBet(9)">Max</button></div><button class="sbtn sgo" id="slgo" onclick="slSpin()">DREHEN</button></div><div class="lv" id="lv" onclick="slSpin()" role="button" aria-label="Hebel ziehen"><i class="lb"></i><i class="lr"></i><i class="lz"></i></div></div><details class="card" style="max-width:440px;margin:6px auto 0;padding:14px 20px"><summary style="cursor:pointer">Gewinntabelle</summary><div style="margin-top:10px">${SLS.map((s,i)=>`<div class="row" style="padding:3px 0;border:0"><span>${s}${s}${s}</span><b style="font-weight:500">x${SLP[i]}</b></div>`).join('')}<p class="m" style="font-size:13px">Zwei gleiche Symbole von links: x1,5. Nur eine Kirsche links: Einsatz zurück. Der Zufall wird auf dem Server gezogen.</p></div></details>`,
 clicker:()=>{
  const rate=ckMul('a'),bu=CKU.filter(u=>!CK.u.includes(u[0])),done=CKU.filter(u=>CK.u.includes(u[0]));
