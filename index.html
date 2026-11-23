@@ -487,6 +487,11 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 .czm{min-height:24px;font-weight:700;font-size:16px}
 .czp label{display:block;margin:10px 0 2px;font-size:13px;color:#d9c4a0}
 .czp input[type=number]{width:84px;padding:8px;border-radius:10px;border:2px solid #ffd43b66;background:#ffffff14;color:#fff}
+.czcl{height:min(300px,38vh);overflow:auto;background:#00000040;border-radius:14px;padding:10px;margin:10px 0;display:flex;flex-direction:column;gap:8px}
+.czcl div{max-width:88%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.45}
+.czcl .b{background:#ffd43b;color:#3a2410;align-self:flex-start}
+.czcl .u{background:#ffffff22;align-self:flex-end}
+.czp input[type=text]{flex:1;min-width:0;padding:10px;border-radius:10px;border:2px solid #ffd43b66;background:#ffffff14;color:#fff;font-size:15px}
 .cgold{position:absolute;inset:0;z-index:12;display:grid;place-content:center;text-align:center;font:400 clamp(34px,8vw,72px)/1.1 Bungee,Impact,sans-serif;color:#ffd43b;text-shadow:0 4px 0 #7c2d0a,0 0 40px #ffb21f;background:radial-gradient(circle,#ffd43b55,#0000 70%);pointer-events:none;animation:cgl 3.6s ease-out forwards}
 @keyframes cgl{0%{opacity:0;transform:scale(.4) rotate(-8deg)}15%{opacity:1;transform:scale(1.1)}25%{transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(1.2)}}
 #cft{position:absolute;inset:0;display:none;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -583,8 +588,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-23.8';
+const VERSION='2026-11-23.9';
 const CHANGELOG=[
+ {v:'2026-11-23.9',t:'Banana Boost stabiler, Casino lebendiger',items:['Banana Boost: Ein einzelner Fehler stoppt das Spiel nicht mehr. Es gibt einen Framelimiter (60 FPS, bei langsamen Geräten automatisch weniger Auflösung und Partikel, zur Not 30 FPS). Alle Effekte werden vor dem Rennen vorbereitet, damit es beim ersten Boost, Stern oder Banane nicht hängt.','Der Framelimiter gilt jetzt auch für Banana Fight und Casino Round.','Casino Round: 21 Pflanzen in Vasen (Palmen, Büsche und Bananenpflanzen) machen die Halle lebendiger.','Du kannst dich an der Bar mit Bruno unterhalten (E). Er putzt dabei Gläser, hört zu und fragt nach der Schule.']},
  {v:'2026-11-23.8',t:'Neu: Casino Round',items:['Casino Round ist ein ruhiges 3D-Casino mit nur einer Lobby für alle. Du läufst als Banane durch die Halle und siehst die anderen mit Namen und Kontostand über dem Kopf.','Es gibt Roulette, Würfeltisch, Münzwurf, Glücksrad und Spielautomaten. Gespielt wird mit deinen Bookies, der Zufall wird auf dem Server gezogen. Dafür musst du update17.sql in Supabase ausführen.','Mit etwas Glück gewinnst du die goldene Banane. Sie glänzt dauerhaft neben deinem Namen.','Im Hintergrund läuft leise Bar-Musik, die du oben rechts ausschalten kannst. Mit Tasten 1 bis 6 machst du Emotes.','Achtung: Im Casino ist dein Kontostand für alle dort sichtbar, auch wenn er sonst privat ist.']},
  {v:'2026-11-23.7',t:'Banana Boost, Banana Fight und Shop: großes Update',items:['Banana Boost startet mit einer gelben Bananen-Garage, deren Tor aufgeht. Danach bist du in der Garage-Lobby: Mit den Pfeilen links und rechts wechselst du das Auto, unten links den Fahrer. Unten rechts drückst du auf Bereit (gelb, danach braun). Dann entscheidest du, ob du allein oder mit Freunden fährst.','Die Autos sind jetzt Bananen: gelbe, grüne und braune Bananen, eine Schalen-Banane und zwei Bananenblätter.','Items gibt es jetzt als Würfel auf der Strecke, jeder einzeln. Du findest Blitz (bremst alle anderen), Rakete (jagt den Fahrer vor dir), Banane (legst du auf die Straße) und Stern (unverwundbar und schneller).','Banana Fight beginnt mit einer Animation und führt dich in die Lobby. Dort lädst du Freunde ein oder spielst allein gegen Bots.','Mit Esc (oder dem Knopf Menü) öffnest du das Pausenmenü: Weiter spielen, zurück in die Lobby oder Spiel verlassen.','Deine Lebensleiste füllt sich langsam wieder, wenn du 5 Sekunden nicht getroffen wurdest.','Neue Emotes: Tanzen, Salto, Verbeugen, Jubeln und Schlafen. Die Waffe bleibt bei Emotes nicht mehr in der Hand, außer beim neu gemachten Zielen. Die Banane hat jetzt ein Gesicht und zwei Arme.','Im Item-Shop gibt es viele neue Rahmen, Schachbretter, Profil-Themes, STUDIQ-Themes und Titel. Dafür musst du update16.sql in Supabase ausführen.']},
  {v:'2026-11-23.6',t:'Banana Fight auf dem iPad',items:['Banana Fight hat jetzt eine Touch-Steuerung: Mit dem Joystick unten links läufst du (weit ziehen = rennen).','Rechts wischst du über den Bildschirm, um dich umzuschauen. Mit den Knöpfen rechts unten schießt du, springst, zielst, lädst nach und wechselst die Waffe.','Tippe auf „Vollbild“, damit du mehr Platz hast.']},
@@ -1778,7 +1784,7 @@ async function bfInit(){const c=$('#bfc');if(!c)return;bfStop();BF.c=c;BF.touch=
  BF.t=performance.now();BF.raf=requestAnimationFrame(bfLoop)}
 function bfStop(){cancelAnimationFrame(BF.raf);clearTimeout(BF.itm);removeEventListener('keydown',bfKey);removeEventListener('keyup',bfKey);document.removeEventListener('mousemove',bfMM);document.removeEventListener('mousedown',bfMD);document.removeEventListener('mouseup',bfMU);document.removeEventListener('pointerlockchange',bfPL);document.removeEventListener('contextmenu',bfCM);
  if(document.pointerLockElement)try{document.exitPointerLock()}catch(e){}if(BF.ch){sb.removeChannel(BF.ch);BF.ch=null}if(BF.pc){sb.removeChannel(BF.pc);BF.pc=null}if(BF.R){BF.R.dispose();if(BF.R.forceContextLoss)BF.R.forceContextLoss();BF.R=null}BF.S=null;BF.cam=null;BF.gun=null;BF.c=null;BF.st='idle'}
-function bfLoop(ts){if(V!='bf'||$('#bfc')!==BF.c){bfStop();return}const dt=Math.min(.05,(ts-BF.t)/1000||0);BF.t=ts;bfUpd(dt,ts);BF.raf=requestAnimationFrame(bfLoop)}
+function bfLoop(ts){if(V!='bf'||$('#bfc')!==BF.c){bfStop();return}if(ts-(BF.t||0)<13){BF.raf=requestAnimationFrame(bfLoop);return}const dt=Math.min(.05,(ts-BF.t)/1000||0);BF.t=ts;try{bfUpd(dt,ts)}catch(e){BF.err=(BF.err||0)+1;if(BF.err<4)console.error('Banana Fight:',e)}BF.raf=requestAnimationFrame(bfLoop)}
 function bfUpd(dt,ts){const c=BF.c,R=BF.R,cam=BF.cam,w=c.clientWidth,h=c.clientHeight;if(BF.sw!=w||BF.sh!=h){BF.sw=w;BF.sh=h;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
  const P=BF.p;
  if(BF.touch)bfTouchSync();
@@ -1858,13 +1864,24 @@ function czBuild(){
  // Bar
  {BX(12,1.3,1.3,WOOD,22,.65,-17.5);BX(12.4,.15,1.7,L(0x5a3a14),22,1.4,-17.5);for(let i=0;i<5;i++){const x=17+i*2.5;CYL(.08,.08,1,GOLD,x,.5,-15.6,8);CYL(.38,.38,.14,RED,x,1.05,-15.6,16)}
   [2.6,3.8].forEach(y=>BX(12,.1,.6,WOOD,22,y,-21.5));for(let i=0;i<14;i++)[2.6,3.8].forEach((y,j)=>CYL(.12,.12,.6,Ph([0x2f9e44,0xc0392b,0xe0a800,0x1c7ed6][(i+j)%4],90,{transparent:true,opacity:.85}),16.5+i*.85,y+.35,-21.5,10));
-  for(let i=0;i<6;i++)COL.push([16.5+i*2.2,-17.5,1.2]);CZ.npc=czBan('npc-bar','Bruno',1);CZ.npc.position.set(22,0,-19.6);S.add(CZ.npc);czLabel(CZ.npc,'Bruno',0,0)}
+  for(let i=0;i<6;i++)COL.push([16.5+i*2.2,-17.5,1.2]);CZ.npc=czBan('npc-bar','Bruno',1);CZ.npc.position.set(22,0,-19.6);S.add(CZ.npc);czLabel(CZ.npc,'Bruno',0,0);const gg=CZ.gg=new th.Group();gg.position.set(-.1,1,.5);gg.add(new th.Mesh(new th.CylinderGeometry(.08,.055,.2,10),new th.MeshPhongMaterial({color:0xcfefff,transparent:true,opacity:.55,shininess:120})),new th.Mesh(new th.BoxGeometry(.22,.03,.15),L(0xffffff)));CZ.npc.add(gg)}
  // goldene Banane in der Mitte
  {CYL(1.3,1.5,1,L(0xe8e2d6),0,.5,0);CYL(1.1,1.1,.12,GOLD,0,1.06,0);const cu=new th.CatmullRomCurve3([[0,.28],[-.1,.6],[-.13,1],[-.06,1.4],[.1,1.66]].map(([x,y])=>new th.Vector3(x,y,0))),g=CZ.gb=new th.Group();g.add(new th.Mesh(new th.TubeGeometry(cu,26,.26,14,false),Ph(0xffc61a,160,{emissive:0x7a5a00})),new th.Mesh(new th.SphereGeometry(.26,14,10),GOLD));g.children[1].position.set(.1,1.66,0);g.scale.setScalar(1.3);g.position.set(0,1.5,0);S.add(g);
   const sp=new th.SpotLight(0xffe9a0,1.1,30,.55,.6);sp.position.set(0,9.5,0);sp.target.position.set(0,1,0);S.add(sp,sp.target);
   add(new th.ConeGeometry(2.4,8.5,24,1,true),new th.MeshBasicMaterial({color:0xffe9a0,transparent:true,opacity:.07,side:th.DoubleSide,depthWrite:false}),0,5.6,0);
   const pl=new th.Sprite(new th.SpriteMaterial({map:czTex(512,96,(c,w,h)=>{c.textAlign='center';c.font='700 46px Inter,sans-serif';c.lineWidth=8;c.strokeStyle='#000';c.strokeText('DIE GOLDENE BANANE',256,56);c.fillStyle='#ffd43b';c.fillText('DIE GOLDENE BANANE',256,56)}),transparent:true,depthTest:false}));pl.scale.set(4,.75,1);pl.position.set(0,4.4,0);S.add(pl);COL.push([0,0,1.6])}
- CZ.stn=[{id:'roulette',n:'Roulette',x:-14,z:-8,r:6.4},{id:'dice',n:'Würfeltisch',x:14,z:-8,r:6.4},{id:'wheel',n:'Glücksrad',x:0,z:-17.3,r:5},{id:'slots',n:'Spielautomaten',x:27,z:6,r:6.5},{id:'coin',n:'Münzwurf',x:-20,z:10,r:4}]}
+ {const th2=THREE,vp=[[0,0],[.5,0],[.7,.3],[.62,.7],[.45,1.1],[.38,1.3],[.5,1.45]].map(([x,y])=>new th2.Vector2(x,y)),vg=new th2.LatheGeometry(vp,18),lg=new th2.SphereGeometry(1,8,6),sg=new th2.CylinderGeometry(.42,.42,.06,12),
+  vm=[L(0xf1e8d4),L(0x1c5f6b),L(0xb5651d),Ph(0xd4a017,120)],gm=[L(0x2f8f3a),L(0x3fa845),L(0x1f6f33)],soil=L(0x2a160a),tr=L(0x6b4a2a),stm=L(0x5f9a3a),yel=Ph(0xffd43b,90),
+  lf=(len,w,m)=>{const o=new th2.Mesh(lg,m);o.scale.set(len,.05,w);return o};CZ.pl=[];
+  [[-28,-18],[-28,-10],[-28,-2],[-28,6],[-28,14],[-28,19],[-23,19.5],[23,19.5],[28,19],[28,-6],[28,15],[-8,-20.6],[8,-20.6],[-4,20.6],[4,20.6],[-11.5,6],[11.5,6],[-11,-14],[11,-14],[-26,-20],[26,-9]].forEach(([x,z],i)=>{
+   const rn=k=>{const f=Math.sin(i*12.9898+k*78.233)*43758.5453;return f-Math.floor(f)},g=new th2.Group(),top=new th2.Group(),t=i%3;g.position.set(x,0,z);g.scale.setScalar(.95+.35*rn(1));g.rotation.y=rn(2)*6.28;
+   g.add(new th2.Mesh(vg,vm[i%4]));const sd=new th2.Mesh(sg,soil);sd.position.y=1.3;g.add(sd);top.position.y=1.35;g.add(top);
+   if(t==0){const tk=new th2.Mesh(new th2.CylinderGeometry(.06,.1,2,6),tr);tk.position.y=1;top.add(tk);for(let j=0;j<8;j++){const a=j/8*6.283,l=lf(.95,.2,gm[j%3]);l.position.set(Math.cos(a)*.75,2,Math.sin(a)*.75);l.rotation.set(0,-a,-.45);top.add(l)}}
+   else if(t==1){for(let j=0;j<8;j++){const s=new th2.Mesh(lg,gm[j%3]);s.scale.setScalar(.3+.12*(j%3));s.position.set((rn(3+j)-.5)*.75,.3+rn(9+j)*.9,(rn(15+j)-.5)*.75);top.add(s)}}
+   else{const tk=new th2.Mesh(new th2.CylinderGeometry(.07,.11,1.5,6),stm);tk.position.y=.75;top.add(tk);for(let j=0;j<6;j++){const a=j/6*6.283+.3,l=lf(1.5,.32,gm[j%3]);l.position.set(Math.cos(a)*1.05,1.45,Math.sin(a)*1.05);l.rotation.set(0,-a,-.75);top.add(l)}
+    for(let j=0;j<3;j++){const b=new th2.Mesh(lg,yel);b.scale.set(.07,.24,.07);b.position.set(.12+j*.06,1.3,(j-1)*.07);b.rotation.z=.35;top.add(b)}}
+   CZ.pl.push(g);S.add(g);COL.push([x,z,.6])})}
+ CZ.stn=[{id:'roulette',n:'Roulette',x:-14,z:-8,r:6.4},{id:'dice',n:'Würfeltisch',x:14,z:-8,r:6.4},{id:'wheel',n:'Glücksrad',x:0,z:-17.3,r:5},{id:'slots',n:'Spielautomaten',x:27,z:6,r:6.5},{id:'coin',n:'Münzwurf',x:-20,z:10,r:4},{id:'bar',n:'Bruno',x:22,z:-15.2,r:4.8}]}
 function czInit(){return czInitA()}
 async function czInitA(){czStop();const c=$('#cc');if(!c)return;
  Object.assign(CZ,{c,st:'intro',o:{},bet:10,gid:null,pick:null,busy:0,panel:0,keys:{},yaw:0,jx:0,jy:0,em:null,feed:[],mute:false,touch:matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>1&&/Mac/i.test(navigator.platform||''),near:null,fk:0});
@@ -1894,7 +1911,7 @@ function czKey(e){if(CZ.st!='play'&&CZ.st!='intro')return;if(/INPUT|TEXTAREA|SEL
  if(k=='arrowleft'){K.l=dn;e.preventDefault()}if(k=='arrowright'){K.rt=dn;e.preventDefault()}
  if(dn&&!e.repeat){if(k=='e'||k=='enter'){if(CZ.st=='play'&&!CZ.panel)czAct()}else if(k=='escape'){czClose()}else if(/^[1-6]$/.test(k))czEmote(CZ_EM[+k-1][1])}}
 function czEmote(id){if(CZ.st!='play'||CZ.panel)return;CZ.em={id,t0:performance.now()};clearTimeout(CZ.emt);CZ.emt=setTimeout(()=>{if(CZ.em&&CZ.em.id==id)CZ.em=null},id==2?3500:id==7?4000:4600)}
-function czAct(){const s=CZ.near;if(s&&!CZ.panel&&CZ.st=='play')czOpen(s.id)}
+function czAct(){const s=CZ.near;if(s&&!CZ.panel&&CZ.st=='play'){if(s.id=='bar')czTalk();else czOpen(s.id)}}
 function czTouchInit(){const T=$('#cft');if(!T)return;const zl=T.querySelector('.czl'),zr=T.querySelector('.czr'),js=T.querySelector('.cjs'),kn=js.firstElementChild;let jp=null,jo=null,lp=null,ll=null;
  const jEnd=()=>{jp=null;CZ.jx=CZ.jy=0;js.classList.remove('on');kn.style.transform='';js.style.left='100px';js.style.top=(T.clientHeight-100)+'px'};jEnd();
  zl.addEventListener('pointerdown',e=>{e.preventDefault();if(jp!=null)return;try{zl.setPointerCapture(e.pointerId)}catch(x){}jp=e.pointerId;jo=[e.clientX,e.clientY];const r=T.getBoundingClientRect();js.style.left=(e.clientX-r.left)+'px';js.style.top=(e.clientY-r.top)+'px';js.classList.add('on')});
@@ -1906,13 +1923,15 @@ function czTouchInit(){const T=$('#cft');if(!T)return;const zl=T.querySelector('
 function czStop(){cancelAnimationFrame(CZ.raf);removeEventListener('keydown',CZ.kd);removeEventListener('keyup',CZ.ku);clearTimeout(CZ.emt);czMusic(false);
  if(CZ.ch){try{CZ.ch.send({type:'broadcast',event:'bye',payload:{id:ME.id}})}catch(e){}const ch=CZ.ch;setTimeout(()=>sb.removeChannel(ch),200);CZ.ch=null}
  if(CZ.R){CZ.R.dispose();if(CZ.R.forceContextLoss)CZ.R.forceContextLoss();CZ.R=null}CZ.S=null;CZ.c=null;CZ.st='idle'}
-function czLoop(ts){if(V!='casino'||$('#cc')!==CZ.c){czStop();return}const dt=Math.min(.05,(ts-CZ.t)/1000||0);CZ.t=ts;czUpd(dt,ts);CZ.raf=requestAnimationFrame(czLoop)}
+function czLoop(ts){if(V!='casino'||$('#cc')!==CZ.c){czStop();return}if(ts-(CZ.t||0)<13){CZ.raf=requestAnimationFrame(czLoop);return}const dt=Math.min(.05,(ts-CZ.t)/1000||0);CZ.t=ts;try{czUpd(dt,ts)}catch(e){CZ.err=(CZ.err||0)+1;if(CZ.err<4)console.error('Casino:',e)}CZ.raf=requestAnimationFrame(czLoop)}
 function czPose(g,x,z,th,mv,em,et,ts){g.position.set(x,mv?Math.abs(Math.sin(ts/110))*.07:0,z);g.rotation.y=th;const u=g.userData;bfPose(g,em>=0?em:-1,em>=0?(ts-et)/1000:0);u.gn.visible=false;
  if(em<0){u.ra.rotation.set(.1,0,-.12);if(mv)u.ft.forEach(f=>{const q=ts/95+(f.s>0?0:Math.PI),s=Math.max(0,Math.sin(q))*.07,c=.12*Math.cos(q);f.lg.position.set(-.1+f.s*.11,.1+s,c);f.sh.position.set(-.1+f.s*.11,.03+s,.05+c)})}}
 function czUpd(dt,ts){const c=CZ.c,R=CZ.R,cam=CZ.cam,S=CZ.S,w=c.clientWidth,h=c.clientHeight;if(!S)return;if(CZ.sw!=w||CZ.sh!=h){CZ.sw=w;CZ.sh=h;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
  // Deko
  CZ.rw.rotation.y+=dt*.7;const a=ts/600;CZ.rb.position.set(-14+Math.cos(-a*2.2)*1.15,1.72,-8+Math.sin(-a*2.2)*1.15);CZ.dc.forEach((d,i)=>{d.rotation.x+=dt*(.5+i*.2);d.rotation.y+=dt*.7});CZ.cn.rotation.x+=dt*2.2;CZ.ww.rotation.z-=dt*.12;CZ.gb.rotation.y+=dt*.9;CZ.gb.position.y=1.55+Math.sin(ts/700)*.1;CZ.sl.forEach((l,i)=>l.visible=Math.sin(ts/260+i*2)>-.3);
- const B=CZ.npc;if(B)czPose(B,22,-19.6,0,0,-1,0,ts);
+ CZ.pl.forEach((g,i)=>{const tp=g.children[2];tp.rotation.z=Math.sin(ts/1400+i)*.025;tp.rotation.x=Math.cos(ts/1700+i)*.02});
+ const B=CZ.npc;if(B){const me=CZ.me,nr=CZ.st=='play'&&me&&Math.hypot(me.x-22,me.z+19.6)<12,tg=nr?Math.atan2(me.x-22,me.z+19.6):0;CZ.nth=(CZ.nth||0)+czCnd(tg-(CZ.nth||0))*Math.min(1,dt*4);czPose(B,22,-19.6,CZ.nth,0,-1,0,ts);
+  const u=B.userData,w=ts/1000;u.la.rotation.set(-1.15+Math.sin(w*6)*.1,0,.5);if(u.ra)u.ra.rotation.set(-1.15+Math.cos(w*6)*.1,0,-.45);if(CZ.gg)CZ.gg.rotation.set(0,Math.sin(w*3)*.4,Math.sin(w*6)*.25)}
  if(CZ.st=='play'){const m=CZ.me,K=CZ.keys;
   CZ.yaw+=((K.l?1:0)-(K.rt?1:0))*2*dt;
   let ax=(K.d?1:0)-(K.a?1:0)+CZ.jx,az=(K.w?1:0)-(K.s?1:0)-CZ.jy;if(CZ.panel){ax=az=0}const l=Math.hypot(ax,az);if(l>1){ax/=l;az/=l}
@@ -1928,7 +1947,7 @@ function czUpd(dt,ts){const c=CZ.c,R=CZ.R,cam=CZ.cam,S=CZ.S,w=c.clientWidth,h=c.
  R.render(S,cam);czHud(ts)}
 function czHud(ts){const q=(id,v)=>{const e=document.getElementById(id);if(e&&e.dataset.v!=v){e.dataset.v=v;e.innerHTML=v}};
  q('cmb','🍌 '+bkn(czBal())+(CZ.gold[ME.id]?' · 🏆'+CZ.gold[ME.id]:''));q('con',(Object.keys(CZ.o).length+(CZ.st=='play'?1:0))+' im Casino');
- const p=document.getElementById('cprompt');if(p){const on=CZ.st=='play'&&CZ.near&&!CZ.panel;p.style.display=on?'block':'none';if(on)q('cprompt',(CZ.touch?'':'[E] ')+CZ_EMJ(CZ.near.id)+' '+CZ.near.n+' spielen')}
+ const p=document.getElementById('cprompt');if(p){const on=CZ.st=='play'&&CZ.near&&!CZ.panel;p.style.display=on?'block':'none';if(on)q('cprompt',(CZ.touch?'':'[E] ')+(CZG[CZ.near.id]?CZG[CZ.near.id].e+' '+CZ.near.n+' spielen':'💬 Mit Bruno sprechen'))}
  const em=document.getElementById('cemo');if(em)em.style.display=CZ.st=='play'&&!CZ.panel?'flex':'none';
  CZ.feed=CZ.feed.filter(f=>f.e>ts);const k=CZ.feed.map(f=>f.t).join('|');if(CZ.fk2!==k){CZ.fk2=k;q('cfeed',CZ.feed.map(f=>`<div>${esc(f.t)}</div>`).join(''))}}
 const CZ_EMJ=id=>CZG[id].e;
@@ -1938,7 +1957,7 @@ function czOpen(id){if(CZ.panel||!CZG[id])return;CZ.panel=1;CZ.gid=id;CZ.pick=nu
  const stage={roulette:'<div class="czrn" id="czs1">?</div>',dice:'<div class="czdc"><span id="czs1">⚀</span><span id="czs2">⚀</span></div>',coin:'<div class="czcn" id="czs1">🪙</div>',slots:'<div class="czrl"><span id="czs1">🍒</span><span id="czs2">🍌</span><span id="czs3">🔔</span></div>',
   wheel:'<div class="czwh"><i></i><div id="czw" style="transform:rotate('+(CZ.wa||0)+'deg)">'+CZ_WS.map((s,i)=>`<span style="transform:rotate(${i*45+22.5}deg) translateY(-76px)">${s[0]}</span>`).join('')+'</div></div>'}[id];
  p.innerHTML=`<div class="czp"><div class="czh"><h2>${g.e} ${g.n}</h2><button class="czx" onclick="czClose()" aria-label="Schließen">✕</button></div><div class="czb2">Kontostand: <b id="czbal">🍌 ${bkn(czBal())}</b></div><div class="czst">${stage}</div>${g.picks?`<div class="czpk">${g.picks.map(([k,l,m])=>`<button data-k="${k}" onclick="czPick('${k}')">${l}<small>${m}</small></button>`).join('')}</div>`:''}${g.num?`<div style="display:flex;gap:8px;align-items:center;margin:4px 0"><input type="number" id="czn" min="0" max="36" placeholder="0–36"><button class="btn g" style="padding:8px 14px" onclick="czNum()">Auf Zahl setzen (36×)</button></div>`:''}<label>Einsatz</label><div class="czch">${CZ_CHIPS.map(c=>`<button data-c="${c}" class="${c==CZ.bet?'on':''}" onclick="czBet(${c})">${c}</button>`).join('')}</div><button class="btn o" id="czgo" style="width:100%" onclick="czPlay()">Spielen</button><div class="czm" id="czmsg"></div><p>${g.d}</p></div>`;p.style.display='grid'}
-function czClose(){if(!CZ.panel)return;CZ.panel=0;const p=$('#cpanel');if(p){p.style.display='none';p.innerHTML=''}}
+function czClose(){if(!CZ.panel)return;CZ.panel=0;CZ.talk=0;const p=$('#cpanel');if(p){p.style.display='none';p.innerHTML=''}}
 function czPick(k){CZ.pick=k;document.querySelectorAll('#cpanel .czpk button').forEach(b=>b.classList.toggle('on',b.dataset.k==k));czSfx('tick')}
 function czNum(){const n=parseInt($('#czn').value,10);if(isNaN(n)||n<0||n>36)return czMsg('Gib eine Zahl von 0 bis 36 ein.','#ffb21f');CZ.pick=String(n);document.querySelectorAll('#cpanel .czpk button').forEach(b=>b.classList.remove('on'));czMsg('Du setzt auf die '+n+'.','#ffd43b');czSfx('tick')}
 function czBet(n){CZ.bet=n;document.querySelectorAll('#cpanel .czch button').forEach(b=>b.classList.toggle('on',+b.dataset.c==n));czSfx('tick')}
@@ -1963,6 +1982,50 @@ async function czPlay(){
  if(win>=bet*5||data.gold){CZ.em={id:8,t0:performance.now()};clearTimeout(CZ.emt);CZ.emt=setTimeout(()=>{if(CZ.em&&CZ.em.id==8)CZ.em=null},4600)}
  czFeed('Du: '+g.n+' '+(net>=0?'+':'')+bkn(net))}
 function czGoldFx(){const g=$('#cgame');if(!g)return;const d=document.createElement('div');d.className='cgold';d.innerHTML='🏆<br>GOLDENE BANANE!';g.append(d);setTimeout(()=>d.remove(),3700);czSfx('gold')}
+
+/* Barkeeper Bruno: Gespräch (optional mit KI über die Edge Function „barkeeper“, sonst eingebaut) */
+const CZ_FU=['Wie läuft es gerade in der Schule?','Gibt es ein Fach, das dir Sorgen macht?','Hast du bald eine Klausur oder einen Test?','Kommst du mit den Hausaufgaben klar?','Verstehst du dich gut mit deiner Klasse?','Gibt es etwas, das dich gerade beschäftigt?'];
+function czBrain(t){const q=t.toLowerCase(),pick=a=>a[Math.random()*a.length|0],fu=()=>{CZ.fi=((CZ.fi||0)+1)%CZ_FU.length;return ' '+CZ_FU[CZ.fi]},has=r=>r.test(q);
+ if(has(/umbring|suizid|selbstmord|nicht mehr leben|sterben (will|möchte)|will sterben|mich töten|ritz/))return 'Das klingt wirklich ernst, und ich bin froh, dass du es sagst. Bitte sprich jetzt mit einem Erwachsenen, dem du vertraust, zum Beispiel mit deinen Eltern, einer Lehrkraft oder der Schulsozialarbeit. Du kannst auch kostenlos die „Nummer gegen Kummer“ anrufen: 116 111 (für Kinder und Jugendliche). Die Telefonseelsorge ist rund um die Uhr erreichbar: 0800 111 0 111. Wenn du dich in Gefahr fühlst, ruf bitte sofort die 112 an. Du bist nicht allein.';
+ if(has(/mobb|gemobbt|ausgegrenzt|ausgelacht|schlägt mich|bedroh|gehänselt/))return pick(['Das tut mir leid, so etwas darf nicht sein. Du hast nichts falsch gemacht. Sag es bitte einem Erwachsenen, dem du vertraust, zum Beispiel einer Lehrkraft, deinen Eltern oder der Schulsozialarbeit. Wenn du lieber erst anonym reden willst: Die „Nummer gegen Kummer“ ist kostenlos unter 116 111 erreichbar.','Danke, dass du mir das erzählst. Mobbing ist nie deine Schuld. Schreib am besten auf, was passiert ist, und zeig es einer Lehrkraft oder deinen Eltern. Du musst das nicht allein aushalten. Die „Nummer gegen Kummer“ (116 111) hört dir kostenlos zu.'])+' Magst du mir erzählen, was passiert ist?';
+ if(has(/^\s*(hallo|hi|hey|moin|servus|huhu|na)\b/))return pick(['Hallo, schön, dich zu sehen!','Hey, setz dich ruhig!','Moin! Was darf es sein, ein Bananen-Smoothie?'])+fu();
+ if(has(/wie geht'?s|wie geht es|alles gut bei dir/))return 'Mir geht es gut, ich putze Gläser und höre zu. Das ist mein Lieblingsjob. Und dir?'+fu();
+ if(has(/wer bist du|dein name|wer bist/))return 'Ich bin Bruno, der Barkeeper vom Casino Round. Ich bin ein Computerprogramm, aber ich höre trotzdem gern zu. Hier gibt es nur Bananen-Smoothies, keinen Alkohol.';
+ if(has(/danke|dankeschön|super|cool von dir/))return pick(['Gern geschehen!','Dafür bin ich da.','Immer gern, das Glas ist ja eh gerade sauber.'])+' Sag Bescheid, wenn du noch etwas auf dem Herzen hast.';
+ if(has(/tschüss|tschau|ciao|bye|auf wiedersehen|bis später|muss los/))return 'Mach es gut! Komm gern wieder vorbei. Und denk dran: Bei Problemen mit der Schule gibt es immer jemanden, der hilft.';
+ if(has(/witz|lustig|lach|humor/))return pick(['Warum geht die Banane zum Arzt? Weil sie sich nicht mehr schälen konnte.','Was sagt eine Banane im Casino? Ich setze alles auf Gelb!','Wie nennt man eine Banane, die viel lernt? Eine Schlaubanane.','Was ist gelb und kann schießen? Eine Banane mit Waffe, aber die steht in Banana Fight.']);
+ if(has(/umbring|töten/))return 'Lass uns lieber über etwas anderes reden.'+fu();
+ if(has(/stress|überfordert|druck|panik|angst|nervös|aufgeregt|prüfungsangst/))return pick(['Das klingt anstrengend. Atme einmal tief durch, vier Sekunden ein, sechs Sekunden aus. Teile große Aufgaben in kleine Schritte, dann wirkt alles weniger riesig.','Stress kennt fast jeder. Hilf dir mit einer kleinen Liste: Was ist heute wirklich dran? Der Rest kann warten. Und mach Pausen, dein Kopf braucht sie.'])+' Was genau setzt dich gerade am meisten unter Druck?';
+ if(has(/traurig|einsam|allein|weine|heul|niedergeschlagen|unglücklich/))return 'Das tut mir leid. Gefühle wie diese sind schwer, aber sie gehen auch wieder vorbei. Es hilft oft, mit jemandem zu reden, den du magst, zum Beispiel mit einem Freund oder deinen Eltern. Wenn du lieber anonym sprichst: Die „Nummer gegen Kummer“ (116 111) ist kostenlos. Magst du mir erzählen, was los ist?';
+ if(has(/klausur|arbeit|test|prüfung|abitur|abi\b|vokabeltest|schulaufgabe/))return pick(['Vor Prüfungen helfen kleine Lernpakete: lieber jeden Tag 20 Minuten als alles am Abend davor. Und ganz wichtig: genug schlafen.','Plane rückwärts: Wann ist die Prüfung, und was musst du bis dahin wiederholen? Karteikarten in STUDIQ sind dafür super, wenig Aufwand und viel Wirkung.'])+' In welchem Fach ist es denn?';
+ if(has(/note|noten|zeugnis|durchgefallen|sitzenbleiben|eine 5|eine 6|schlecht in/))return 'Eine schlechte Note ist ärgerlich, aber sie sagt nichts über dich als Mensch. Schau dir an, was falsch gelaufen ist, und frag deine Lehrkraft, was du beim nächsten Mal besser machen kannst. Oft sind es nur zwei oder drei Dinge. Welches Fach ist es?';
+ if(has(/hausaufgabe|hausi|lernen|vokabel|auswendig|konzentr|aufschieb|lust nicht/))return pick(['Fang mit 10 Minuten an, mehr nicht. Meistens kommt der Schwung von allein. Handy weg, Wecker an, danach kurz belohnen.','Lernen klappt besser in kleinen Blöcken: 25 Minuten lernen, 5 Minuten Pause. Und erkläre den Stoff laut, als würdest du ihn jemandem beibringen.'])+' Woran hapert es gerade?';
+ if(has(/mathe|rechnen|gleichung|bruch|geometrie/))return 'Mathe wird leichter, wenn du Aufgaben selbst rechnest, statt nur Lösungen zu lesen. Fang mit einfachen Beispielen an und steigere dich. Wo hängst du, bei einem bestimmten Thema?';
+ if(has(/deutsch|aufsatz|erörterung|gedicht|rechtschreib|grammatik/))return 'In Deutsch hilft viel lesen und die eigenen Texte nach einem Tag noch einmal anzusehen. Mach dir vor dem Schreiben eine kurze Gliederung. Worum geht es bei dir, Aufsatz, Rechtschreibung oder Analyse?';
+ if(has(/englisch|französisch|latein|spanisch|vokabeln/))return 'Bei Sprachen hilft Wiederholung in kleinen Häppchen. Karteikarten sind perfekt, und je öfter du die Sprache hörst, desto besser. Welche Sprache lernst du?';
+ if(has(/physik|chemie|bio|geschichte|erdkunde|geo|informatik|religion|ethik|sport|kunst|musik/))return 'Das ist ein spannendes Fach. In solchen Fächern hilft es, Zusammenhänge mit eigenen Beispielen zu verknüpfen, statt nur auswendig zu lernen. Was genau macht dir dabei Mühe?';
+ if(has(/lehrer|lehrerin|lehrkraft|unterricht|klassenarbeit/))return 'Mit Lehrkräften kann man oft besser reden, als man denkt. Sag ruhig ehrlich, wo du hängst. Die meisten helfen gern. Gibt es etwas, das zwischen dir und deiner Lehrkraft nicht stimmt?';
+ if(has(/schule|klasse|schulstress|schulweg/))return pick(['Schule kann ganz schön fordernd sein. Das ist völlig normal.','Mal ist es toll, mal nervt es, das geht fast allen so.'])+' Gibt es etwas, womit du Probleme hast?';
+ if(has(/müde|schlaf|wach|erschöpft/))return 'Wenn du dauernd müde bist, hilft feste Schlafenszeit, Handy aus eine Stunde vorher und tagsüber viel Wasser. Schlaf ist beim Lernen kein Luxus, dein Gehirn sortiert nachts alles ein. Wie viel schläfst du so?';
+ if(has(/freund|freundin|verliebt|crush|streit|beste/))return 'Freunde sind wichtig. Bei Streit hilft es meistens, in Ruhe und ehrlich zu sprechen, nicht in der Hitze des Moments. Und wer verliebt ist, darf ruhig aufgeregt sein. Magst du erzählen, was los ist?';
+ if(has(/eltern|mama|papa|mutter|vater/))return 'Mit den Eltern kann es manchmal knirschen. Hilf dir mit einem ruhigen Gespräch zu einer guten Zeit, nicht mitten im Streit. Ich glaube, die meisten wollen nur das Beste für dich. Was ist denn passiert?';
+ if(has(/smoothie|trinken|durst|hunger|essen|bananen|getränk|empfiehl/))return pick(['Ich empfehle den „Goldenen Schäler“: Banane, Mango und ein Schuss Orange. Ohne Alkohol, versprochen.','Der Klassiker ist der Bananen-Smoothie mit Haferdrink und einem Klecks Honig. Perfekt vor dem Lernen.'])+' Und wie geht es dir sonst so?';
+ if(has(/casino|bookie|gewinn|verlust|wette|geld|jackpot|goldene banane/))return 'Im Casino geht es nur um Spaß. Setze nur, was du gern verlierst, und höre auf, wenn es dir keinen Spaß mehr macht. Die goldene Banane ist selten, aber wer weiß? Bookies bekommst du übrigens auch beim Lernen.'+fu();
+ if(has(/^\s*(ja|jo|jep|klar|stimmt)\b/))return 'Verstehe. Magst du mir mehr dazu erzählen?';
+ if(has(/^\s*(nein|nö|nee|nicht)\b/))return 'Alles klar, das ist auch okay.'+fu();
+ if(has(/^\s*(gut|super|toll|prima|passt|läuft)\b/))return 'Das freut mich! In welchem Fach läuft es am besten?';
+ if(has(/geht so|schlecht|nicht gut|mies|naja|bescheiden/))return 'Das tut mir leid. Magst du erzählen, was los ist? Manchmal hilft es schon, es auszusprechen.';
+ return pick(['Hm, das ist eine gute Frage. Ich bin nur ein Barkeeper und kein Allwissender, aber ich höre dir gern zu.','Interessant! Erzähl mir gern mehr davon.','Da muss ich kurz nachdenken, während ich dieses Glas poliere … Was meinst du genau?'])+fu()}
+function czTalk(){if(CZ.panel)return;CZ.panel=1;CZ.talk=1;CZ.jx=CZ.jy=0;CZ.keys={};
+ if(!CZ.chat)CZ.chat=[{r:'b',t:'Willkommen an der Bar, ich bin Bruno. Ich putze Gläser und höre gern zu. Sag mal, hast du eigentlich gerade Probleme in der Schule?'}];
+ const p=$('#cpanel');p.innerHTML=`<div class="czp"><div class="czh"><h2>🍌 Bruno, Barkeeper</h2><button class="czx" onclick="czClose()" aria-label="Schließen">✕</button></div><div class="czcl" id="czcl"></div><div class="czpk">${['Ich habe Stress in der Schule','Erzähl mir einen Witz','Was empfiehlst du?','Wer bist du?'].map(t=>`<button onclick="czSay(this.textContent)">${t}</button>`).join('')}</div><div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="czin" maxlength="300" placeholder="Frag Bruno etwas …" autocomplete="off" onkeydown="if(event.key=='Enter')czSend();else if(event.key=='Escape')czClose()"><button class="btn o" onclick="czSend()">Senden</button></div><p style="font-size:12px;margin-bottom:0">Bruno ist ein Computerprogramm und kein Mensch. Bei ernsten Problemen sprich bitte mit einem Erwachsenen, dem du vertraust.</p></div>`;p.style.display='grid';czChatDraw();setTimeout(()=>{const i=$('#czin');if(i&&!CZ.touch)i.focus()},50)}
+function czChatDraw(){const e=$('#czcl');if(!e)return;e.innerHTML=CZ.chat.map(m=>`<div class="${m.r}">${esc(m.t).replace(/\n/g,'<br>')}</div>`).join('')+(CZ.typ?'<div class="b">…</div>':'');e.scrollTop=e.scrollHeight}
+function czSend(){const i=$('#czin');if(!i)return;const t=i.value.trim();if(!t)return;i.value='';czSay(t)}
+async function czSay(t){if(CZ.typ||!CZ.talk)return;CZ.chat.push({r:'u',t:String(t).slice(0,300)});CZ.typ=1;czChatDraw();
+ let msgs=CZ.chat.slice(-12).map(m=>({role:m.r=='u'?'user':'assistant',content:m.t}));while(msgs.length&&msgs[0].role!='user')msgs.shift();
+ let rep=null;if(!CZ.nofn){try{const{data,error}=await sb.functions.invoke('barkeeper',{body:{messages:msgs}});if(!error&&data&&data.reply)rep=String(data.reply);else CZ.nofn=1}catch(e){CZ.nofn=1}}
+ if(!rep)rep=czBrain(t);await new Promise(r=>setTimeout(r,500+Math.random()*500));
+ CZ.typ=0;CZ.chat.push({r:'b',t:rep});if(CZ.chat.length>40)CZ.chat=CZ.chat.slice(-40);czChatDraw()}
 function czMute(){CZ.mute=!CZ.mute;if(CZ.mg)CZ.mg.gain.value=CZ.mute?0:.17;const b=$('#cmu');if(b)b.textContent=CZ.mute?'🔇':'🔊'}
 function czFS(){const g=$('#cgame');if(!g)return;const fe=document.fullscreenElement||document.webkitFullscreenElement,fb=()=>g.classList.add('cfs');
  if(g.classList.contains('cfs')){g.classList.remove('cfs');return}if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}
@@ -2363,8 +2426,8 @@ function k3Build(){
 function kPart(S){const th=THREE,n=160,g=new th.BufferGeometry();g.setAttribute('position',new th.BufferAttribute(new Float32Array(n*3),3));g.setAttribute('color',new th.BufferAttribute(new Float32Array(n*3),3));const m=new th.Points(g,new th.PointsMaterial({size:9,vertexColors:true,transparent:true,blending:th.AdditiveBlending,depthWrite:false}));m.frustumCulled=false;S.add(m);KT.pt={m,n,i:0,v:Array.from({length:n},()=>({l:0,m:1,x:0,y:0,z:0,vx:0,vy:0,vz:0}))};
  const sc=document.createElement('canvas');sc.width=sc.height=64;{const x=sc.getContext('2d'),g2=x.createRadialGradient(32,32,2,32,32,30);g2.addColorStop(0,'rgba(255,255,255,.95)');g2.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g2;x.fillRect(0,0,64,64)}
  const tx=new th.CanvasTexture(sc);KT.sm={i:0,a:Array.from({length:70},()=>{const q=new th.Sprite(new th.SpriteMaterial({map:tx,transparent:true,depthWrite:false,opacity:0}));q.visible=false;S.add(q);return{q,l:0,m:1,s:10,vx:0,vy:0,vz:0}})}}
-function kSmoke(x,y,z,c,s,l){const P=KT.sm;if(!P)return;const o=P.a[P.i=(P.i+1)%P.a.length];o.q.position.set(x,y,z);o.q.material.color.setHex(c);o.l=o.m=l;o.s=s;o.vx=(Math.random()-.5)*14;o.vy=12+Math.random()*10;o.vz=(Math.random()-.5)*14;o.q.visible=true}
-function kEmit(x,y,z,c,sp,l){const P=KT.pt;if(!P)return;const o=P.v[P.i=(P.i+1)%P.n];Object.assign(o,{x,y,z,vx:(Math.random()-.5)*sp,vy:Math.random()*sp*.6,vz:(Math.random()-.5)*sp,l,m:l,c:new THREE.Color(c)})}
+function kSmoke(x,y,z,c,s,l){const P=KT.sm;if(!P||(KT.lite&&Math.random()<.5))return;const o=P.a[P.i=(P.i+1)%P.a.length];o.q.position.set(x,y,z);o.q.material.color.setHex(c);o.l=o.m=l;o.s=s;o.vx=(Math.random()-.5)*14;o.vy=12+Math.random()*10;o.vz=(Math.random()-.5)*14;o.q.visible=true}
+function kEmit(x,y,z,c,sp,l){const P=KT.pt;if(!P||(KT.lite&&Math.random()<.5))return;const o=P.v[P.i=(P.i+1)%P.n];Object.assign(o,{x,y,z,vx:(Math.random()-.5)*sp,vy:Math.random()*sp*.6,vz:(Math.random()-.5)*sp,l,m:l});(o.c||(o.c=new THREE.Color())).setHex(c)}
 function kPUpd(dt){const P=KT.pt;if(!P)return;const a=P.m.geometry.attributes;P.v.forEach((o,i)=>{if(o.l>0){o.l-=dt;o.x+=o.vx*dt;o.y+=o.vy*dt;o.z+=o.vz*dt;const f=Math.max(0,o.l/o.m);a.position.setXYZ(i,o.x,o.y,o.z);a.color.setXYZ(i,o.c.r*f,o.c.g*f,o.c.b*f)}else a.position.setXYZ(i,0,-9999,0)});a.position.needsUpdate=a.color.needsUpdate=true;if(KT.sm)KT.sm.a.forEach(o=>{if(o.l>0){o.l-=dt;const f=Math.max(0,o.l/o.m);o.q.position.x+=o.vx*dt;o.q.position.y+=o.vy*dt;o.q.position.z+=o.vz*dt;o.q.scale.setScalar(o.s*(2-f));o.q.material.opacity=.6*f;if(o.l<=0)o.q.visible=false}})}
 function kHit(k,ty){if(k.star>0||k.fin)return 0;
  if(ty=='bolt'){k.slow=3.2;k.v*=.55;k.zap=.5;return 1}
@@ -2375,8 +2438,7 @@ function kPeel(x,y,own,id){const S=KT.S,T=KT.T;if(!S||!T)return;id=id||Math.rand
 function kPeelDel(id){const i=(KT.pl||[]).findIndex(p=>p.id==id);if(i<0)return;if(KT.S)KT.S.remove(KT.pl[i].m);KT.pl.splice(i,1)}
 function kRocket(k){const ot=[...KT.ks.filter(c=>c!==k),...Object.values(KT.o)],c=Math.cos(k.a),s=Math.sin(k.a);let tg=null,bd=1e9;
  for(const o of ot){const dx=o.x-k.x,dy=o.y-k.y,d=Math.hypot(dx,dy),f=(dx*c+dy*s)/(d||1);if(f>.3&&d<1300&&d<bd){bd=d;tg=o}}
- const th=THREE,g=new th.Group(),W=new th.MeshPhongMaterial({color:0xf8f9fa}),R=new th.MeshPhongMaterial({color:0xd62828}),b=new th.Mesh(new th.CylinderGeometry(2.4,2.4,15,12),W),n=new th.Mesh(new th.ConeGeometry(2.4,7,12),R);
- b.rotation.z=Math.PI/2;n.rotation.z=-Math.PI/2;n.position.x=11;g.add(b,n);[0,2.1,4.2].forEach(a=>{const f=new th.Mesh(new th.BoxGeometry(5,.5,3.5),R);f.position.x=-6;f.rotation.x=a;g.add(f)});g.scale.setScalar(1.4);KT.S.add(g);
+ const g=kRocketMesh();KT.S.add(g);
  (KT.pr=KT.pr||[]).push({x:k.x+c*26,y:k.y+s*26,a:k.a,v:Math.max(k.v,160)+330,t:0,own:k,tg,m:g,idx:k.idx,d:0})}
 function kUse(k,ts){const it=k.item;k.item=0;k.puff=1;
  if(it==1){KT.ks.forEach(c=>{if(c!==k)kHit(c,'bolt')});if(k.me){KT.flash=.35;if(KT.ch)KT.ch.send({type:'broadcast',event:'hit',payload:{to:'*',t:1,from:ME.id}})}}
@@ -2415,7 +2477,7 @@ function kStart(tr){
  KT.ks=[kMk({me:1,n:'Du',ci:KT.car,si:KT.skin,hi:KT.col,top:300+10*KCAR[KT.car].t,acc:140+40*KCAR[KT.car].a,trn:1.9+.2*KCAR[KT.car].l,rdy:KT.rdy?1:0},solo?0:Math.floor(Math.random()*4))];
  if(solo)['Bot Max','Bot Lia','Bot Tom'].forEach((n,i)=>KT.ks.push(kMk({bot:1,f:[.8,.87,.93][i],n,ci:i+1,si:(i*2+1)%5,hi:i+2},i+1)));
  KT.ks.forEach(k=>kNear(k,1));
- Object.assign(KT,{state:'lobby',t0:0,fin:[],o:{},ca:KT.ks[0].a});kSel(tr,1);kView()
+ Object.assign(KT,{state:'lobby',t0:0,fin:[],o:{},ca:KT.ks[0].a});kSel(tr,1);kWarm();kView()
 }
 function kSel(i,q){if(!q&&KT.state!='idle'&&KT.state!='done')return;KT.tr=i;if(q){KT.T=kT(i);k3Build();return}kGarUI()}
 function kGo(){
@@ -2596,8 +2658,21 @@ function kDraw(){
 }
 function kLoop(ts){
  if(V!='kart'||$('#kc')!==KT.c){kStop();return}
- const dt=Math.min(.05,(ts-KT.ts)/1000||0);KT.ts=ts;KT.dt=dt;kStep(dt,ts);kDraw();KT.raf=requestAnimationFrame(kLoop)
+ const el=ts-(KT.ts||0);
+ if(el<1000/(KT.cap||60)-3){KT.raf=requestAnimationFrame(kLoop);return}
+ const dt=Math.min(.05,el/1000||0);KT.ts=ts;KT.dt=dt;
+ try{kStep(dt,ts);kDraw()}catch(e){KT.err=(KT.err||0)+1;if(KT.err<4)console.error('Banana Boost:',e)}
+ kPerf(el);KT.raf=requestAnimationFrame(kLoop)
 }
+function kPerf(el){
+ KT.ema=(KT.ema||16)*.94+Math.min(el,200)*.06;KT.pn=(KT.pn||0)+1;if(KT.pn<50)return;KT.pn=0;const R=KT.R;if(!R||KT.state=='idle'||KT.gar)return;
+ if(KT.ema>30){KT.lite=1;const pr=R.getPixelRatio();if(pr>.8){R.setPixelRatio(Math.max(.8,pr-.25));KT.w=0}}
+ if(KT.ema>44&&(KT.cap||60)>30)KT.cap=30
+}
+function kRocketMesh(){const th=THREE;if(!KT.rg)KT.rg={b:new th.CylinderGeometry(2.4,2.4,15,12),n:new th.ConeGeometry(2.4,7,12),f:new th.BoxGeometry(5,.5,3.5),W:new th.MeshPhongMaterial({color:0xf8f9fa}),R:new th.MeshPhongMaterial({color:0xd62828})};
+ const q=KT.rg,g=new th.Group(),b=new th.Mesh(q.b,q.W),n=new th.Mesh(q.n,q.R);b.rotation.z=Math.PI/2;n.rotation.z=-Math.PI/2;n.position.x=11;g.add(b,n);[0,2.1,4.2].forEach(a=>{const f=new th.Mesh(q.f,q.R);f.position.x=-6;f.rotation.x=a;g.add(f)});g.scale.setScalar(1.4);return g}
+function kWarm(){const R=KT.R,S=KT.S,cam=KT.cam;if(!R||!S||!cam||!R.compile)return;
+ try{KT.ks.forEach(k=>{if(!k.m){k.m=k3Kart(k.ci,k.si,k.hi);S.add(k.m)}});const r=kRocketMesh(),p=kPeelMesh();r.position.y=p.position.y=-9999;S.add(r,p);R.compile(S,cam);S.remove(r);S.remove(p)}catch(e){console.warn('Shader-Vorwärmen übersprungen',e)}}
 function kKey(e){
  if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
  if(KT.state=='idle'&&KT.gar){if(e.type=='keydown'){const k=e.key;if(k=='ArrowLeft'){kCar(-1);e.preventDefault()}else if(k=='ArrowRight'){kCar(1);e.preventDefault()}else if(k=='ArrowUp'){kDrv(-1);e.preventDefault()}else if(k=='ArrowDown'){kDrv(1);e.preventDefault()}else if(k=='Enter'){kGarReady();e.preventDefault()}}return}
@@ -2607,7 +2682,7 @@ function kKey(e){
 }
 async function kInit(){
  kStop();const c=$('#kc');if(!c)return;
- Object.assign(KT,{c,state:'idle',ks:[],o:{},in:{},T:kT(KT.tr),gar:1,rdy:0,drv:KT.drv||0,gb:0});kIntro();kView();kGarUI();KT.fs=0;const kg=$('#kgame');if(kg)kg.onfullscreenchange=()=>{if(!document.fullscreenElement&&KT.fs)kFS(false)};
+ Object.assign(KT,{c,state:'idle',ks:[],o:{},in:{},T:kT(KT.tr),gar:1,rdy:0,drv:KT.drv||0,gb:0,cap:60,lite:0,ema:16,pn:0,err:0});kIntro();kView();kGarUI();KT.fs=0;const kg=$('#kgame');if(kg)kg.onfullscreenchange=()=>{if(!document.fullscreenElement&&KT.fs)kFS(false)};
  try{await k3Load()}catch(e){return toast('Das 3D-Spiel konnte nicht geladen werden. Prüfe deine Internetverbindung.')}
  if($('#kc')!==c)return;
  try{KT.R=new THREE.WebGLRenderer({canvas:c,antialias:true})}catch(e){return toast('Dein Gerät kann 3D im Browser nicht darstellen.')}
