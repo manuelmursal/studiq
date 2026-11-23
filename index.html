@@ -442,6 +442,60 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 #bfgame.bffs canvas{height:100%!important;min-height:0!important;border-radius:0!important}
 #bfgame.bffs .bffb{top:calc(12px + env(safe-area-inset-top,0px))!important;right:calc(12px + env(safe-area-inset-right,0px))!important}
 #bfgame.bffs .bfeb{top:calc(12px + env(safe-area-inset-top,0px));left:calc(12px + env(safe-area-inset-left,0px))}
+/* Casino Round */
+#cgame{position:relative;margin-top:14px;border-radius:14px;overflow:hidden;background:#120804}
+#cgame.cfs{position:fixed!important;inset:0;z-index:20;margin:0!important;border-radius:0}
+#cgame.cfs #cc{height:100%!important;min-height:0!important}
+#cgame:fullscreen #cc{height:100vh!important}
+#cgame:-webkit-full-screen #cc{height:100vh!important}
+#cc{width:100%;height:min(78vh,760px);min-height:340px;display:block;touch-action:none;cursor:grab}
+.cz{position:absolute;color:#fff;font-family:Inter,system-ui,sans-serif;pointer-events:none}
+.cz button,.cz input,.cz .czp{pointer-events:auto}
+#cme{left:12px;top:12px;background:#1a0d08cc;border:2px solid #ffb21f88;border-radius:14px;padding:8px 14px}
+#cme b{display:block;font:400 15px Bungee,Impact,sans-serif;color:#ffd36b}
+#cme span{font-size:20px;font-weight:600}
+#cme small{display:block;font-size:12px;color:#d9c4a0;margin-top:2px}
+#cbtn{right:12px;top:12px;display:flex;gap:8px}
+#cprompt{left:50%;bottom:78px;transform:translateX(-50%);display:none;font-size:17px;padding:12px 26px;box-shadow:0 6px 20px #000a}
+#cfeed{left:12px;top:92px;font-size:13px;line-height:1.5;text-shadow:0 1px 4px #000;max-width:62%}
+#cfeed div{background:#000a;border-radius:8px;padding:2px 10px;margin-bottom:4px;display:table}
+#cemo{left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:8px}
+#cemo button{width:46px;height:46px;border-radius:50%;border:2px solid #ffb21f88;background:#1a0d08cc;font-size:22px;padding:0;cursor:pointer}
+#cintro,#cpanel{inset:0;display:grid;place-items:center;pointer-events:auto;z-index:8;background:radial-gradient(circle,#1a0d0899,#000d)}
+#cpanel{display:none;background:#000b}
+.czp{width:min(94%,560px);max-height:94%;overflow:auto;background:linear-gradient(#2a1608,#1a0d08);border:3px solid #ffd43b;border-radius:20px;padding:18px 20px;color:#fff;box-shadow:0 0 0 6px #7c2d0a,0 20px 60px #000;text-align:left}
+.czp h2{margin:0;font:400 24px Bungee,Impact,sans-serif;color:#ffd43b}
+.czp p{margin:8px 0;color:#e9d8b8;font-size:14px;line-height:1.5}
+.czh{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.czx{border:0;background:#fff2;color:#fff;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer}
+.czb2{margin:6px 0 10px;font-size:15px;color:#e9d8b8}.czb2 b{color:#ffd43b;font-size:18px}
+.czst{display:grid;place-items:center;min-height:150px;margin:8px 0 12px;background:#00000040;border-radius:16px;padding:12px}
+.czrn{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;font:400 44px Bungee,Impact,sans-serif;background:#444;border:5px solid #ffd43b;box-shadow:0 0 22px #ffb21f66}
+.czdc span,.czrl span{font-size:64px;line-height:1.1;margin:0 6px}
+.czrl span{display:inline-block;background:#fff1;border:3px solid #ffd43b;border-radius:14px;padding:6px 10px}
+.czcn{font-size:92px;line-height:1}
+.czwh{position:relative;width:210px;height:210px}
+.czwh i{position:absolute;left:50%;top:-10px;margin-left:-12px;border:12px solid transparent;border-top:22px solid #ffd43b;z-index:2;filter:drop-shadow(0 2px 2px #0008)}
+#czw{position:absolute;inset:0;border-radius:50%;border:5px solid #ffd43b;background:conic-gradient(#6b1d1d 0 45deg,#8a5a2b 45deg 90deg,#2f6f3a 90deg 135deg,#2b5d9b 135deg 180deg,#7b3fa0 180deg 225deg,#b5651d 225deg 270deg,#c0392b 270deg 315deg,#e0a800 315deg 360deg);transition:transform 3.1s cubic-bezier(.12,.7,.2,1)}
+#czw span{position:absolute;left:50%;top:50%;width:60px;margin-left:-30px;margin-top:-11px;text-align:center;font:400 15px Bungee,Impact,sans-serif;color:#fff;text-shadow:0 1px 3px #000}
+.czpk{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.czpk button,.czch button{border:2px solid #ffd43b66;background:#ffffff12;color:#fff;border-radius:12px;padding:8px 12px;cursor:pointer;font:600 14px Inter,sans-serif}
+.czpk button small{display:block;font-weight:500;color:#e9d8b8;font-size:11px}
+.czpk button.on,.czch button.on{background:#ffd43b;color:#4a2a08;border-color:#fff}
+.czpk button.on small{color:#6b4a14}
+.czch{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+.czm{min-height:24px;font-weight:700;font-size:16px}
+.czp label{display:block;margin:10px 0 2px;font-size:13px;color:#d9c4a0}
+.czp input[type=number]{width:84px;padding:8px;border-radius:10px;border:2px solid #ffd43b66;background:#ffffff14;color:#fff}
+.cgold{position:absolute;inset:0;z-index:12;display:grid;place-content:center;text-align:center;font:400 clamp(34px,8vw,72px)/1.1 Bungee,Impact,sans-serif;color:#ffd43b;text-shadow:0 4px 0 #7c2d0a,0 0 40px #ffb21f;background:radial-gradient(circle,#ffd43b55,#0000 70%);pointer-events:none;animation:cgl 3.6s ease-out forwards}
+@keyframes cgl{0%{opacity:0;transform:scale(.4) rotate(-8deg)}15%{opacity:1;transform:scale(1.1)}25%{transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(1.2)}}
+#cft{position:absolute;inset:0;display:none;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#cft.on{display:block}
+#cft .czl,#cft .czr{position:absolute;top:70px;bottom:70px;pointer-events:auto;touch-action:none}
+#cft .czl{left:0;width:44%}#cft .czr{right:0;width:56%}
+#cft .cjs{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid #fff6;background:radial-gradient(circle,#fff1,#0004);opacity:.4;pointer-events:none}
+#cft .cjs.on{opacity:1}
+#cft .cjs i{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px;border-radius:50%;background:#fffc;box-shadow:0 2px 10px #0006}
 /* Shop: neue Rahmen, Bretter und Themes */
 .frm.f_ice,.frm.f_lava,.frm.f_banana,.frm.f_pink,.frm.f_forest,.frm.f_night,.frm.f_diamond,.frm.f_candy{padding:5px}
 .frm.f_ice{background:linear-gradient(135deg,#e0f7ff,#7dd3fc 50%,#bae6fd)}
@@ -529,8 +583,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-23.7';
+const VERSION='2026-11-23.8';
 const CHANGELOG=[
+ {v:'2026-11-23.8',t:'Neu: Casino Round',items:['Casino Round ist ein ruhiges 3D-Casino mit nur einer Lobby für alle. Du läufst als Banane durch die Halle und siehst die anderen mit Namen und Kontostand über dem Kopf.','Es gibt Roulette, Würfeltisch, Münzwurf, Glücksrad und Spielautomaten. Gespielt wird mit deinen Bookies, der Zufall wird auf dem Server gezogen. Dafür musst du update17.sql in Supabase ausführen.','Mit etwas Glück gewinnst du die goldene Banane. Sie glänzt dauerhaft neben deinem Namen.','Im Hintergrund läuft leise Bar-Musik, die du oben rechts ausschalten kannst. Mit Tasten 1 bis 6 machst du Emotes.','Achtung: Im Casino ist dein Kontostand für alle dort sichtbar, auch wenn er sonst privat ist.']},
  {v:'2026-11-23.7',t:'Banana Boost, Banana Fight und Shop: großes Update',items:['Banana Boost startet mit einer gelben Bananen-Garage, deren Tor aufgeht. Danach bist du in der Garage-Lobby: Mit den Pfeilen links und rechts wechselst du das Auto, unten links den Fahrer. Unten rechts drückst du auf Bereit (gelb, danach braun). Dann entscheidest du, ob du allein oder mit Freunden fährst.','Die Autos sind jetzt Bananen: gelbe, grüne und braune Bananen, eine Schalen-Banane und zwei Bananenblätter.','Items gibt es jetzt als Würfel auf der Strecke, jeder einzeln. Du findest Blitz (bremst alle anderen), Rakete (jagt den Fahrer vor dir), Banane (legst du auf die Straße) und Stern (unverwundbar und schneller).','Banana Fight beginnt mit einer Animation und führt dich in die Lobby. Dort lädst du Freunde ein oder spielst allein gegen Bots.','Mit Esc (oder dem Knopf Menü) öffnest du das Pausenmenü: Weiter spielen, zurück in die Lobby oder Spiel verlassen.','Deine Lebensleiste füllt sich langsam wieder, wenn du 5 Sekunden nicht getroffen wurdest.','Neue Emotes: Tanzen, Salto, Verbeugen, Jubeln und Schlafen. Die Waffe bleibt bei Emotes nicht mehr in der Hand, außer beim neu gemachten Zielen. Die Banane hat jetzt ein Gesicht und zwei Arme.','Im Item-Shop gibt es viele neue Rahmen, Schachbretter, Profil-Themes, STUDIQ-Themes und Titel. Dafür musst du update16.sql in Supabase ausführen.']},
  {v:'2026-11-23.6',t:'Banana Fight auf dem iPad',items:['Banana Fight hat jetzt eine Touch-Steuerung: Mit dem Joystick unten links läufst du (weit ziehen = rennen).','Rechts wischst du über den Bildschirm, um dich umzuschauen. Mit den Knöpfen rechts unten schießt du, springst, zielst, lädst nach und wechselst die Waffe.','Tippe auf „Vollbild“, damit du mehr Platz hast.']},
  {v:'2026-11-23.5',t:'Spanisch als Fach',items:['Spanisch gibt es jetzt in der Fächer-Auswahl, zum Beispiel bei Schulbüchern, Lernmaterial, Vokabeln und Noten.']},
@@ -690,7 +745,7 @@ function render(){applyST();presInit();
  const k=v+JSON.stringify(P);
  app.innerHTML=hdr()+'<main>'+VW[v]()+'</main>';
  if(k!=lastK)$('main').classList.add('in');lastK=k;updBadge();
- ({view:()=>show(0),edit:()=>{pv();th()},chat:chatInit,tttg:()=>{chT=setInterval(pollGame,2500)},tttf:()=>{chT=setInterval(refreshGames,4000)},gruppe:gInit,kart:kInit,chess:chInit,clicker:ckHook,slots:slInit,bf:bfInit,shop:bkRef,admin:bkRef,chessg:()=>{chT=setInterval(pollChess,2500)},chessf:()=>{chT=setInterval(refreshCG,4000)},person:()=>{loadCre(P.u);bkRef()}})[v]?.()
+ ({view:()=>show(0),edit:()=>{pv();th()},chat:chatInit,tttg:()=>{chT=setInterval(pollGame,2500)},tttf:()=>{chT=setInterval(refreshGames,4000)},gruppe:gInit,kart:kInit,chess:chInit,clicker:ckHook,slots:slInit,bf:bfInit,casino:czInit,shop:bkRef,admin:bkRef,chessg:()=>{chT=setInterval(pollChess,2500)},chessf:()=>{chT=setInterval(refreshCG,4000)},person:()=>{loadCre(P.u);bkRef()}})[v]?.()
 }
 const cover=x=>{const lt=lum(x.color||'#f26b1d')>.62;return `<div class="cv" style="background-color:${x.color};color:${lt?'#161616':'#fff'};${lt?'text-shadow:none;':''}${x.cover?`background-image:url('${x.cover}')`:''}">${x.cover?'':esc(x.title)}</div>`};
 const card=x=>`<div class="bk" onclick="go('view',{id:'${x.id}'})">${cover(x)}<span class="bkx">${pnb(x)}${stb(x)}</span><b>${esc(x.title)}</b><small>${x.fach}, Klasse ${x.stufe}${P.t=='all'?', '+TY[x.type].n:''}, ${x.n} Seiten</small></div>`;
@@ -1748,6 +1803,191 @@ function bfUpd(dt,ts){const c=BF.c,R=BF.R,cam=BF.cam,w=c.clientWidth,h=c.clientH
  else{if(cam.fov!=75){cam.fov=75;cam.updateProjectionMatrix()}BF.zm=0;bfScope(false);if(BF.mm)BF.mm.visible=false;cam.position.set(Math.cos(ts/4000)*26,14,Math.sin(ts/4000)*26);cam.rotation.order='YXZ';cam.lookAt(0,2,0)}
  BF.rc=Math.max(0,(BF.rc||0)-dt*9);BF.mfT=(BF.mfT||0)-dt;BF.hm=BF.hm>0?BF.hm-dt:BF.hm<0?BF.hm+dt:0;BF.dmg=Math.max(0,(BF.dmg||0)-dt);BF.tr.forEach(l=>{if(l.ttl>0){l.ttl-=dt;if(l.ttl<=0)l.visible=false}});
  R.render(BF.S,cam);bfHud(dt)}
+
+/* ===== Casino Round: ruhiges 3D-Casino, nur Mehrspieler ===== */
+const CZG={
+ roulette:{n:'Roulette',e:'🎡',d:'Setze auf eine Farbe oder eine Zahl. Rot, Schwarz, Gerade, Ungerade, 1–18 und 19–36 zahlen 2×, eine einzelne Zahl zahlt 36×. Bei der 0 gewinnt nur die Zahl 0.',picks:[['red','🔴 Rot','2×'],['black','⚫ Schwarz','2×'],['even','Gerade','2×'],['odd','Ungerade','2×'],['low','1–18','2×'],['high','19–36','2×']],num:1},
+ dice:{n:'Würfeltisch',e:'🎲',d:'Zwei Würfel. Unter 7 und über 7 zahlen 2,2×, genau 7 zahlt 5×.',picks:[['under','Unter 7','2,2×'],['seven','Genau 7','5×'],['over','Über 7','2,2×']]},
+ coin:{n:'Münzwurf',e:'🪙',d:'Banane oder Krone? Wer richtig liegt, verdoppelt den Einsatz.',picks:[['banana','🍌 Banane','2×'],['crown','👑 Krone','2×']]},
+ wheel:{n:'Glücksrad',e:'🎡',d:'Dreh am Rad. Es zahlt von 0× bis 10×. Ganz selten landest du auf der goldenen Banane: 20× und eine goldene Banane für dich.'},
+ slots:{n:'Spielautomat',e:'🎰',d:'Drei Walzen. Zwei gleiche Symbole zahlen bis 1,5×, drei gleiche bis 150×. Dreimal die goldene Banane zahlt 500× und schenkt dir eine goldene Banane.'}
+},CZ_CHIPS=[5,10,25,50,100,250,500],CZ_SYM={cherry:'🍒',lemon:'🍋',bell:'🔔',banana:'🍌',star:'⭐',seven:'7️⃣',gold:'🏆'},CZ_DIC=['⚀','⚁','⚂','⚃','⚄','⚅'],CZ_RED=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]),
+CZ_WS=[['Pech',0],['0,5×',.5],['1×',1],['2×',2],['3×',3],['5×',5],['10×',10],['🏆',20]],CZ_EM=[['✌️',1],['👋',2],['💃',5],['🙌',8],['🙇',7],['🕺',0]];
+const czRc=n=>n==0?'#2f9e44':CZ_RED.has(n)?'#d62828':'#222',czBal=()=>+((WL[ME.id]||{}).balance||0),czCnd=a=>{while(a>Math.PI)a-=2*Math.PI;while(a<-Math.PI)a+=2*Math.PI;return a};
+let CZ={st:'idle',o:{},gold:{},bet:10,keys:{},feed:[]};
+function czTex(w,h,fn,rx,ry){const c=document.createElement('canvas');c.width=w;c.height=h;fn(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);if(rx){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry)}return t}
+function czBan(id,name,npc){const sv=BF.S;BF.S=CZ.S;const g=bfBanana({id,n:name,w:0});BF.S=sv;const u=g.userData;u.gn.visible=false;g.children[g.children.length-1].visible=false;
+ const cv=document.createElement('canvas');cv.width=320;cv.height=110;const tx=new THREE.CanvasTexture(cv),sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,depthTest:false,transparent:true}));sp.scale.set(2.4,.83,1);sp.position.set(0,2.6,0);sp.renderOrder=5;g.add(sp);u.lb={cv,tx,key:'',npc};return g}
+function czLabel(g,name,bal,gold){const l=g.userData.lb,k=name+'|'+bal+'|'+gold;if(l.key===k)return;l.key=k;const x=l.cv.getContext('2d');x.clearRect(0,0,320,110);x.textAlign='center';x.lineJoin='round';
+ const nn=String(name).length>14?String(name).slice(0,13)+'…':name;x.font='700 38px Inter,sans-serif';x.lineWidth=7;x.strokeStyle='#000b';x.strokeText(nn,160,40);x.fillStyle='#fff';x.fillText(nn,160,40);
+ const t=l.npc?'Barkeeper':'🍌 '+bkn(bal)+(gold?'  🏆'+gold:'');x.font='700 34px Inter,sans-serif';x.strokeText(t,160,88);x.fillStyle='#ffd43b';x.fillText(t,160,88);l.tx.needsUpdate=true}
+function czBuild(){
+ const th=THREE,S=CZ.S=new th.Scene(),L=(c,o)=>new th.MeshLambertMaterial(Object.assign({color:c},o||{})),Ph=(c,s,o)=>new th.MeshPhongMaterial(Object.assign({color:c,shininess:s||60},o||{})),
+ add=(g,m,x,y,z)=>{const o=new th.Mesh(g,m);o.position.set(x,y,z);S.add(o);return o},BX=(w,h,d,m,x,y,z)=>add(new th.BoxGeometry(w,h,d),m,x,y,z),CYL=(r1,r2,h,m,x,y,z,s)=>add(new th.CylinderGeometry(r1,r2,h,s||24),m,x,y,z),
+ GOLD=Ph(0xd4a017,120,{emissive:0x3a2a00}),WOOD=L(0x3b2214),FELT=L(0x0b6b3a),RED=L(0x6e1218),COL=CZ.col=[];
+ S.background=new th.Color(0x120804);S.fog=new th.Fog(0x120804,30,95);S.add(new th.HemisphereLight(0xffe2a8,0x2a1208,.85));
+ const fl=add(new th.PlaneGeometry(60,44),L(0xffffff,{map:czTex(256,256,(x,w,h)=>{x.fillStyle='#4a0d12';x.fillRect(0,0,w,h);x.strokeStyle='#d4a01766';x.lineWidth=3;for(let i=0;i<2;i++)for(let j=0;j<2;j++){const cx=64+i*128,cy=64+j*128;x.beginPath();x.moveTo(cx,cy-56);x.lineTo(cx+56,cy);x.lineTo(cx,cy+56);x.lineTo(cx-56,cy);x.closePath();x.stroke();x.fillStyle='#d4a017';x.beginPath();x.arc(cx,cy,5,0,6.3);x.fill()}},15,11)}),0,0,0);fl.rotation.x=-Math.PI/2;
+ const wm=L(0xffffff,{map:czTex(128,128,(x,w,h)=>{for(let i=0;i<8;i++){x.fillStyle=i%2?'#44281a':'#331c10';x.fillRect(i*16,0,16,h);x.fillStyle='#00000040';x.fillRect(i*16,0,2,h)}},10,1)});
+ BX(60,10,.5,wm,0,5,-22.2);BX(60,10,.5,wm,0,5,22.2);BX(.5,10,44,wm,-30.2,5,0);BX(.5,10,44,wm,30.2,5,0);BX(60,.4,44,L(0x1a0d08),0,10.2,0);
+ [1.2,8.8].forEach(y=>{BX(60,.25,.3,GOLD,0,y,-21.9);BX(60,.25,.3,GOLD,0,y,21.9);BX(.3,.25,44,GOLD,-29.9,y,0);BX(.3,.25,44,GOLD,29.9,y,0)});
+ [[-9,6],[9,6],[-24,-2],[24,-2],[-9,-14],[9,-14]].forEach(([x,z])=>{CYL(.8,.8,10,RED,x,5,z);CYL(1.1,1.1,.4,GOLD,x,.2,z);CYL(1.1,1.1,.4,GOLD,x,9.8,z);COL.push([x,z,.9])});
+ [[-14,-4],[14,-4],[0,9]].forEach(([x,z])=>{const r=add(new th.TorusGeometry(1.6,.12,8,28),GOLD,x,8.4,z);r.rotation.x=Math.PI/2;CYL(.05,.05,1.9,GOLD,x,9.4,z,6);for(let i=0;i<8;i++){const a=i/8*6.283;add(new th.SphereGeometry(.18,8,6),new th.MeshBasicMaterial({color:0xfff0b0}),x+Math.cos(a)*1.6,8.55,z+Math.sin(a)*1.6)}const pl=new th.PointLight(0xffd79a,.55,30);pl.position.set(x,8,z);S.add(pl)});
+ for(let z=-16;z<=16;z+=8)[-29.6,29.6].forEach(x=>add(new th.SphereGeometry(.2,8,6),new th.MeshBasicMaterial({color:0xffe9a8}),x,5,z));
+ // Neonschild
+ add(new th.PlaneGeometry(16,3.6),new th.MeshBasicMaterial({map:czTex(1024,230,(x,w,h)=>{x.fillStyle='#1a0d08';x.fillRect(0,0,w,h);x.textAlign='center';x.textBaseline='middle';x.font='400 118px Bungee,Impact,sans-serif';x.shadowColor='#ffb21f';x.shadowBlur=34;x.fillStyle='#ffd43b';x.fillText('CASINO ROUND',w/2,h/2+6);x.font='90px serif';x.fillText('🍌',70,h/2);x.fillText('🍌',w-70,h/2)})}),0,7.6,-21.8);BX(16.6,4.2,.2,GOLD,0,7.6,-21.95);
+ // Roulette
+ {const x=-14,z=-8;CYL(.6,.9,1.1,WOOD,x,.55,z);CYL(3.8,3.8,.25,FELT,x,1.2,z,40);add(new th.TorusGeometry(3.8,.25,8,40),WOOD,x,1.3,z).rotation.x=Math.PI/2;
+  const wt=czTex(256,256,(c,w,h)=>{c.translate(128,128);for(let i=0;i<37;i++){c.beginPath();c.moveTo(0,0);c.arc(0,0,124,(i/37)*6.283,((i+1)/37)*6.283);c.fillStyle=i==0?'#2f9e44':i%2?'#d62828':'#1a1a1a';c.fill()}c.fillStyle='#d4a017';c.beginPath();c.arc(0,0,40,0,6.3);c.fill()}),
+  rw=CZ.rw=new th.Mesh(new th.CylinderGeometry(1.5,1.5,.3,40),[Ph(0x5a3a14),new th.MeshBasicMaterial({map:wt}),Ph(0x5a3a14)]);rw.position.set(x,1.5,z);S.add(rw);
+  CZ.rb=add(new th.SphereGeometry(.09,8,6),new th.MeshBasicMaterial({color:0xffffff}),x+1.1,1.7,z);
+  for(let i=0;i<6;i++){const a=i/6*6.283+.4,cx=x+Math.cos(a)*2.7,cz=z+Math.sin(a)*2.7;for(let j=0;j<4;j++)CYL(.22,.22,.06,L([0xd62828,0x1c7ed6,0xf59f00,0x222222][(i+j)%4]),cx,1.36+j*.07,cz,12)}COL.push([x,z,4.2])}
+ // Würfeltisch
+ {const x=14,z=-8;BX(6.4,.25,3.8,FELT,x,1.2,z);[[0,1.9,6.8,.3],[0,-1.9,6.8,.3],[3.3,0,.3,3.8],[-3.3,0,.3,3.8]].forEach(([dx,dz,w,d])=>BX(w,.4,d,WOOD,x+dx,1.3,z+dz));[[-2.6,-1.4],[2.6,-1.4],[-2.6,1.4],[2.6,1.4]].forEach(([dx,dz])=>CYL(.2,.25,1.1,WOOD,x+dx,.55,z+dz,10));
+  const ft=n=>czTex(64,64,(c,w,h)=>{c.fillStyle='#fffdf5';c.fillRect(0,0,w,h);c.fillStyle='#111';const P={1:[[32,32]],2:[[16,16],[48,48]],3:[[16,16],[32,32],[48,48]],4:[[16,16],[48,16],[16,48],[48,48]],5:[[16,16],[48,16],[32,32],[16,48],[48,48]],6:[[16,14],[48,14],[16,32],[48,32],[16,50],[48,50]]}[n];P.forEach(([a,b])=>{c.beginPath();c.arc(a,b,6,0,6.3);c.fill()})}),
+  dm=()=>[3,4,1,6,2,5].map(n=>new th.MeshPhongMaterial({map:ft(n)}));CZ.dc=[-.7,.8].map(dx=>add(new th.BoxGeometry(.55,.55,.55),dm(),x+dx,1.6,z));COL.push([x-1.8,z,2.2],[x+1.8,z,2.2])}
+ // Spielautomaten
+ CZ.sl=[2,6,10].map(z=>{BX(1.8,3.6,1.7,RED,28.7,1.8,z);BX(.15,3.6,1.8,GOLD,27.75,1.8,z);BX(1.9,.2,1.8,GOLD,28.7,3.65,z);CYL(.08,.08,1.1,Ph(0xcccccc),28.7,2.2,z+1.05,8);add(new th.SphereGeometry(.18,8,6),Ph(0xd62828),28.7,2.8,z+1.05);
+  const sc=add(new th.PlaneGeometry(1.3,.95),new th.MeshBasicMaterial({map:czTex(260,190,(c,w,h)=>{c.fillStyle='#10061a';c.fillRect(0,0,w,h);c.font='64px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('🍒',50,100);c.fillText('🍌',130,100);c.fillText('🏆',210,100);c.fillStyle='#ffd43b';c.font='24px Bungee,Impact,sans-serif';c.fillText('JACKPOT',130,26)})}),27.66,2.5,z);sc.rotation.y=-Math.PI/2;
+  COL.push([28.7,z,1.5]);return add(new th.SphereGeometry(.3,12,8),new th.MeshBasicMaterial({color:0xffd43b}),28.4,4.0,z)});
+ // Glücksrad
+ {const z=-17.3;BX(.5,3.4,.5,WOOD,0,1.7,z-.2);BX(2.6,.3,1.8,WOOD,0,.15,z-.2);const g=CZ.ww=new th.Group();g.position.set(0,4.5,z);S.add(g);
+  const tx=czTex(512,512,(c,w,h)=>{c.translate(256,256);const cl=['#6b1d1d','#8a5a2b','#2f6f3a','#2b5d9b','#7b3fa0','#b5651d','#c0392b','#e0a800'];for(let i=0;i<8;i++){c.beginPath();c.moveTo(0,0);c.arc(0,0,250,(i/8)*6.283-Math.PI/2-.3927,((i+1)/8)*6.283-Math.PI/2-.3927);c.fillStyle=cl[i];c.fill();c.save();c.rotate(i/8*6.283);c.fillStyle='#fff';c.font='700 44px Inter,sans-serif';c.textAlign='center';c.fillText(CZ_WS[i][1]?CZ_WS[i][0]:'Pech',0,-170);c.restore()}});
+  g.add(new th.Mesh(new th.CircleGeometry(2.8,48),new th.MeshBasicMaterial({map:tx})),new th.Mesh(new th.TorusGeometry(2.8,.18,8,48),GOLD));const pt=add(new th.ConeGeometry(.28,.8,3),GOLD,0,7.45,z+.1);pt.rotation.z=Math.PI;COL.push([0,z,1.8])}
+ // Münzwurf
+ {const x=-20,z=10;CYL(.9,1.1,1.2,L(0xe8e2d6),x,.6,z);CYL(1.2,1.2,.15,GOLD,x,1.25,z);const g=CZ.cn=new th.Group();g.position.set(x,2.6,z);S.add(g);const c=new th.Mesh(new th.CylinderGeometry(.9,.9,.14,32),GOLD);c.rotation.x=Math.PI/2;g.add(c);COL.push([x,z,1.2])}
+ // Bar
+ {BX(12,1.3,1.3,WOOD,22,.65,-17.5);BX(12.4,.15,1.7,L(0x5a3a14),22,1.4,-17.5);for(let i=0;i<5;i++){const x=17+i*2.5;CYL(.08,.08,1,GOLD,x,.5,-15.6,8);CYL(.38,.38,.14,RED,x,1.05,-15.6,16)}
+  [2.6,3.8].forEach(y=>BX(12,.1,.6,WOOD,22,y,-21.5));for(let i=0;i<14;i++)[2.6,3.8].forEach((y,j)=>CYL(.12,.12,.6,Ph([0x2f9e44,0xc0392b,0xe0a800,0x1c7ed6][(i+j)%4],90,{transparent:true,opacity:.85}),16.5+i*.85,y+.35,-21.5,10));
+  for(let i=0;i<6;i++)COL.push([16.5+i*2.2,-17.5,1.2]);CZ.npc=czBan('npc-bar','Bruno',1);CZ.npc.position.set(22,0,-19.6);S.add(CZ.npc);czLabel(CZ.npc,'Bruno',0,0)}
+ // goldene Banane in der Mitte
+ {CYL(1.3,1.5,1,L(0xe8e2d6),0,.5,0);CYL(1.1,1.1,.12,GOLD,0,1.06,0);const cu=new th.CatmullRomCurve3([[0,.28],[-.1,.6],[-.13,1],[-.06,1.4],[.1,1.66]].map(([x,y])=>new th.Vector3(x,y,0))),g=CZ.gb=new th.Group();g.add(new th.Mesh(new th.TubeGeometry(cu,26,.26,14,false),Ph(0xffc61a,160,{emissive:0x7a5a00})),new th.Mesh(new th.SphereGeometry(.26,14,10),GOLD));g.children[1].position.set(.1,1.66,0);g.scale.setScalar(1.3);g.position.set(0,1.5,0);S.add(g);
+  const sp=new th.SpotLight(0xffe9a0,1.1,30,.55,.6);sp.position.set(0,9.5,0);sp.target.position.set(0,1,0);S.add(sp,sp.target);
+  add(new th.ConeGeometry(2.4,8.5,24,1,true),new th.MeshBasicMaterial({color:0xffe9a0,transparent:true,opacity:.07,side:th.DoubleSide,depthWrite:false}),0,5.6,0);
+  const pl=new th.Sprite(new th.SpriteMaterial({map:czTex(512,96,(c,w,h)=>{c.textAlign='center';c.font='700 46px Inter,sans-serif';c.lineWidth=8;c.strokeStyle='#000';c.strokeText('DIE GOLDENE BANANE',256,56);c.fillStyle='#ffd43b';c.fillText('DIE GOLDENE BANANE',256,56)}),transparent:true,depthTest:false}));pl.scale.set(4,.75,1);pl.position.set(0,4.4,0);S.add(pl);COL.push([0,0,1.6])}
+ CZ.stn=[{id:'roulette',n:'Roulette',x:-14,z:-8,r:6.4},{id:'dice',n:'Würfeltisch',x:14,z:-8,r:6.4},{id:'wheel',n:'Glücksrad',x:0,z:-17.3,r:5},{id:'slots',n:'Spielautomaten',x:27,z:6,r:6.5},{id:'coin',n:'Münzwurf',x:-20,z:10,r:4}]}
+function czInit(){return czInitA()}
+async function czInitA(){czStop();const c=$('#cc');if(!c)return;
+ Object.assign(CZ,{c,st:'intro',o:{},bet:10,gid:null,pick:null,busy:0,panel:0,keys:{},yaw:0,jx:0,jy:0,em:null,feed:[],mute:false,touch:matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>1&&/Mac/i.test(navigator.platform||''),near:null,fk:0});
+ if(!WL[ME.id])await loadBk();
+ try{await k3Load()}catch(e){return toast('Das 3D-Casino konnte nicht geladen werden. Prüfe deine Internetverbindung.')}
+ if($('#cc')!==c)return;try{CZ.R=new THREE.WebGLRenderer({canvas:c,antialias:true})}catch(e){return toast('Dein Gerät kann 3D im Browser nicht darstellen.')}
+ CZ.R.setPixelRatio(Math.min(devicePixelRatio||1,1.5));CZ.cam=new THREE.PerspectiveCamera(65,1,.1,200);czBuild();
+ CZ.kd=e=>czKey(e);CZ.ku=e=>czKey(e);addEventListener('keydown',CZ.kd);addEventListener('keyup',CZ.ku);
+ let dr=null;c.addEventListener('pointerdown',e=>{if(e.pointerType=='mouse'&&e.button==0){dr=[e.clientX];c.setPointerCapture(e.pointerId);c.style.cursor='grabbing'}});
+ c.addEventListener('pointermove',e=>{if(dr&&e.pointerType=='mouse'){CZ.yaw-=(e.clientX-dr[0])*.006;dr[0]=e.clientX}});
+ const up=()=>{dr=null;c.style.cursor='grab'};c.addEventListener('pointerup',up);c.addEventListener('pointercancel',up);
+ czTouchInit();czSb();$('#cmn').textContent=nm(ME.id);
+ try{const{data}=await sb.from('casino_gold').select('user_id,n');(data||[]).forEach(r=>CZ.gold[r.user_id]=r.n)}catch(e){}
+ CZ.t=performance.now();CZ.raf=requestAnimationFrame(czLoop)}
+function czSb(){const e=$('#cft');if(e)e.classList.toggle('on',false)}
+function czEnter(){if(CZ.st!='intro'||!CZ.S)return;CZ.st='play';$('#cintro').style.display='none';CZ.me={x:0,z:15,th:Math.PI,v:0};CZ.yaw=0;CZ.mm=czBan(ME.id,nm(ME.id));CZ.S.add(CZ.mm);
+ czMusic(true);czNet();czFeed('Willkommen im Casino Round 🍌');const e=$('#cft');if(e)e.classList.toggle('on',!!CZ.touch)}
+function czNet(){if(CZ.ch)return;CZ.ch=sb.channel('casino-hall')
+ .on('broadcast',{event:'p'},m=>{const q=m.payload;if(!q||q.id==ME.id||!CZ.S)return;let o=CZ.o[q.id];if(!o){o=CZ.o[q.id]={id:q.id,x:q.x,z:q.z,th:q.r,e:-1,tx:q.x,tz:q.z,tr:q.r};o.m=czBan(q.id,q.n||'Banane');CZ.S.add(o.m);czFeed((q.n||'Jemand')+' betritt das Casino')}
+  Object.assign(o,{tx:q.x,tz:q.z,tr:q.r,n:q.n,b:q.b,mv:q.mv,seen:performance.now()});if(q.e!=o.e){o.e=q.e;o.et=performance.now()}})
+ .on('broadcast',{event:'w'},m=>{const q=m.payload;if(!q||q.id==ME.id)return;const g=CZG[q.g];if(q.gold){CZ.gold[q.id]=(CZ.gold[q.id]||0)+1;czFeed('🏆 '+q.n+' gewinnt die GOLDENE BANANE!')}else if(g&&q.win>q.bet)czFeed(q.n+': '+g.n+' +'+bkn(q.win-q.bet))})
+ .on('broadcast',{event:'bye'},m=>{const q=m.payload;const o=q&&CZ.o[q.id];if(o){czFeed(o.n+' verlässt das Casino');if(o.m&&CZ.S)CZ.S.remove(o.m);delete CZ.o[q.id]}})
+ .subscribe()}
+function czFeed(t){CZ.feed.push({t,e:performance.now()+9000});if(CZ.feed.length>5)CZ.feed.shift();CZ.fd=1}
+function czKey(e){if(CZ.st!='play'&&CZ.st!='intro')return;if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const dn=e.type=='keydown',k=e.key.toLowerCase(),K=CZ.keys;
+ const m={w:'w',arrowup:'w',s:'s',arrowdown:'s',a:'a',d:'d',shift:'r'}[k];if(m){K[m]=dn;if(k.startsWith('arrow'))e.preventDefault()}
+ if(k=='arrowleft'){K.l=dn;e.preventDefault()}if(k=='arrowright'){K.rt=dn;e.preventDefault()}
+ if(dn&&!e.repeat){if(k=='e'||k=='enter'){if(CZ.st=='play'&&!CZ.panel)czAct()}else if(k=='escape'){czClose()}else if(/^[1-6]$/.test(k))czEmote(CZ_EM[+k-1][1])}}
+function czEmote(id){if(CZ.st!='play'||CZ.panel)return;CZ.em={id,t0:performance.now()};clearTimeout(CZ.emt);CZ.emt=setTimeout(()=>{if(CZ.em&&CZ.em.id==id)CZ.em=null},id==2?3500:id==7?4000:4600)}
+function czAct(){const s=CZ.near;if(s&&!CZ.panel&&CZ.st=='play')czOpen(s.id)}
+function czTouchInit(){const T=$('#cft');if(!T)return;const zl=T.querySelector('.czl'),zr=T.querySelector('.czr'),js=T.querySelector('.cjs'),kn=js.firstElementChild;let jp=null,jo=null,lp=null,ll=null;
+ const jEnd=()=>{jp=null;CZ.jx=CZ.jy=0;js.classList.remove('on');kn.style.transform='';js.style.left='100px';js.style.top=(T.clientHeight-100)+'px'};jEnd();
+ zl.addEventListener('pointerdown',e=>{e.preventDefault();if(jp!=null)return;try{zl.setPointerCapture(e.pointerId)}catch(x){}jp=e.pointerId;jo=[e.clientX,e.clientY];const r=T.getBoundingClientRect();js.style.left=(e.clientX-r.left)+'px';js.style.top=(e.clientY-r.top)+'px';js.classList.add('on')});
+ zl.addEventListener('pointermove',e=>{if(e.pointerId!==jp)return;const dx=e.clientX-jo[0],dy=e.clientY-jo[1],d=Math.hypot(dx,dy)||1,m=Math.min(1,d/60),a=m<.14?0:(m-.14)/.86;CZ.jx=dx/d*a;CZ.jy=dy/d*a;const k=Math.min(d,60);kn.style.transform='translate('+dx/d*k+'px,'+dy/d*k+'px)'});
+ ['pointerup','pointercancel'].forEach(t=>zl.addEventListener(t,e=>{if(e.pointerId===jp)jEnd()}));
+ zr.addEventListener('pointerdown',e=>{e.preventDefault();if(lp!=null)return;try{zr.setPointerCapture(e.pointerId)}catch(x){}lp=e.pointerId;ll=e.clientX});
+ zr.addEventListener('pointermove',e=>{if(e.pointerId!==lp)return;CZ.yaw-=(e.clientX-ll)*.0065;ll=e.clientX});
+ ['pointerup','pointercancel'].forEach(t=>zr.addEventListener(t,e=>{if(e.pointerId===lp)lp=null}))}
+function czStop(){cancelAnimationFrame(CZ.raf);removeEventListener('keydown',CZ.kd);removeEventListener('keyup',CZ.ku);clearTimeout(CZ.emt);czMusic(false);
+ if(CZ.ch){try{CZ.ch.send({type:'broadcast',event:'bye',payload:{id:ME.id}})}catch(e){}const ch=CZ.ch;setTimeout(()=>sb.removeChannel(ch),200);CZ.ch=null}
+ if(CZ.R){CZ.R.dispose();if(CZ.R.forceContextLoss)CZ.R.forceContextLoss();CZ.R=null}CZ.S=null;CZ.c=null;CZ.st='idle'}
+function czLoop(ts){if(V!='casino'||$('#cc')!==CZ.c){czStop();return}const dt=Math.min(.05,(ts-CZ.t)/1000||0);CZ.t=ts;czUpd(dt,ts);CZ.raf=requestAnimationFrame(czLoop)}
+function czPose(g,x,z,th,mv,em,et,ts){g.position.set(x,mv?Math.abs(Math.sin(ts/110))*.07:0,z);g.rotation.y=th;const u=g.userData;bfPose(g,em>=0?em:-1,em>=0?(ts-et)/1000:0);u.gn.visible=false;
+ if(em<0){u.ra.rotation.set(.1,0,-.12);if(mv)u.ft.forEach(f=>{const q=ts/95+(f.s>0?0:Math.PI),s=Math.max(0,Math.sin(q))*.07,c=.12*Math.cos(q);f.lg.position.set(-.1+f.s*.11,.1+s,c);f.sh.position.set(-.1+f.s*.11,.03+s,.05+c)})}}
+function czUpd(dt,ts){const c=CZ.c,R=CZ.R,cam=CZ.cam,S=CZ.S,w=c.clientWidth,h=c.clientHeight;if(!S)return;if(CZ.sw!=w||CZ.sh!=h){CZ.sw=w;CZ.sh=h;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+ // Deko
+ CZ.rw.rotation.y+=dt*.7;const a=ts/600;CZ.rb.position.set(-14+Math.cos(-a*2.2)*1.15,1.72,-8+Math.sin(-a*2.2)*1.15);CZ.dc.forEach((d,i)=>{d.rotation.x+=dt*(.5+i*.2);d.rotation.y+=dt*.7});CZ.cn.rotation.x+=dt*2.2;CZ.ww.rotation.z-=dt*.12;CZ.gb.rotation.y+=dt*.9;CZ.gb.position.y=1.55+Math.sin(ts/700)*.1;CZ.sl.forEach((l,i)=>l.visible=Math.sin(ts/260+i*2)>-.3);
+ const B=CZ.npc;if(B)czPose(B,22,-19.6,0,0,-1,0,ts);
+ if(CZ.st=='play'){const m=CZ.me,K=CZ.keys;
+  CZ.yaw+=((K.l?1:0)-(K.rt?1:0))*2*dt;
+  let ax=(K.d?1:0)-(K.a?1:0)+CZ.jx,az=(K.w?1:0)-(K.s?1:0)-CZ.jy;if(CZ.panel){ax=az=0}const l=Math.hypot(ax,az);if(l>1){ax/=l;az/=l}
+  const sn=Math.sin(CZ.yaw),cs=Math.cos(CZ.yaw),dx=-sn*az+cs*ax,dz=-cs*az-sn*ax,sp=(K.r?7.5:4.6)*Math.min(1,l);
+  m.x+=dx*sp*dt;m.z+=dz*sp*dt;for(const[x,z,r]of CZ.col){const ex=m.x-x,ez=m.z-z,d=Math.hypot(ex,ez),mn=r+.45;if(d<mn&&d>.001){m.x=x+ex/d*mn;m.z=z+ez/d*mn}}
+  m.x=Math.max(-28.6,Math.min(28.6,m.x));m.z=Math.max(-20.4,Math.min(20.4,m.z));m.v=l>.08?1:0;if(m.v){m.th+=czCnd(Math.atan2(dx,dz)-m.th)*Math.min(1,dt*12);if(CZ.em){CZ.em=null}}
+  const em=CZ.em;czPose(CZ.mm,m.x,m.z,m.th,m.v,em?em.id:-1,em?em.t0:0,ts);czLabel(CZ.mm,nm(ME.id),czBal(),CZ.gold[ME.id]||0);
+  const d=6.4;cam.position.set(Math.max(-29,Math.min(29,m.x+Math.sin(CZ.yaw)*d)),3.7,Math.max(-21,Math.min(21,m.z+Math.cos(CZ.yaw)*d)));cam.lookAt(m.x,1.5,m.z);
+  let ns=null,bd=1e9;for(const s of CZ.stn){const q=Math.hypot(s.x-m.x,s.z-m.z);if(q<s.r&&q<bd){bd=q;ns=s}}CZ.near=ns;
+  if(CZ.ch&&ts-CZ.fk>100){CZ.fk=ts;CZ.ch.send({type:'broadcast',event:'p',payload:{id:ME.id,n:nm(ME.id),x:+m.x.toFixed(2),z:+m.z.toFixed(2),r:+m.th.toFixed(2),b:czBal(),e:em?em.id:-1,mv:m.v}})}
+ }else{const t=ts/7000;cam.position.set(Math.cos(t)*24,7.5,Math.sin(t)*17);cam.lookAt(0,2.5,0)}
+ for(const id in CZ.o){const o=CZ.o[id];if(ts-o.seen>3500){czFeed((o.n||'Jemand')+' verlässt das Casino');CZ.S.remove(o.m);delete CZ.o[id];continue}const f=Math.min(1,dt*10);o.x+=(o.tx-o.x)*f;o.z+=(o.tz-o.z)*f;o.th+=czCnd(o.tr-o.th)*f;czPose(o.m,o.x,o.z,o.th,o.mv,o.e==null?-1:o.e,o.et||0,ts);czLabel(o.m,o.n||'Banane',o.b||0,CZ.gold[id]||0)}
+ R.render(S,cam);czHud(ts)}
+function czHud(ts){const q=(id,v)=>{const e=document.getElementById(id);if(e&&e.dataset.v!=v){e.dataset.v=v;e.innerHTML=v}};
+ q('cmb','🍌 '+bkn(czBal())+(CZ.gold[ME.id]?' · 🏆'+CZ.gold[ME.id]:''));q('con',(Object.keys(CZ.o).length+(CZ.st=='play'?1:0))+' im Casino');
+ const p=document.getElementById('cprompt');if(p){const on=CZ.st=='play'&&CZ.near&&!CZ.panel;p.style.display=on?'block':'none';if(on)q('cprompt',(CZ.touch?'':'[E] ')+CZ_EMJ(CZ.near.id)+' '+CZ.near.n+' spielen')}
+ const em=document.getElementById('cemo');if(em)em.style.display=CZ.st=='play'&&!CZ.panel?'flex':'none';
+ CZ.feed=CZ.feed.filter(f=>f.e>ts);const k=CZ.feed.map(f=>f.t).join('|');if(CZ.fk2!==k){CZ.fk2=k;q('cfeed',CZ.feed.map(f=>`<div>${esc(f.t)}</div>`).join(''))}}
+const CZ_EMJ=id=>CZG[id].e;
+/* Spiele-Fenster */
+function czOpen(id){if(CZ.panel||!CZG[id])return;CZ.panel=1;CZ.gid=id;CZ.pick=null;CZ.jx=CZ.jy=0;CZ.keys={};const g=CZG[id],p=$('#cpanel');
+ if(CZ.bet>czBal())CZ.bet=Math.max(5,CZ_CHIPS.filter(c=>c<=czBal()).pop()||5);
+ const stage={roulette:'<div class="czrn" id="czs1">?</div>',dice:'<div class="czdc"><span id="czs1">⚀</span><span id="czs2">⚀</span></div>',coin:'<div class="czcn" id="czs1">🪙</div>',slots:'<div class="czrl"><span id="czs1">🍒</span><span id="czs2">🍌</span><span id="czs3">🔔</span></div>',
+  wheel:'<div class="czwh"><i></i><div id="czw" style="transform:rotate('+(CZ.wa||0)+'deg)">'+CZ_WS.map((s,i)=>`<span style="transform:rotate(${i*45+22.5}deg) translateY(-76px)">${s[0]}</span>`).join('')+'</div></div>'}[id];
+ p.innerHTML=`<div class="czp"><div class="czh"><h2>${g.e} ${g.n}</h2><button class="czx" onclick="czClose()" aria-label="Schließen">✕</button></div><div class="czb2">Kontostand: <b id="czbal">🍌 ${bkn(czBal())}</b></div><div class="czst">${stage}</div>${g.picks?`<div class="czpk">${g.picks.map(([k,l,m])=>`<button data-k="${k}" onclick="czPick('${k}')">${l}<small>${m}</small></button>`).join('')}</div>`:''}${g.num?`<div style="display:flex;gap:8px;align-items:center;margin:4px 0"><input type="number" id="czn" min="0" max="36" placeholder="0–36"><button class="btn g" style="padding:8px 14px" onclick="czNum()">Auf Zahl setzen (36×)</button></div>`:''}<label>Einsatz</label><div class="czch">${CZ_CHIPS.map(c=>`<button data-c="${c}" class="${c==CZ.bet?'on':''}" onclick="czBet(${c})">${c}</button>`).join('')}</div><button class="btn o" id="czgo" style="width:100%" onclick="czPlay()">Spielen</button><div class="czm" id="czmsg"></div><p>${g.d}</p></div>`;p.style.display='grid'}
+function czClose(){if(!CZ.panel)return;CZ.panel=0;const p=$('#cpanel');if(p){p.style.display='none';p.innerHTML=''}}
+function czPick(k){CZ.pick=k;document.querySelectorAll('#cpanel .czpk button').forEach(b=>b.classList.toggle('on',b.dataset.k==k));czSfx('tick')}
+function czNum(){const n=parseInt($('#czn').value,10);if(isNaN(n)||n<0||n>36)return czMsg('Gib eine Zahl von 0 bis 36 ein.','#ffb21f');CZ.pick=String(n);document.querySelectorAll('#cpanel .czpk button').forEach(b=>b.classList.remove('on'));czMsg('Du setzt auf die '+n+'.','#ffd43b');czSfx('tick')}
+function czBet(n){CZ.bet=n;document.querySelectorAll('#cpanel .czch button').forEach(b=>b.classList.toggle('on',+b.dataset.c==n));czSfx('tick')}
+function czMsg(t,c){const e=$('#czmsg');if(e){e.textContent=t;e.style.color=c||'#fff'}}
+function czRoll(){const g=CZ.gid;if(g=='wheel')return 0;return setInterval(()=>{const a=$('#czs1'),b=$('#czs2'),c=$('#czs3');if(!a)return;if(g=='roulette'){const n=Math.random()*37|0;a.textContent=n;a.style.background=czRc(n)}else if(g=='dice'){a.textContent=CZ_DIC[Math.random()*6|0];b.textContent=CZ_DIC[Math.random()*6|0]}else if(g=='coin'){a.textContent=CZ.cf=!CZ.cf?'🍌':'👑'}else{const k=Object.values(CZ_SYM);a.textContent=k[Math.random()*7|0];b.textContent=k[Math.random()*7|0];c.textContent=k[Math.random()*7|0]}},80)}
+function czShow(g,r){const a=$('#czs1'),b=$('#czs2'),c=$('#czs3');if(g=='wheel'){const w=$('#czw');if(!w)return;CZ.wa=360*(Math.ceil((CZ.wa||0)/360)+5)-(r.i*45+22.5);w.style.transform='rotate('+CZ.wa+'deg)';return}if(!a)return;
+ if(g=='roulette'){a.textContent=r.n;a.style.background=czRc(r.n)}else if(g=='dice'){a.textContent=CZ_DIC[r.a-1];b.textContent=CZ_DIC[r.b-1]}else if(g=='coin')a.textContent=r.s=='banana'?'🍌':'👑';else{a.textContent=CZ_SYM[r.s[0]];b.textContent=CZ_SYM[r.s[1]];c.textContent=CZ_SYM[r.s[2]]}}
+async function czPlay(){
+ if(CZ.busy||!CZ.gid)return;const id=CZ.gid,g=CZG[id],bet=CZ.bet,w=WL[ME.id]||(WL[ME.id]={user_id:ME.id,balance:0,total:0,pub:false});
+ if(g.picks&&!CZ.pick)return czMsg('Wähle zuerst eine Option.','#ffb21f');
+ if(+w.balance<bet)return czMsg('Dafür hast du nicht genug Bookies.','#ff6b6b');
+ CZ.busy=1;czMsg('');const gb=$('#czgo');if(gb)gb.disabled=true;const iv=czRoll(),t0=Date.now();czSfx('tick');
+ const{data,error}=await sb.rpc('casino_play',{p_game:id,p_bet:bet,p_pick:CZ.pick||null});
+ if(error||!data){clearInterval(iv);CZ.busy=0;const b=$('#czgo');if(b)b.disabled=false;console.error(error);return czMsg(needSql(error)?'Bitte führe zuerst update17.sql in Supabase aus.':/Zu wenige/.test((error&&error.message)||'')?'Nicht genug Bookies.':'Das hat nicht geklappt.','#ff6b6b')}
+ if(id=='wheel'){czShow(id,data.r);await new Promise(r=>setTimeout(r,3300))}else{await new Promise(r=>setTimeout(r,Math.max(0,1500-(Date.now()-t0))));clearInterval(iv);czShow(id,data.r)}
+ CZ.busy=0;const b=$('#czgo');if(b)b.disabled=false;w.balance=data.balance;const win=+data.payout,net=win-bet;
+ czMsg(win>bet?'Gewonnen! +'+bkn(net)+' Bookies':win==bet?'Einsatz zurück.':win>0?bkn(win)+' zurück.':'Leider verloren.',win>bet?'#8fe04a':win>0?'#ffd43b':'#ff9b9b');
+ const bl=$('#czbal');if(bl)bl.textContent='🍌 '+bkn(data.balance);
+ if(data.gold){CZ.gold[ME.id]=data.gold_n||(CZ.gold[ME.id]||0)+1;czGoldFx()}
+ if(win>bet)czSfx('win');
+ if(CZ.ch)CZ.ch.send({type:'broadcast',event:'w',payload:{id:ME.id,n:nm(ME.id),g:id,bet,win,gold:data.gold?1:0}});
+ if(win>=bet*5||data.gold){CZ.em={id:8,t0:performance.now()};clearTimeout(CZ.emt);CZ.emt=setTimeout(()=>{if(CZ.em&&CZ.em.id==8)CZ.em=null},4600)}
+ czFeed('Du: '+g.n+' '+(net>=0?'+':'')+bkn(net))}
+function czGoldFx(){const g=$('#cgame');if(!g)return;const d=document.createElement('div');d.className='cgold';d.innerHTML='🏆<br>GOLDENE BANANE!';g.append(d);setTimeout(()=>d.remove(),3700);czSfx('gold')}
+function czMute(){CZ.mute=!CZ.mute;if(CZ.mg)CZ.mg.gain.value=CZ.mute?0:.17;const b=$('#cmu');if(b)b.textContent=CZ.mute?'🔇':'🔊'}
+function czFS(){const g=$('#cgame');if(!g)return;const fe=document.fullscreenElement||document.webkitFullscreenElement,fb=()=>g.classList.add('cfs');
+ if(g.classList.contains('cfs')){g.classList.remove('cfs');return}if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}
+ const rq=g.requestFullscreen||g.webkitRequestFullscreen;if(!rq){fb();return}try{const p=rq.call(g);if(p&&p.catch)p.catch(fb)}catch(e){fb()}}
+/* Musik: leiser Bar-Jazz, komplett im Browser erzeugt */
+function czMusic(on){
+ if(!on){if(CZ.mi){clearInterval(CZ.mi);CZ.mi=0}if(CZ.au){try{CZ.au.close()}catch(e){}CZ.au=null}return}
+ if(CZ.au)return;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;const au=CZ.au=new AC();
+ const mg=CZ.mg=au.createGain();mg.gain.value=CZ.mute?0:.17;const lp=au.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2500;mg.connect(lp);lp.connect(au.destination);
+ const cv=au.createConvolver(),n=au.sampleRate*1.8|0,ib=au.createBuffer(2,n,au.sampleRate);for(let c=0;c<2;c++){const d=ib.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.5)}cv.buffer=ib;const wet=au.createGain();wet.gain.value=.3;lp.connect(cv);cv.connect(wet);wet.connect(au.destination);
+ const beat=60/76,sw=beat*.66,midi=m=>440*Math.pow(2,(m-69)/12),prog=[[48,'M'],[45,'7'],[50,'m'],[43,'7'],[52,'m'],[45,'7'],[50,'m'],[43,'7']],IV={M:[4,7,11,14],'7':[4,7,10,14],m:[3,7,10,14]},SC=[72,74,76,79,81,84,76,72];
+ const tone=(f,t,d,v,ty,a)=>{const o=au.createOscillator(),g=au.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+(a||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(mg);o.start(t);o.stop(t+d+.05)},
+ noise=(t,d,v,fq)=>{const b=au.createBuffer(1,Math.max(1,au.sampleRate*d|0),au.sampleRate),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=(Math.random()*2-1)*(1-i/x.length);const s=au.createBufferSource();s.buffer=b;const f=au.createBiquadFilter();f.type='highpass';f.frequency.value=fq;const g=au.createGain();g.gain.value=v;s.connect(f);f.connect(g);g.connect(mg);s.start(t)};
+ CZ.tone=tone;CZ.bar=0;CZ.bt=0;CZ.nt=au.currentTime+.25;
+ const piano=(f,t,v)=>{tone(f,t,1.3,v,'triangle');tone(f*2,t,.6,v*.25,'sine')},
+ step=()=>{const[root,ty]=prog[CZ.bar%8],b=CZ.bt,t=CZ.nt,nx=prog[(CZ.bar+1)%8][0]-12,bass=[root-12,root-5,root-12+(ty=='m'?3:4),nx+(nx>root-12?-1:1)][b];
+  tone(midi(bass),t,beat*.9,.32,'triangle',.012);
+  if(b==0||b==1||b==3){const tt=b==1?t+sw:t;IV[ty].forEach((iv,i)=>piano(midi(root+12+iv),tt+i*.012,.055))}
+  noise(t,.05,.02,7000);noise(t+sw,.04,.012,8000);if(b==1||b==3)noise(t,.14,.04,3000);
+  if(Math.random()<.42&&(b==0||b==2||Math.random()<.3)){const f=midi(SC[Math.random()*8|0]+(Math.random()<.2?-12:0)),tt=t+(Math.random()<.4?sw:0);tone(f,tt,1.7,.085,'sine',.02);tone(f*2.005,tt,1,.02,'sine',.02)}
+  if(Math.random()<.5)noise(t+Math.random()*beat,.02,.025,1500);
+  CZ.bt++;if(CZ.bt>=4){CZ.bt=0;CZ.bar++}CZ.nt+=beat};
+ CZ.mi=setInterval(()=>{if(!CZ.au)return;while(CZ.nt<au.currentTime+.4)step()},90)}
+function czSfx(k){if(!CZ.au||CZ.mute||!CZ.tone)return;const t=CZ.au.currentTime+.01,T=CZ.tone;
+ if(k=='tick')T(900,t,.05,.07,'square');else if(k=='win')[0,4,7,12].forEach((n,i)=>T(523*Math.pow(2,n/12),t+i*.09,.5,.12,'triangle'));else if(k=='gold')[0,4,7,12,16,19,24].forEach((n,i)=>T(523*Math.pow(2,n/12),t+i*.11,.9,.14,'triangle'))}
 const BFE=[{n:'Moonwalk',e:'🕺'},{n:'Peace',e:'✌️'},{n:'Winken',e:'👋'},{n:'Zielen',e:'😎'},{n:'Banane essen',e:'🍌'},{n:'Tanzen',e:'💃'},{n:'Salto',e:'🤸'},{n:'Verbeugen',e:'🙇'},{n:'Jubeln',e:'🙌'},{n:'Schlafen',e:'😴'}];
 BFE.forEach((e,i)=>{const a=(-90+i*360/BFE.length)*Math.PI/180;e.p='left:'+(50+38*Math.cos(a)).toFixed(2)+'%;top:'+(50+38*Math.sin(a)).toFixed(2)+'%'});
 function bfEmHTML(){return '<div class="bfem" id="bfem"><i class="emr"></i>'+BFE.map((e,i)=>`<button class="emb" data-i="${i}" style="${e.p}" onclick="bfEmote(${i})"><span>${e.e}</span>${e.n}</button>`).join('')+'<div class="emh">B schließt</div><i class="emd" id="emd"></i></div>'}
@@ -2440,9 +2680,10 @@ gedit:()=>{const g=GRP.find(x=>x.id==P.g);return `<h1>Gruppe bearbeiten</h1><div
 fwd:()=>{const x=DB.find(i=>i.id==P.id),fr=frs().friends,my=GRP.filter(gmine),b=(k,id)=>`<button class="btn ${FW[k+id]?'g':'o'}" onclick="fwdTo('${k}','${id}')">${FW[k+id]?'Nochmal senden':'Senden'}</button>`;
 return `<h1>Weiterleiten</h1><p class="m">${esc(x.title)}</p><h2>An Freunde</h2><div class="card" style="padding:6px 24px;max-width:none">${fr.map(id=>`<div class="row"><span>${pn(byId(id))}</span>${b('u',id)}</div>`).join('')||'<p class="m">Noch keine Freunde.</p>'}</div><h2>An Gruppen</h2><div class="card" style="padding:6px 24px;max-width:none">${my.map(g=>`<div class="row"><span style="display:flex;gap:12px;align-items:center">${gav(g,36)}${esc(g.name)}</span>${b('g',g.id)}</div>`).join('')||'<p class="m">Du bist in keiner Gruppe.</p>'}</div>`},
 kart:()=>`<h1>Banana Boost</h1><div id="kmenu"><p class="m" style="margin-top:0">Wähle in der Garage dein Auto und deinen Fahrer mit den Pfeilen, drücke unten rechts auf Bereit und entscheide dann, ob du allein oder mit Freunden fährst. Am PC geht das auch mit den Pfeiltasten (← → Auto, ↑ ↓ Fahrer, Enter Bereit).</p><p class="m">Am PC: ↑ Gas, ↓ Bremse, ← → lenken, Leertaste, Shift oder E setzt dein Item ein. Gas und Bremse zusammen ergeben einen Burnout, und wer beim Countdown Gas hält, bekommt einen Raketenstart. Fahre durch die Item-Würfel: ⚡ Blitz bremst alle anderen, 🚀 Rakete jagt den Fahrer vor dir, 🍌 Banane legst du hinter dich auf die Straße, ⭐ Stern macht dich 5 Sekunden unverwundbar und schneller. Orange Pfeile auf der Straße geben dir einen kleinen Schub. Auf dem iPad: links lenken, rechts Gas, Bremse und Item.</p></div><div id="kgame" style="position:relative;margin-top:14px"><canvas id="kc" style="width:100%;height:min(76vh,720px);min-height:300px;border-radius:14px;touch-action:none;background:#222;display:block"></canvas><div id="kh" style="position:absolute;inset:0;pointer-events:none"></div><div id="kgar"><div class="kgt"><b id="kgn"></b><span id="kgs"></span></div><button class="kga l" onclick="kCar(-1)" aria-label="Voriges Auto">‹</button><button class="kga r" onclick="kCar(1)" aria-label="Nächstes Auto">›</button><div class="kgd"><button class="kga" onclick="kDrv(-1)" aria-label="Voriger Fahrer">‹</button><div><small>Fahrer</small><b id="kdn"></b></div><button class="kga" onclick="kDrv(1)" aria-label="Nächster Fahrer">›</button></div><div class="kgm" id="kgm"></div><button class="kgr" id="kgb" onclick="kGarReady()">Bereit</button></div><div id="kback" style="position:absolute;right:10px;top:10px;display:none;gap:8px"><button class="btn g" id="kfs" onclick="kFS(!KT.fs)">Vollbild beenden</button><button class="btn g" onclick="kBack()">Menü</button></div><div id="kctl"><div><button class="kp" data-k="l" style="width:84px;height:84px;background:#334155" aria-label="Links">◀</button><button class="kp" data-k="r" style="width:84px;height:84px;background:#334155" aria-label="Rechts">▶</button></div><div><button class="kp" data-k="u" style="width:84px;height:84px;background:#f26b1d;border-radius:50%;font-size:34px" aria-label="Boost">⚡</button><button class="kp" data-k="b" style="width:84px;height:100px;background:#d62828">Bremse</button><button class="kp" data-k="g" style="width:96px;height:150px;background:#2f9e44">Gas</button></div></div></div>`,
+casino:()=>`<h1>Casino Round</h1><p class="m">Eine ruhige 3D-Casino-Halle, die du dir mit anderen teilst. Du läufst als Banane herum, siehst alle anderen mit Namen und Kontostand und spielst mit deinen Bookies. Hier gibt es nur eine einzige Lobby.</p><div id="cgame"><canvas id="cc"></canvas><div class="cz" id="cme"><b id="cmn"></b><span id="cmb">🍌 0</span><small id="con"></small></div><div class="cz" id="cbtn"><button class="btn g" id="cmu" onclick="czMute()" aria-label="Musik an oder aus">🔊</button><button class="btn g" onclick="czFS()">Vollbild</button><button class="btn g" onclick="go('spiele')">Verlassen</button></div><div class="cz" id="cfeed"></div><button class="btn o cz" id="cprompt" onclick="czAct()"></button><div class="cz" id="cemo">${CZ_EM.map(e=>`<button onclick="czEmote(${e[1]})" aria-label="Emote">${e[0]}</button>`).join('')}</div><div id="cft"><div class="czl"></div><div class="czr"></div><div class="cjs"><i></i></div></div><div class="cz" id="cintro"><div class="czp" style="text-align:center"><h2 style="font-size:30px">🍌 Casino Round</h2><p>Hier sehen dich alle, die gerade im Casino sind, mit Namen und Kontostand über dem Kopf. Gespielt wird mit deinen Bookies.</p><p>Gewinne die <b style="color:#ffd43b">goldene Banane</b>, ein seltener Preis, der neben deinem Namen glänzt.</p><p style="margin:16px 0 0"><button class="btn o" style="font-size:18px;padding:12px 30px" onclick="czEnter()">Eintreten</button></p><p class="m" style="font-size:12px">Mit Musik. Du kannst sie oben rechts ausschalten.</p></div></div><div class="cz" id="cpanel"></div></div><p class="m">Laufen mit W A S D oder den Pfeiltasten (hoch und runter), Umschauen mit der Maus (ziehen) oder den Pfeiltasten links und rechts, Shift rennt. Mit E oder dem Knopf unten spielst du an einem Tisch. Tasten 1 bis 6 sind Emotes. Auf dem iPad: Joystick links, rechts wischen zum Umschauen.</p>`,
 kbest:()=>{const t=P.t||0,rows=KB.filter(r=>r.track==t).sort((a,b)=>a.ms-b.ms).slice(0,20);
 return `<h1>Bestenliste</h1><p class="m">Die schnellste Zeit jedes Spielers für 3 Runden.</p><div class="bar" style="margin-top:0">${KTR.map((x,i)=>`<button class="btn ${i==t?'o':'g'}" onclick="go('kbest',{t:${i}},1)">${x.n}</button>`).join('')}</div><div class="card" style="padding:6px 24px;max-width:none">${rows.length?rows.map((r,i)=>`<div class="row"><span><b>${i+1}.</b> ${r.user_id==ME.id?'<b>Du</b>':esc(nm(r.user_id))}<span class="m" style="font-size:13px"> · ${KCAR[r.car]?KCAR[r.car].n:''}</span></span><b>${kFmt(r.ms)}</b></div>`).join(''):'<p class="m">Noch keine Zeiten. Fahr das erste Rennen!</p>'}</div>`},
-spiele:()=>`<h1>Spiele</h1><p class="m">Eine kleine Pause zwischendurch.</p><div class="tiles" style="margin-top:20px">${tl([['game','Tic Tac Toe','Gegen den Computer, zu zweit oder online','ttt'],['game','Banana Boost','Gegen den Computer oder online mit Freunden','kart'],['chess','Schach','Gegen den Computer, zu zweit oder online','chess'],['book','Bookie Clicker','Klicke Bücher und baue deine Bibliothek aus','clicker'],['game','Bookie Slots','Dreh die Maschine und vermehre deine Bookies','slots'],['game','Banana Fight','Online-Shooter als Banane, mit Bots oder Freunden','bf']])}</div>`,
+spiele:()=>`<h1>Spiele</h1><p class="m">Eine kleine Pause zwischendurch.</p><div class="tiles" style="margin-top:20px">${tl([['game','Tic Tac Toe','Gegen den Computer, zu zweit oder online','ttt'],['game','Banana Boost','Gegen den Computer oder online mit Freunden','kart'],['chess','Schach','Gegen den Computer, zu zweit oder online','chess'],['book','Bookie Clicker','Klicke Bücher und baue deine Bibliothek aus','clicker'],['game','Bookie Slots','Dreh die Maschine und vermehre deine Bookies','slots'],['game','Banana Fight','Online-Shooter als Banane, mit Bots oder Freunden','bf'],['game','Casino Round','Ruhiges 3D-Casino mit Roulette, Würfeln, Slots und einer goldenen Banane','casino']])}</div>`,
 chess:()=>{
  if(CH.gid!='l'){CH.gid='l';CH.sel=-1;CH.pm=null}
  const C=chLocal(),cpu=C.mode=='cpu',R=chRep(C.hist.join(' ')),st=chStat(R.s,R.keys),think=cpu&&!st&&R.s.t!=C.me,sg=(a,v,f)=>`<div class="seg" role="group">${a.map(([k,l])=>`<button class="${v==k?'on':''}" onclick="${f}('${k}')">${l}</button>`).join('')}</div>`,
