@@ -498,6 +498,11 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 .bmp span{background:var(--card);border:1px solid rgba(128,128,128,.3);border-radius:999px;padding:4px 12px;font-size:13px}
 .bmt{text-align:center;font:400 28px Bungee,Impact,sans-serif;color:var(--acc)}
 .bmr td,.bmr th{padding:6px 10px;text-align:left;border-bottom:1px solid rgba(128,128,128,.25)}
+.bjh{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px;min-height:84px}
+.bjc{width:54px;height:78px;border-radius:8px;background:#fff;color:#111;font:700 20px Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 3px 8px #0007;line-height:1}
+.bjc small{font-size:22px}.bjc.r{color:#d62828}
+.bjc.bk{background:repeating-linear-gradient(45deg,#7c2d0a 0 6px,#ffd43b 6px 12px);border:3px solid #fff}
+.bjr{font-size:14px;color:#e9d8b8}.bjr b{color:#ffd43b}
 .czcl{height:min(300px,38vh);overflow:auto;background:#00000040;border-radius:14px;padding:10px;margin:10px 0;display:flex;flex-direction:column;gap:8px}
 .czcl div{max-width:88%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.45}
 .czcl .b{background:#ffd43b;color:#3a2410;align-self:flex-start}
@@ -599,8 +604,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-23.10';
+const VERSION='2026-11-23.11';
 const CHANGELOG=[
+ {v:'2026-11-23.11',t:'Casino Round: Blackjack',items:['Im Casino gibt es jetzt einen Blackjack-Tisch mit Croupier. Blackjack zahlt 2,5×, ein Sieg 2×. Du kannst Karte ziehen, Halten und Verdoppeln. Dafür musst du update18.sql in Supabase ausführen.']},
  {v:'2026-11-23.10',t:'Neu: Bananen-Memory',items:['Bananen-Memory ist ein schnelles Memory-Rennen für zwischendurch. Alle spielen dasselbe Brett mit 8 Paaren, wer am schnellsten fertig ist, bekommt die meisten Punkte. Drei Runden dauern etwa drei Minuten, allein oder mit Freunden per Raumcode.','Im Gespräch mit Bruno steht jetzt, ob seine Antworten von einer KI kommen oder aus dem eingebauten Modus.']},
  {v:'2026-11-23.9',t:'Banana Boost stabiler, Casino lebendiger',items:['Banana Boost: Ein einzelner Fehler stoppt das Spiel nicht mehr. Es gibt einen Framelimiter (60 FPS, bei langsamen Geräten automatisch weniger Auflösung und Partikel, zur Not 30 FPS). Alle Effekte werden vor dem Rennen vorbereitet, damit es beim ersten Boost, Stern oder Banane nicht hängt.','Der Framelimiter gilt jetzt auch für Banana Fight und Casino Round.','Casino Round: 21 Pflanzen in Vasen (Palmen, Büsche und Bananenpflanzen) machen die Halle lebendiger.','Du kannst dich an der Bar mit Bruno unterhalten (E). Er putzt dabei Gläser, hört zu und fragt nach der Schule.']},
  {v:'2026-11-23.8',t:'Neu: Casino Round',items:['Casino Round ist ein ruhiges 3D-Casino mit nur einer Lobby für alle. Du läufst als Banane durch die Halle und siehst die anderen mit Namen und Kontostand über dem Kopf.','Es gibt Roulette, Würfeltisch, Münzwurf, Glücksrad und Spielautomaten. Gespielt wird mit deinen Bookies, der Zufall wird auf dem Server gezogen. Dafür musst du update17.sql in Supabase ausführen.','Mit etwas Glück gewinnst du die goldene Banane. Sie glänzt dauerhaft neben deinem Namen.','Im Hintergrund läuft leise Bar-Musik, die du oben rechts ausschalten kannst. Mit Tasten 1 bis 6 machst du Emotes.','Achtung: Im Casino ist dein Kontostand für alle dort sichtbar, auch wenn er sonst privat ist.']},
@@ -1828,7 +1834,8 @@ const CZG={
  dice:{n:'Würfeltisch',e:'🎲',d:'Zwei Würfel. Unter 7 und über 7 zahlen 2,2×, genau 7 zahlt 5×.',picks:[['under','Unter 7','2,2×'],['seven','Genau 7','5×'],['over','Über 7','2,2×']]},
  coin:{n:'Münzwurf',e:'🪙',d:'Banane oder Krone? Wer richtig liegt, verdoppelt den Einsatz.',picks:[['banana','🍌 Banane','2×'],['crown','👑 Krone','2×']]},
  wheel:{n:'Glücksrad',e:'🎡',d:'Dreh am Rad. Es zahlt von 0× bis 10×. Ganz selten landest du auf der goldenen Banane: 20× und eine goldene Banane für dich.'},
- slots:{n:'Spielautomat',e:'🎰',d:'Drei Walzen. Zwei gleiche Symbole zahlen bis 1,5×, drei gleiche bis 150×. Dreimal die goldene Banane zahlt 500× und schenkt dir eine goldene Banane.'}
+ slots:{n:'Spielautomat',e:'🎰',d:'Drei Walzen. Zwei gleiche Symbole zahlen bis 1,5×, drei gleiche bis 150×. Dreimal die goldene Banane zahlt 500× und schenkt dir eine goldene Banane.'},
+ blackjack:{n:'Blackjack',e:'🃏',d:'Komm mit deinen Karten möglichst nah an 21, ohne darüber zu gehen. Ein Blackjack zahlt 2,5×, ein Sieg 2×, bei Gleichstand bekommst du den Einsatz zurück. Der Croupier zieht bis 17. Verdoppeln geht mit deinen ersten zwei Karten. Schließt du das Fenster mitten in der Hand, führt dich „Austeilen“ wieder dorthin zurück.'}
 },CZ_CHIPS=[5,10,25,50,100,250,500],CZ_SYM={cherry:'🍒',lemon:'🍋',bell:'🔔',banana:'🍌',star:'⭐',seven:'7️⃣',gold:'🏆'},CZ_DIC=['⚀','⚁','⚂','⚃','⚄','⚅'],CZ_RED=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]),
 CZ_WS=[['Pech',0],['0,5×',.5],['1×',1],['2×',2],['3×',3],['5×',5],['10×',10],['🏆',20]],CZ_EM=[['✌️',1],['👋',2],['💃',5],['🙌',8],['🙇',7],['🕺',0]];
 const czRc=n=>n==0?'#2f9e44':CZ_RED.has(n)?'#d62828':'#222',czBal=()=>+((WL[ME.id]||{}).balance||0),czCnd=a=>{while(a>Math.PI)a-=2*Math.PI;while(a<-Math.PI)a+=2*Math.PI;return a};
@@ -1838,7 +1845,7 @@ function czBan(id,name,npc){const sv=BF.S;BF.S=CZ.S;const g=bfBanana({id,n:name,
  const cv=document.createElement('canvas');cv.width=320;cv.height=110;const tx=new THREE.CanvasTexture(cv),sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,depthTest:false,transparent:true}));sp.scale.set(2.4,.83,1);sp.position.set(0,2.6,0);sp.renderOrder=5;g.add(sp);u.lb={cv,tx,key:'',npc};return g}
 function czLabel(g,name,bal,gold){const l=g.userData.lb,k=name+'|'+bal+'|'+gold;if(l.key===k)return;l.key=k;const x=l.cv.getContext('2d');x.clearRect(0,0,320,110);x.textAlign='center';x.lineJoin='round';
  const nn=String(name).length>14?String(name).slice(0,13)+'…':name;x.font='700 38px Inter,sans-serif';x.lineWidth=7;x.strokeStyle='#000b';x.strokeText(nn,160,40);x.fillStyle='#fff';x.fillText(nn,160,40);
- const t=l.npc?'Barkeeper':'🍌 '+bkn(bal)+(gold?'  🏆'+gold:'');x.font='700 34px Inter,sans-serif';x.strokeText(t,160,88);x.fillStyle='#ffd43b';x.fillText(t,160,88);l.tx.needsUpdate=true}
+ const t=l.npc?(l.npc===1?'Barkeeper':l.npc):'🍌 '+bkn(bal)+(gold?'  🏆'+gold:'');x.font='700 34px Inter,sans-serif';x.strokeText(t,160,88);x.fillStyle='#ffd43b';x.fillText(t,160,88);l.tx.needsUpdate=true}
 function czBuild(){
  const th=THREE,S=CZ.S=new th.Scene(),L=(c,o)=>new th.MeshLambertMaterial(Object.assign({color:c},o||{})),Ph=(c,s,o)=>new th.MeshPhongMaterial(Object.assign({color:c,shininess:s||60},o||{})),
  add=(g,m,x,y,z)=>{const o=new th.Mesh(g,m);o.position.set(x,y,z);S.add(o);return o},BX=(w,h,d,m,x,y,z)=>add(new th.BoxGeometry(w,h,d),m,x,y,z),CYL=(r1,r2,h,m,x,y,z,s)=>add(new th.CylinderGeometry(r1,r2,h,s||24),m,x,y,z),
@@ -1882,6 +1889,10 @@ function czBuild(){
   const sp=new th.SpotLight(0xffe9a0,1.1,30,.55,.6);sp.position.set(0,9.5,0);sp.target.position.set(0,1,0);S.add(sp,sp.target);
   add(new th.ConeGeometry(2.4,8.5,24,1,true),new th.MeshBasicMaterial({color:0xffe9a0,transparent:true,opacity:.07,side:th.DoubleSide,depthWrite:false}),0,5.6,0);
   const pl=new th.Sprite(new th.SpriteMaterial({map:czTex(512,96,(c,w,h)=>{c.textAlign='center';c.font='700 46px Inter,sans-serif';c.lineWidth=8;c.strokeStyle='#000';c.strokeText('DIE GOLDENE BANANE',256,56);c.fillStyle='#ffd43b';c.fillText('DIE GOLDENE BANANE',256,56)}),transparent:true,depthTest:false}));pl.scale.set(4,.75,1);pl.position.set(0,4.4,0);S.add(pl);COL.push([0,0,1.6])}
+ {const x=16,z=9;BX(6.4,.25,3.4,FELT,x,1.2,z);[[0,1.7,6.8,.3],[0,-1.7,6.8,.3],[3.3,0,.3,3.4],[-3.3,0,.3,3.4]].forEach(([dx,dz,w,d])=>BX(w,.4,d,WOOD,x+dx,1.3,z+dz));[[-2.6,-1.2],[2.6,-1.2],[-2.6,1.2],[2.6,1.2]].forEach(([dx,dz])=>CYL(.2,.25,1.1,WOOD,x+dx,.55,z+dz,10));
+  for(let i=0;i<5;i++)BX(.5,.02,.7,L(0xffffff),x-.9+i*.5,1.34,z-.3+(i%2)*.1).rotation.y=i*.15-.3;
+  for(let i=0;i<4;i++)CYL(.22,.22,.06,L([0xd62828,0x1c7ed6,0xf59f00,0x222222][i]),x+2.2,1.36+i*.07,z+.6,12);
+  COL.push([x-1.8,z,2.2],[x+1.8,z,2.2]);CZ.cro=czBan('npc-bj','Croupier','Croupier');CZ.cro.position.set(x,0,z-2.8);S.add(CZ.cro);czLabel(CZ.cro,'Croupier',0,0)}
  {const th2=THREE,vp=[[0,0],[.5,0],[.7,.3],[.62,.7],[.45,1.1],[.38,1.3],[.5,1.45]].map(([x,y])=>new th2.Vector2(x,y)),vg=new th2.LatheGeometry(vp,18),lg=new th2.SphereGeometry(1,8,6),sg=new th2.CylinderGeometry(.42,.42,.06,12),
   vm=[L(0xf1e8d4),L(0x1c5f6b),L(0xb5651d),Ph(0xd4a017,120)],gm=[L(0x2f8f3a),L(0x3fa845),L(0x1f6f33)],soil=L(0x2a160a),tr=L(0x6b4a2a),stm=L(0x5f9a3a),yel=Ph(0xffd43b,90),
   lf=(len,w,m)=>{const o=new th2.Mesh(lg,m);o.scale.set(len,.05,w);return o};CZ.pl=[];
@@ -1893,7 +1904,7 @@ function czBuild(){
    else{const tk=new th2.Mesh(new th2.CylinderGeometry(.07,.11,1.5,6),stm);tk.position.y=.75;top.add(tk);for(let j=0;j<6;j++){const a=j/6*6.283+.3,l=lf(1.5,.32,gm[j%3]);l.position.set(Math.cos(a)*1.05,1.45,Math.sin(a)*1.05);l.rotation.set(0,-a,-.75);top.add(l)}
     for(let j=0;j<3;j++){const b=new th2.Mesh(lg,yel);b.scale.set(.07,.24,.07);b.position.set(.12+j*.06,1.3,(j-1)*.07);b.rotation.z=.35;top.add(b)}}
    CZ.pl.push(g);S.add(g);COL.push([x,z,.6])})}
- CZ.stn=[{id:'roulette',n:'Roulette',x:-14,z:-8,r:6.4},{id:'dice',n:'Würfeltisch',x:14,z:-8,r:6.4},{id:'wheel',n:'Glücksrad',x:0,z:-17.3,r:5},{id:'slots',n:'Spielautomaten',x:27,z:6,r:6.5},{id:'coin',n:'Münzwurf',x:-20,z:10,r:4},{id:'bar',n:'Bruno',x:22,z:-15.2,r:4.8}]}
+ CZ.stn=[{id:'roulette',n:'Roulette',x:-14,z:-8,r:6.4},{id:'dice',n:'Würfeltisch',x:14,z:-8,r:6.4},{id:'wheel',n:'Glücksrad',x:0,z:-17.3,r:5},{id:'slots',n:'Spielautomaten',x:27,z:6,r:6.5},{id:'coin',n:'Münzwurf',x:-20,z:10,r:4},{id:'bar',n:'Bruno',x:22,z:-15.2,r:4.8},{id:'blackjack',n:'Blackjack',x:16,z:11.8,r:4.6}]}
 function czInit(){return czInitA()}
 async function czInitA(){czStop();const c=$('#cc');if(!c)return;
  Object.assign(CZ,{c,st:'intro',o:{},bet:10,gid:null,pick:null,busy:0,panel:0,keys:{},yaw:0,jx:0,jy:0,em:null,feed:[],mute:false,touch:matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>1&&/Mac/i.test(navigator.platform||''),near:null,fk:0});
@@ -1942,6 +1953,7 @@ function czUpd(dt,ts){const c=CZ.c,R=CZ.R,cam=CZ.cam,S=CZ.S,w=c.clientWidth,h=c.
  // Deko
  CZ.rw.rotation.y+=dt*.7;const a=ts/600;CZ.rb.position.set(-14+Math.cos(-a*2.2)*1.15,1.72,-8+Math.sin(-a*2.2)*1.15);CZ.dc.forEach((d,i)=>{d.rotation.x+=dt*(.5+i*.2);d.rotation.y+=dt*.7});CZ.cn.rotation.x+=dt*2.2;CZ.ww.rotation.z-=dt*.12;CZ.gb.rotation.y+=dt*.9;CZ.gb.position.y=1.55+Math.sin(ts/700)*.1;CZ.sl.forEach((l,i)=>l.visible=Math.sin(ts/260+i*2)>-.3);
  CZ.pl.forEach((g,i)=>{const tp=g.children[2];tp.rotation.z=Math.sin(ts/1400+i)*.025;tp.rotation.x=Math.cos(ts/1700+i)*.02});
+ if(CZ.cro){const me=CZ.me,nr=CZ.st=='play'&&me&&Math.hypot(me.x-16,me.z-6.2)<11,tg=nr?Math.atan2(me.x-16,me.z-6.2):0;CZ.cth=(CZ.cth||0)+czCnd(tg-(CZ.cth||0))*Math.min(1,dt*4);czPose(CZ.cro,16,6.2,CZ.cth,0,-1,0,ts);const cu=CZ.cro.userData,cw=ts/1000;cu.la.rotation.set(-1+Math.sin(cw*2)*.15,0,.45);if(cu.ra)cu.ra.rotation.set(-1+Math.cos(cw*2)*.15,0,-.4)}
  const B=CZ.npc;if(B){const me=CZ.me,nr=CZ.st=='play'&&me&&Math.hypot(me.x-22,me.z+19.6)<12,tg=nr?Math.atan2(me.x-22,me.z+19.6):0;CZ.nth=(CZ.nth||0)+czCnd(tg-(CZ.nth||0))*Math.min(1,dt*4);czPose(B,22,-19.6,CZ.nth,0,-1,0,ts);
   const u=B.userData,w=ts/1000;u.la.rotation.set(-1.15+Math.sin(w*6)*.1,0,.5);if(u.ra)u.ra.rotation.set(-1.15+Math.cos(w*6)*.1,0,-.45);if(CZ.gg)CZ.gg.rotation.set(0,Math.sin(w*3)*.4,Math.sin(w*6)*.25)}
  if(CZ.st=='play'){const m=CZ.me,K=CZ.keys;
@@ -1964,7 +1976,27 @@ function czHud(ts){const q=(id,v)=>{const e=document.getElementById(id);if(e&&e.
  CZ.feed=CZ.feed.filter(f=>f.e>ts);const k=CZ.feed.map(f=>f.t).join('|');if(CZ.fk2!==k){CZ.fk2=k;q('cfeed',CZ.feed.map(f=>`<div>${esc(f.t)}</div>`).join(''))}}
 const CZ_EMJ=id=>CZG[id].e;
 /* Spiele-Fenster */
-function czOpen(id){if(CZ.panel||!CZG[id])return;CZ.panel=1;CZ.gid=id;CZ.pick=null;CZ.jx=CZ.jy=0;CZ.keys={};const g=CZG[id],p=$('#cpanel');
+/* Blackjack */
+const BJ_R=['A','2','3','4','5','6','7','8','9','10','J','Q','K'],BJ_S=['♠','♥','♦','♣'];
+const bjCard=c=>c==null?'<div class="bjc bk"></div>':`<div class="bjc${(c/13|0)==1||(c/13|0)==2?' r':''}">${BJ_R[c%13]}<small>${BJ_S[c/13|0]}</small></div>`;
+function czBjOpen(){CZ.panel=1;CZ.gid='blackjack';CZ.bj=null;CZ.jx=CZ.jy=0;CZ.keys={};if(CZ.bet>czBal())CZ.bet=Math.max(5,CZ_CHIPS.filter(c=>c<=czBal()).pop()||5);
+ const p=$('#cpanel');p.innerHTML=`<div class="czp"><div class="czh"><h2>🃏 Blackjack</h2><button class="czx" onclick="czClose()" aria-label="Schließen">✕</button></div><div class="czb2">Kontostand: <b id="czbal">🍌 ${bkn(czBal())}</b></div><div class="czst" id="bjs" style="display:block"></div><label id="bjl">Einsatz</label><div class="czch" id="bjc">${CZ_CHIPS.map(c=>`<button data-c="${c}" class="${c==CZ.bet?'on':''}" onclick="czBet(${c})">${c}</button>`).join('')}</div><div id="bjb"></div><div class="czm" id="czmsg"></div><p>${CZG.blackjack.d}</p></div>`;p.style.display='grid';czBjDraw()}
+function czBjDraw(){const s=CZ.bj,st=$('#bjs'),bb=$('#bjb');if(!st||!bb)return;
+ st.innerHTML=s?`<div class="bjr"><b>Croupier</b> ${s.hidden?s.dv+' + ?':s.dv}</div><div class="bjh">${s.dealer.map(bjCard).join('')}${s.hidden?bjCard(null):''}</div><div class="bjr"><b>Du</b> ${s.pv} · Einsatz ${s.bet}</div><div class="bjh">${s.player.map(bjCard).join('')}</div>`:'<p style="text-align:center;margin:30px 0">Setze deinen Einsatz und lass dir die Karten geben.</p>';
+ const open=s&&!s.done;$('#bjc').style.display=open?'none':'flex';$('#bjl').style.display=open?'none':'block';
+ bb.innerHTML=open?`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn o" onclick="czBj('hit')">Karte</button><button class="btn g" onclick="czBj('stand')">Halten</button>${s.player.length==2&&czBal()>=s.bet?`<button class="btn g" onclick="czBj('double')">Verdoppeln</button>`:''}</div>`:`<button class="btn o" style="width:100%" onclick="czBj('start')">${s?'Neue Hand':'Austeilen'}</button>`}
+async function czBj(a){if(CZ.busy||CZ.gid!='blackjack')return;const w=WL[ME.id]||(WL[ME.id]={user_id:ME.id,balance:0,total:0,pub:false});
+ if(a=='start'&&+w.balance<CZ.bet)return czMsg('Dafür hast du nicht genug Bookies.','#ff6b6b');
+ CZ.busy=1;czMsg('');czSfx('tick');const f={start:['casino_bj_start',{p_bet:CZ.bet}],hit:['casino_bj_hit',{}],stand:['casino_bj_stand',{}],double:['casino_bj_double',{}]}[a],{data,error}=await sb.rpc(f[0],f[1]);CZ.busy=0;
+ if(error||!data){console.error(error);return czMsg(needSql(error)?'Bitte führe zuerst update18.sql in Supabase aus.':/Zu wenige/.test((error&&error.message)||'')?'Nicht genug Bookies.':'Das hat nicht geklappt.','#ff6b6b')}
+ CZ.bj=data;w.balance=data.balance;const bl=$('#czbal');if(bl)bl.textContent='🍌 '+bkn(data.balance);czBjDraw();
+ if(data.done){const win=+data.payout,net=win-data.bet,msg={blackjack:'Blackjack! ',win:'Gewonnen! ',push:'Unentschieden. ',lose:'Verloren. ',bust:'Über 21, verloren. '}[data.result]||'';
+  czMsg(msg+(net>0?'+'+bkn(net)+' Bookies':net==0?'Einsatz zurück.':''),net>0?'#8fe04a':net==0?'#ffd43b':'#ff9b9b');if(net>0)czSfx('win');
+  if(CZ.ch)CZ.ch.send({type:'broadcast',event:'w',payload:{id:ME.id,n:nm(ME.id),g:'blackjack',bet:data.bet,win,gold:0}});
+  if(data.result=='blackjack'){CZ.em={id:8,t0:performance.now()};clearTimeout(CZ.emt);CZ.emt=setTimeout(()=>{if(CZ.em&&CZ.em.id==8)CZ.em=null},4600)}
+  czFeed('Du: Blackjack '+(net>=0?'+':'')+bkn(net))}}
+
+function czOpen(id){if(CZ.panel||!CZG[id])return;if(id=='blackjack')return czBjOpen();CZ.panel=1;CZ.gid=id;CZ.pick=null;CZ.jx=CZ.jy=0;CZ.keys={};const g=CZG[id],p=$('#cpanel');
  if(CZ.bet>czBal())CZ.bet=Math.max(5,CZ_CHIPS.filter(c=>c<=czBal()).pop()||5);
  const stage={roulette:'<div class="czrn" id="czs1">?</div>',dice:'<div class="czdc"><span id="czs1">⚀</span><span id="czs2">⚀</span></div>',coin:'<div class="czcn" id="czs1">🪙</div>',slots:'<div class="czrl"><span id="czs1">🍒</span><span id="czs2">🍌</span><span id="czs3">🔔</span></div>',
   wheel:'<div class="czwh"><i></i><div id="czw" style="transform:rotate('+(CZ.wa||0)+'deg)">'+CZ_WS.map((s,i)=>`<span style="transform:rotate(${i*45+22.5}deg) translateY(-76px)">${s[0]}</span>`).join('')+'</div></div>'}[id];
