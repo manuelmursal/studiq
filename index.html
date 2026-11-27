@@ -132,6 +132,12 @@ img.av{width:96px;height:96px;object-fit:cover;display:block;border:2px solid va
 .chs.tc::after{content:"";position:absolute;inset:5%;border-radius:50%;border:4px solid rgba(70,30,5,.4);pointer-events:none}
 .chs i{position:absolute;font:600 10px/1 Inter,system-ui,sans-serif;pointer-events:none;opacity:.85}.chs .rk{left:3px;top:3px}.chs .fl{right:3px;bottom:3px}
 .chs.l i{color:#c8601b}.chs.d i{color:#ffeadb}
+.cp.mv{position:relative;z-index:3;width:100%;height:100%;display:grid;place-items:center;animation:chmv .3s cubic-bezier(.3,.7,.3,1) both}@keyframes chmv{from{transform:translate(var(--dx),var(--dy))}to{transform:none}}
+.chfb{display:none}body.chfs{overflow:hidden}body.chfs header,body.chfs .chx,body.chfs .chv>h1{display:none}
+body.chfs main{max-width:none;min-height:100vh;box-sizing:border-box;padding:calc(10px + env(safe-area-inset-top,0px)) 10px calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;justify-content:center}
+body.chfs .chb{width:min(96vw,calc(100vh - 130px),900px)}body.chfs .cp{font-size:clamp(24px,calc(min(96vw,100vh - 130px)/8*.72),100px)}
+body.chfs .chv [role=status]{margin:0 0 12px!important;font-size:clamp(16px,3.2vw,22px)!important}
+body.chfs .chfb{display:block;position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));z-index:30}
 .cp{font-size:clamp(24px,9vw,54px);line-height:1;pointer-events:none}
 .cp.pw{color:#fff;text-shadow:0 0 1px #4a2108,0 0 2px #4a2108,0 1px 3px #4a2108}.cp.pb{color:#26140a}
 .btn:disabled{opacity:.4;cursor:default}
@@ -631,8 +637,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-28.1';
+const VERSION='2026-11-28.2';
 const CHANGELOG=[
+ {v:'2026-11-28.2',t:'Schach: Zuganimation und Vollbild',items:['Die Figuren gleiten jetzt auf ihr Zielfeld, auch der Turm beim Rochieren. Beim Computer-Gegner wartet der Zug kurz, bis deine Animation fertig ist.','Neu: Vollbild-Knopf unter dem Brett. Im Vollbild siehst du nur Brett und Status, mit "Vollbild beenden" oben rechts kommst du zurück.']},
  {v:'2026-11-28.1',t:'Hausaufgaben werden zum Kalender',items:['Auf der Startseite heißt es jetzt Kalender. Beim Eintragen wählst du, ob es eine Hausaufgabe (Standard) oder eine Klausur ist.','Neu bei jedem Eintrag: Lehrer, LK oder GK und ein Link.','Bei Klausuren schlägt STUDIQ passenden Stoff vor, den du als wichtig markieren kannst. Er ist dann im Eintrag mit einem Tipp erreichbar. Dafür musst du update21.sql in Supabase ausführen.']},
  {v:'2026-11-25.1',t:'Schulbücher: Status vollständig oder unvollständig',items:['Beim Bearbeiten eines Schulbuchs gibt es jetzt einen Hebel: grün heißt vollständig, orange heißt, es fehlen noch Seiten. In der Bücherbibliothek sieht man den Status auf jedem Buch.']},
  {v:'2026-11-24.1',t:'Neu: Hausaufgaben mit Kalender',items:['Auf der Startseite gibt es jetzt Hausaufgaben. Im Kalender trägst du ein, was ihr auf habt, mit Fach, Buch, Seite, Aufgabe, Beschreibung und Bild.','Beim Buch schlägt STUDIQ passende Online-Bücher vor. Als Abgabe wählst du "Zur nächsten Stunde" (über deinen Stundenplan) oder ein Datum.','Alle mit deiner Stufe, Schule und Klasse sehen den Eintrag. Offene Hausaufgaben sind orange, abgehakte grün. Dazu gibt es Kommentare.']},
@@ -764,7 +771,7 @@ async function chName(){
 async function npw(){const v=$('#np').value;if(v.length<6)return toast('Das Passwort braucht mindestens 6 Zeichen.');const{error}=await sb.auth.updateUser({password:v});if(error)return toast('Das hat nicht geklappt.');$('#np').value='';toast('Passwort geändert.')}
 
 /* ===== Navigation ===== */
-let busy=0;function go(v,p={},back){if(busy)return;if(!back)H.push([V,P]);V=v;P=p;if(v=='view')pi=0;const e=window.event?.target?.closest?.('.tile,.btn,.bk,.chip,.ib,.logo');if(e){e.classList.add('pop');$('main')?.classList.add('out')}busy=!!e;setTimeout(()=>{busy=0;render();scrollTo(0,0)},e?230:0)}
+let busy=0;function go(v,p={},back){if(busy)return;if(document.body.classList.contains('chfs')&&!/^chess/.test(v)){document.body.classList.remove('chfs');if(document.fullscreenElement)try{document.exitFullscreen()}catch(e){}}if(!back)H.push([V,P]);V=v;P=p;if(v=='view')pi=0;const e=window.event?.target?.closest?.('.tile,.btn,.bk,.chip,.ib,.logo');if(e){e.classList.add('pop');$('main')?.classList.add('out')}busy=!!e;setTimeout(()=>{busy=0;render();scrollTo(0,0)},e?230:0)}
 const bk=()=>{const h=H.pop();h?go(h[0],h[1],1):go('home',{},1)};
 const hdr=()=>!ME?`<header><span></span><div class="logo">STUDIQ</div><span></span></header>`:`<header>${V=='home'?'<span></span>':`<button class="ib" aria-label="Zurück" onclick="bk()">${ic('back')}</button>`}<div class="logo" onclick="H=[];go('home',{},1)">STUDIQ</div><div style="justify-self:end;display:flex"><button class="ib" aria-label="Item-Shop" onclick="go('shop')">${ic('shop')}</button><button class="ib" aria-label="Benachrichtigungen" onclick="go('notif')">${ic('bell')}<span class="bdg" id="bdg"></span></button><button class="ib" aria-label="Einstellungen" onclick="go('set')">${ic('gear')}</button></div></header>`;
 let lastK='';
@@ -1422,10 +1429,16 @@ function chCtx(){
  if(V=='chess'){const C=chLocal(),R=chRep(C.hist.join(' ')),st=chStat(R.s,R.keys);return{R,st,ok:!st&&!CH.busy&&!(C.mode=='cpu'&&R.s.t!=C.me)}}
  const g=CGAMES&&CGAMES.find(x=>x.id==P.g);if(!g)return null;
  return{R:chRep(g.hist),ok:!g.result&&g.turn==(g.w==ME.id?'w':'b')}}
+const chAn=m=>{const a={[m.t]:m.f};if(m.cs==1)a[m.t-1]=m.t+1;if(m.cs==-1)a[m.t+1]=m.t-2;return a};
+const chSty=(fi,k,flip)=>{const d=flip?63-fi:fi;return` style="--dx:${((d&7)-(k&7))*100}%;--dy:${((d>>3)-(k>>3))*100}%"`};
+function chFS(){const b=document.body,on=!b.classList.contains('chfs');b.classList.toggle('chfs',on);try{const e=document.documentElement;if(on){const r=e.requestFullscreen&&e.requestFullscreen();r&&r.catch&&r.catch(()=>{})}else if(document.fullscreenElement){const r=document.exitFullscreen();r&&r.catch&&r.catch(()=>{})}}catch(e){}}
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)document.body.classList.remove('chfs')});
+document.addEventListener('keydown',e=>{if(e.key=='Escape')document.body.classList.remove('chfs')});
 function chBoard(R,flip,off){
+ const gid=V=='chess'?'l':P.g,an=R.last&&CH.an&&CH.an.g==gid&&R.n>CH.an.n?chAn(R.last):null;CH.an={g:gid,n:R.n};
  const s=R.s,ck=!off&&chChk(s)?chKing(s.b,s.t):-1,tg=new Set(CH.sel>=0?chLegal(s).filter(m=>m.f==CH.sel).map(m=>m.t):[]);let h='';
  for(let k=0;k<64;k++){const i=flip?63-k:k,p=s.b[i],cls=['chs',((i>>3)+(i&7))%2?'d':'l',i==CH.sel?'sel':'',R.last&&(i==R.last.f||i==R.last.t)?'lm':'',i==ck?'ck':'',tg.has(i)?(p!='.'?'tc':'tg'):''].join(' ');
-  h+=`<button class="${cls}" aria-label="${chSq(i)}${p=='.'?'':' '+(p<'a'?'weiß ':'schwarz ')+p.toUpperCase()}" onclick="chClick(${i})" ${off?'disabled':''}>${k%8==0?`<i class="rk">${8-(i>>3)}</i>`:''}${k>=56?`<i class="fl">${'abcdefgh'[i&7]}</i>`:''}${p=='.'?'':`<span class="cp ${p<'a'?'pw':'pb'}">${CHG[p.toUpperCase()]}</span>`}</button>`}
+  h+=`<button class="${cls}" aria-label="${chSq(i)}${p=='.'?'':' '+(p<'a'?'weiß ':'schwarz ')+p.toUpperCase()}" onclick="chClick(${i})" ${off?'disabled':''}>${k%8==0?`<i class="rk">${8-(i>>3)}</i>`:''}${k>=56?`<i class="fl">${'abcdefgh'[i&7]}</i>`:''}${p=='.'?'':`<span class="cp ${p<'a'?'pw':'pb'}${an&&an[i]!=null?' mv':''}"${an&&an[i]!=null?chSty(an[i],k,flip):''}>${CHG[p.toUpperCase()]}</span>`}</button>`}
  return `<div class="chb ${(COS[ME.id]&&COS[ME.id].board!='classic'&&COS[ME.id].board)||''}">${h}</div>${CH.pm?`<p class="m" style="text-align:center;margin:14px 0 0">Umwandeln in: ${['q','r','b','n'].map(q=>`<button class="btn g" style="margin:2px" onclick="chProm('${q}')">${CHNM[q]}</button>`).join('')}<button class="btn g" style="margin:2px" onclick="chProm('')">Abbrechen</button></p>`:''}`}
 function chClick(i){
  const c=chCtx();if(!c||!c.ok||CH.pm)return;
@@ -1448,7 +1461,7 @@ function chInit(){
  setTimeout(()=>{
   CH.busy=0;if(V!='chess'||C!==CHL)return;
   const R2=chRep(C.hist.join(' ')),m=R2.s.t!=C.me&&!chStat(R2.s,R2.keys)?chBest(R2.s,C.lvl):null;
-  if(m)C.hist.push(chU(m));render()},80)}
+  if(m)C.hist.push(chU(m));render()},380)}
 function chMode(m){CHL={...chLocal(),mode:m,hist:[],paid:0};CH.sel=-1;CH.pm=null;render()}
 function chLvl(l){chLocal().lvl=l;render()}
 function chSide(c){const C=chLocal();C.me=c;C.hist=[];C.paid=0;CH.sel=-1;render()}
@@ -2965,7 +2978,7 @@ chess:()=>{
  const C=chLocal(),cpu=C.mode=='cpu',R=chRep(C.hist.join(' ')),st=chStat(R.s,R.keys),think=cpu&&!st&&R.s.t!=C.me,sg=(a,v,f)=>`<div class="seg" role="group">${a.map(([k,l])=>`<button class="${v==k?'on':''}" onclick="${f}('${k}')">${l}</button>`).join('')}</div>`,
  msg=st?(st.res=='draw'?'Remis ('+st.why+').':cpu?(st.res==C.me?'Du hast gewonnen!':'Der Computer hat gewonnen.'):(st.res=='w'?'Weiß':'Schwarz')+' hat gewonnen ('+st.why+').'):think?'Der Computer denkt …':(cpu?'Du bist dran':(R.s.t=='w'?'Weiß':'Schwarz')+' ist dran')+(chChk(R.s)?' – Schach!':'.');
  if(st&&cpu&&st.res==C.me&&!C.paid){C.paid=1;setTimeout(()=>bkEarn('chess',C.lvl=='easy'?3:C.lvl=='mid'?8:15,null,'Sieg gegen den Computer'),0)}
- return `<h1>Schach</h1><div class="bar" style="margin-top:0"><div class="seg" role="group" aria-label="Modus"><button class="${cpu?'on':''}" onclick="chMode('cpu')">Gegen Computer</button><button class="${cpu?'':'on'}" onclick="chMode('two')">Zu zweit</button><button onclick="go('chessf')">Mit Freunden</button></div>${cpu?sg([['easy','Leicht'],['mid','Mittel'],['hard','Schwer']],C.lvl,'chLvl')+sg([['w','Weiß'],['b','Schwarz']],C.me,'chSide'):''}</div><p role="status" style="font-size:18px;text-align:center;margin:18px 0 12px"><b>${msg}</b></p>${chBoard(R,cpu&&C.me=='b',!!st||think)}<p style="text-align:center;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn g" onclick="chUndo()" ${R.n&&!think?'':'disabled'}>Zug zurück</button><button class="btn o" onclick="chNewG()">Neue Partie</button></p>`},
+ return `<div class="chv"><h1>Schach</h1><div class="bar chx" style="margin-top:0"><div class="seg" role="group" aria-label="Modus"><button class="${cpu?'on':''}" onclick="chMode('cpu')">Gegen Computer</button><button class="${cpu?'':'on'}" onclick="chMode('two')">Zu zweit</button><button onclick="go('chessf')">Mit Freunden</button></div>${cpu?sg([['easy','Leicht'],['mid','Mittel'],['hard','Schwer']],C.lvl,'chLvl')+sg([['w','Weiß'],['b','Schwarz']],C.me,'chSide'):''}</div><p role="status" style="font-size:18px;text-align:center;margin:18px 0 12px"><b>${msg}</b></p>${chBoard(R,cpu&&C.me=='b',!!st||think)}<p class="chx" style="text-align:center;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn g" onclick="chFS()">Vollbild</button><button class="btn g" onclick="chUndo()" ${R.n&&!think?'':'disabled'}>Zug zurück</button><button class="btn o" onclick="chNewG()">Neue Partie</button></p></div><button class="btn g chfb" onclick="chFS()">Vollbild beenden</button>`},
 chessf:()=>{
  const fr=frs().friends,g=CGAMES,act=g.filter(x=>!x.result),fin=g.filter(x=>x.result),opp=x=>x.w==ME.id?x.b:x.w,my=x=>x.w==ME.id?'w':'b';
  const w=fin.filter(x=>x.result==my(x)).length,l=fin.filter(x=>x.result!='draw'&&x.result!=my(x)).length,d=fin.length-w-l;
@@ -2976,7 +2989,7 @@ chessg:()=>{
  if(CH.gid!=g.id){CH.gid=g.id;CH.sel=-1;CH.pm=null}
  const me=g.w==ME.id?'w':'b',ot=me=='w'?'b':'w',o=me=='w'?g.b:g.w,R=chRep(g.hist),over=!!g.result,mine=!over&&g.turn==me,why=g.reason?' ('+esc(g.reason)+')':'',
  msg=over?(g.result=='draw'?'Remis'+why+'.':g.result==me?'Du hast gewonnen'+why+'!':esc(nm(o))+' hat gewonnen'+why+'.'):mine?'Du bist dran'+(chChk(R.s)?' – Schach!':'.'):esc(nm(o))+' ist dran …';
- bkChess(g,me);return `<h1>Schach</h1><p class="m" style="margin-bottom:0">Du (${me=='w'?'Weiß':'Schwarz'}) gegen <b style="font-weight:500">${esc(nm(o))}</b> (${me=='w'?'Schwarz':'Weiß'})</p><p role="status" style="font-size:18px;text-align:center;margin:18px 0 12px"><b>${msg}</b></p>${!over&&g.draw_offer==ot?`<div class="card" style="max-width:520px;margin:0 auto 14px;text-align:center;padding:14px"><p style="margin:0 0 10px">${esc(nm(o))} bietet Remis an.</p><button class="btn o" onclick="cAct('accept')">Annehmen</button> <button class="btn g" onclick="cAct('decline')">Ablehnen</button></div>`:''}${chBoard(R,me=='b',!mine)}<p style="text-align:center;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">${over?`<button class="btn o" onclick="cNew('${o}')">Neue Partie</button><button class="btn g" onclick="cDel('${g.id}')">Partie löschen</button>`:`${g.draw_offer==me?'<span class="m" style="align-self:center">Remis angeboten …</span>':`<button class="btn g" onclick="cAct('offer')">Remis anbieten</button>`}<button class="btn g" onclick="cAct('resign')">Aufgeben</button>`}</p>`},
+ bkChess(g,me);return `<div class="chv"><h1>Schach</h1><p class="m" style="margin-bottom:0">Du (${me=='w'?'Weiß':'Schwarz'}) gegen <b style="font-weight:500">${esc(nm(o))}</b> (${me=='w'?'Schwarz':'Weiß'})</p><p role="status" style="font-size:18px;text-align:center;margin:18px 0 12px"><b>${msg}</b></p>${!over&&g.draw_offer==ot?`<div class="card" style="max-width:520px;margin:0 auto 14px;text-align:center;padding:14px"><p style="margin:0 0 10px">${esc(nm(o))} bietet Remis an.</p><button class="btn o" onclick="cAct('accept')">Annehmen</button> <button class="btn g" onclick="cAct('decline')">Ablehnen</button></div>`:''}${chBoard(R,me=='b',!mine)}<p class="chx" style="text-align:center;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn g" onclick="chFS()">Vollbild</button>${over?`<button class="btn o" onclick="cNew('${o}')">Neue Partie</button><button class="btn g" onclick="cDel('${g.id}')">Partie löschen</button>`:`${g.draw_offer==me?'<span class="m" style="align-self:center">Remis angeboten …</span>':`<button class="btn g" onclick="cAct('offer')">Remis anbieten</button>`}<button class="btn g" onclick="cAct('resign')">Aufgeben</button>`}</p></div><button class="btn g chfb" onclick="chFS()">Vollbild beenden</button>`},
 shop:()=>{
  const w=WL[ME.id],bal=w?+w.balance:0,co=COS[ME.id]||{frame:'none',board:'classic',ptheme:'none',stheme:'studiq',title:'none'},
  fl=[{id:'none',kind:'frame',name:'Kein Rahmen',price:0},...SHI.filter(i=>i.kind=='frame')],bd=[{id:'classic',kind:'board',name:'Klassisch Orange',price:0},...SHI.filter(i=>i.kind=='board')],pl=[{id:'none',kind:'ptheme',name:'Kein Theme',price:0},...SHI.filter(i=>i.kind=='ptheme')],sl=[{id:'studiq',kind:'stheme',name:'STUDIQ Orange',price:0},...SHI.filter(i=>i.kind=='stheme')],ti=[{id:'none',kind:'title',name:'Kein Titel',price:0},...SHI.filter(i=>i.kind=='title')],
