@@ -519,6 +519,18 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 @keyframes cgl{0%{opacity:0;transform:scale(.4) rotate(-8deg)}15%{opacity:1;transform:scale(1.1)}25%{transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(1.2)}}
 #cft{position:absolute;inset:0;display:none;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #cft.on{display:block}
+#acgame{position:relative;width:min(100%,440px);margin:12px auto 0;border-radius:14px;overflow:hidden;background:#0b0b14;touch-action:none}
+#acc{display:block;width:100%;height:auto;touch-action:none;cursor:pointer}
+#acov{position:absolute;inset:0;display:none;place-content:center;gap:10px;text-align:center;color:#fff;background:#000b;padding:20px;font-family:Inter,system-ui,sans-serif}
+#acov b{font:400 30px Bungee,Impact,sans-serif}#acov span{font-size:14px;opacity:.85}
+#acpad{display:none;grid-template-columns:repeat(3,68px);gap:8px;justify-content:center;margin:14px auto}
+@media(pointer:coarse){#acpad{display:grid}}
+#acpad button{height:58px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:inherit;font-size:22px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+#acgame.acfs{position:fixed;inset:0;z-index:20;width:auto;margin:0;border-radius:0;display:flex;align-items:center;justify-content:center;background:#000}
+#acgame.acfs #acc,#acgame:fullscreen #acc{width:auto;height:100%;max-width:100%}
+#acgame:fullscreen{display:flex;align-items:center;justify-content:center;background:#000;width:100%;margin:0;border-radius:0}
+#acgame:-webkit-full-screen{display:flex;align-items:center;justify-content:center;background:#000;width:100%;margin:0;border-radius:0}
+#acgame:-webkit-full-screen #acc{width:auto;height:100%;max-width:100%}
 #cprompt,#cbtn,#cemo,#cme{z-index:5}
 #cft .czl,#cft .czr{position:absolute;top:70px;bottom:70px;pointer-events:auto;touch-action:none}
 #cft .czl{left:0;width:44%}#cft .czr{right:0;width:56%}
@@ -638,8 +650,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-28.3';
+const VERSION='2026-11-28.4';
 const CHANGELOG=[
+ {v:'2026-11-28.4',t:'Neu: Arcade-Halle',items:['Unter Spiele gibt es jetzt die Arcade mit vier Klassikern: Pac-Banana, Snake, Ziegel-Ausbruch und Flappy Banane.','Gesteuert wird mit Pfeiltasten oder WASD, am iPad und Handy durch Wischen oder mit den Pfeilen unter dem Spiel. Dein Rekord pro Spiel wird auf dem Gerät gespeichert, außerdem gibt es einen Vollbildmodus.']},
  {v:'2026-11-28.3',t:'Casino auf dem iPad repariert',items:['Auf dem iPad lag die Touch-Steuerung über dem Knopf zum Spielen und über Bruno, deshalb ließen sich Tische nicht öffnen. Der Knopf ist jetzt immer antippbar.']},
  {v:'2026-11-28.2',t:'Schach: Zuganimation und Vollbild',items:['Die Figuren gleiten jetzt auf ihr Zielfeld, auch der Turm beim Rochieren. Beim Computer-Gegner wartet der Zug kurz, bis deine Animation fertig ist.','Neu: Vollbild-Knopf unter dem Brett. Im Vollbild siehst du nur Brett und Status, mit "Vollbild beenden" oben rechts kommst du zurück.']},
  {v:'2026-11-28.1',t:'Hausaufgaben werden zum Kalender',items:['Auf der Startseite heißt es jetzt Kalender. Beim Eintragen wählst du, ob es eine Hausaufgabe (Standard) oder eine Klausur ist.','Neu bei jedem Eintrag: Lehrer, LK oder GK und ein Link.','Bei Klausuren schlägt STUDIQ passenden Stoff vor, den du als wichtig markieren kannst. Er ist dann im Eintrag mit einem Tipp erreichbar. Dafür musst du update21.sql in Supabase ausführen.']},
@@ -773,7 +786,7 @@ async function chName(){
 async function npw(){const v=$('#np').value;if(v.length<6)return toast('Das Passwort braucht mindestens 6 Zeichen.');const{error}=await sb.auth.updateUser({password:v});if(error)return toast('Das hat nicht geklappt.');$('#np').value='';toast('Passwort geändert.')}
 
 /* ===== Navigation ===== */
-let busy=0;function go(v,p={},back){if(busy)return;if(document.body.classList.contains('chfs')&&!/^chess/.test(v)){document.body.classList.remove('chfs');if(document.fullscreenElement)try{document.exitFullscreen()}catch(e){}}if(!back)H.push([V,P]);V=v;P=p;if(v=='view')pi=0;const e=window.event?.target?.closest?.('.tile,.btn,.bk,.chip,.ib,.logo');if(e){e.classList.add('pop');$('main')?.classList.add('out')}busy=!!e;setTimeout(()=>{busy=0;render();scrollTo(0,0)},e?230:0)}
+let busy=0;function go(v,p={},back){if(busy)return;if(v=='arcade'&&V!='arcade')AC.g=null;if(document.body.classList.contains('chfs')&&!/^chess/.test(v)){document.body.classList.remove('chfs');if(document.fullscreenElement)try{document.exitFullscreen()}catch(e){}}if(!back)H.push([V,P]);V=v;P=p;if(v=='view')pi=0;const e=window.event?.target?.closest?.('.tile,.btn,.bk,.chip,.ib,.logo');if(e){e.classList.add('pop');$('main')?.classList.add('out')}busy=!!e;setTimeout(()=>{busy=0;render();scrollTo(0,0)},e?230:0)}
 const bk=()=>{const h=H.pop();h?go(h[0],h[1],1):go('home',{},1)};
 const hdr=()=>!ME?`<header><span></span><div class="logo">STUDIQ</div><span></span></header>`:`<header>${V=='home'?'<span></span>':`<button class="ib" aria-label="Zurück" onclick="bk()">${ic('back')}</button>`}<div class="logo" onclick="H=[];go('home',{},1)">STUDIQ</div><div style="justify-self:end;display:flex"><button class="ib" aria-label="Item-Shop" onclick="go('shop')">${ic('shop')}</button><button class="ib" aria-label="Benachrichtigungen" onclick="go('notif')">${ic('bell')}<span class="bdg" id="bdg"></span></button><button class="ib" aria-label="Einstellungen" onclick="go('set')">${ic('gear')}</button></div></header>`;
 let lastK='';
@@ -809,7 +822,7 @@ function render(){applyST();presInit();hwEnsure();
  const k=v+JSON.stringify(P);
  app.innerHTML=hdr()+'<main>'+VW[v]()+'</main>';
  if(k!=lastK)$('main').classList.add('in');lastK=k;updBadge();
- ({view:()=>show(0),edit:()=>{pv();th()},chat:chatInit,tttg:()=>{chT=setInterval(pollGame,2500)},tttf:()=>{chT=setInterval(refreshGames,4000)},gruppe:gInit,kart:kInit,chess:chInit,clicker:ckHook,slots:slInit,bf:bfInit,hw:hwRef,hwn:hwnInit,hwv:hwvInit,casino:czInit,bmem:bmInit,shop:bkRef,admin:bkRef,chessg:()=>{chT=setInterval(pollChess,2500)},chessf:()=>{chT=setInterval(refreshCG,4000)},person:()=>{loadCre(P.u);bkRef()}})[v]?.()
+ ({view:()=>show(0),edit:()=>{pv();th()},chat:chatInit,tttg:()=>{chT=setInterval(pollGame,2500)},tttf:()=>{chT=setInterval(refreshGames,4000)},gruppe:gInit,kart:kInit,chess:chInit,clicker:ckHook,slots:slInit,bf:bfInit,hw:hwRef,hwn:hwnInit,hwv:hwvInit,casino:czInit,bmem:bmInit,arcade:acInit,shop:bkRef,admin:bkRef,chessg:()=>{chT=setInterval(pollChess,2500)},chessf:()=>{chT=setInterval(refreshCG,4000)},person:()=>{loadCre(P.u);bkRef()}})[v]?.()
 }
 const cover=x=>{const lt=lum(x.color||'#f26b1d')>.62;return `<div class="cv" style="background-color:${x.color};color:${lt?'#161616':'#fff'};${lt?'text-shadow:none;':''}${x.cover?`background-image:url('${x.cover}')`:''}">${x.cover?'':esc(x.title)}</div>`};
 const card=x=>`<div class="bk" onclick="go('view',{id:'${x.id}'})">${cover(x)}<span class="bkx">${pnb(x)}${stb(x)}</span>${bsc(x)}<b>${esc(x.title)}</b><small>${x.fach}, Klasse ${x.stufe}${P.t=='all'?', '+TY[x.type].n:''}, ${x.n} Seiten</small></div>`;
@@ -2246,6 +2259,95 @@ function bfHud(dt){const q=(id,v)=>{const e=document.getElementById(id);if(e&&e.
  q('bfsb',BF.k.Tab?'<h3>Rangliste</h3>'+Object.values(BF.sc).sort((a,b)=>b.k-a.k).map(s=>`<div class="row" style="border:0;padding:2px 0"><span>${esc(s.n)}</span><b>${s.k} / ${s.d}</b></div>`).join(''):'');document.getElementById('bfsb').style.display=BF.k.Tab?'block':'none';
  const hm=document.getElementById('bfhm');hm.style.opacity=Math.abs(BF.hm)>0?1:0;hm.style.borderColor=BF.hm<0?'#e03131':'#fff';document.getElementById('bfdm').style.opacity=BF.dead>0?.55:Math.min(1,BF.dmg*2.5);
  if(BF.dead>0)q('bfdm',`<span>Von ${esc(BF.dby||'?')} erledigt. Neustart in ${Math.ceil(BF.dead)}</span>`);else q('bfdm','')}
+/* ===== Arcade ===== */
+const ACG={pac:{n:'Pac-Banana',e:'🟡',d:'Fress alle Punkte und weiche den Geistern aus. Die großen Punkte machen dich stark.'},snake:{n:'Snake',e:'🐍',d:'Sammle Bananen und werde länger, ohne dich selbst oder die Wand zu berühren.'},brk:{n:'Ziegel-Ausbruch',e:'🧱',d:'Lenke den Ball mit dem Schläger und zerstöre alle Steine.'},flap:{n:'Flappy Banane',e:'🍌',d:'Tippe zum Flattern und fliege durch die Lücken.'}};
+let AC={g:null,G:null,raf:0,k:{},d:'',run:0,bound:0};
+const acRnd=n=>Math.floor(Math.random()*n),acHs=g=>{try{return+localStorage.getItem('ac_'+g)||0}catch(e){return 0}},acSetHs=(g,v)=>{try{localStorage.setItem('ac_'+g,v)}catch(e){}};
+const PCM=["###################","#........#........#","#o##.###.#.###.##o#","#.................#","#.##.#.#####.#.##.#","#....#...#...#....#","####.### # ###.####","   #.#       #.#   ","####.# ##-## #.####","    .  #   #  .    ","####.# ##### #.####","   #.#       #.#   ","####.# ##### #.####","#........#........#","#.##.###.#.###.##.#","#o.#.....P.....#.o#","##.#.#.#####.#.#.##","#....#...#...#....#","#.######.#.######.#","#.................#","###################"],PCD={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]},PCC=['#ff4d4d','#ffb3de','#4de1ff','#ffa94d'];
+const ACM={
+pac:{w:380,h:450,
+ init(){this.lv=1;this.sc=0;this.lives=3;this.t=0;this.mp()},
+ mp(){this.m=PCM.map(r=>r.replace('P',' ').split(''));this.dots=this.m.flat().filter(c=>c=='.'||c=='o').length;this.reset()},
+ reset(){this.pc={c:9,r:15,dx:0,dy:0,p:0,a:0};this.gh=[[9,7],[8,9],[9,9],[10,9]].map((q,i)=>({c:q[0],r:q[1],dx:0,dy:0,p:0,w:i*2.5/(1+this.lv*.2),fz:0}));this.fr=0;this.pz=1.4;AC.d=''},
+ free(c,r,g){if(r<0||r>20)return false;if(c<0||c>18)return r==9;const h=this.m[r][c];return h!='#'&&(h!='-'||g)},
+ adv(e,sp,dt,pick,arr){let d=sp*dt,n=9;while(d>0&&n--){if(!e.dx&&!e.dy){pick(e);if(!e.dx&&!e.dy)return}const k=1-e.p;if(d<k){e.p+=d;return}d-=k;e.c+=e.dx;e.r+=e.dy;e.p=0;if(e.c<0)e.c=18;else if(e.c>18)e.c=0;arr&&arr(e);pick(e)}},
+ pp(e){const w=PCD[AC.d];if(w&&this.free(e.c+w[0],e.r+w[1])){e.dx=w[0];e.dy=w[1];e.a=Math.atan2(w[1],w[0])}else if(!this.free(e.c+e.dx,e.r+e.dy))e.dx=e.dy=0},
+ ea(e){const h=this.m[e.r][e.c];if(h=='.'||h=='o'){this.m[e.r][e.c]=' ';this.dots--;this.sc+=h=='o'?50:10;if(h=='o'){this.fr=6;this.ch=0;this.gh.forEach(g=>g.fz=1)}if(!this.dots){this.lv++;this.mp()}}},
+ gp(g,i){const P=this.pc,inH=g.r>=8&&g.r<=9&&g.c>=8&&g.c<=10,fr=this.fr>0&&g.fz;let t;
+  if(inH)t=[9,7];else if(i==1)t=[P.c+P.dx*4,P.r+P.dy*4];else if(i==3&&Math.hypot(P.c-g.c,P.r-g.r)<7)t=[0,20];else t=[P.c,P.r];
+  const o=Object.values(PCD).filter(d=>!(d[0]==-g.dx&&d[1]==-g.dy)&&this.free(g.c+d[0],g.r+d[1],true)&&(inH||this.m[g.r+d[1]]?.[g.c+d[0]]!='-'));
+  if(!o.length){g.dx=-g.dx;g.dy=-g.dy;return}
+  let b=o[acRnd(o.length)];if(!fr&&!(i==2&&Math.random()<.3)){let m=1e9;o.forEach(d=>{const q=(g.c+d[0]-t[0])**2+(g.r+d[1]-t[1])**2;if(q<m){m=q;b=d}})}g.dx=b[0];g.dy=b[1]},
+ xy(e){return[e.c+e.dx*e.p,e.r+e.dy*e.p]},
+ step(dt){if(this.pz>0){this.pz-=dt;return}this.t+=dt;if(this.fr>0){this.fr-=dt;if(this.fr<=0)this.gh.forEach(g=>g.fz=0)}
+  const e=this.pc,w=PCD[AC.d];if(w&&(e.dx||e.dy)&&w[0]==-e.dx&&w[1]==-e.dy&&e.p>0){e.c+=e.dx;e.r+=e.dy;if(e.c<0)e.c=18;else if(e.c>18)e.c=0;e.dx=w[0];e.dy=w[1];e.a=Math.atan2(w[1],w[0]);e.p=1-e.p}
+  this.adv(e,5.5,dt,x=>this.pp(x),x=>this.ea(x));if(this.pz>0)return;
+  this.gh.forEach((g,i)=>{if(g.w>0){g.w-=dt;return}this.adv(g,this.fr>0&&g.fz?2.8:4.4+this.lv*.25,dt,x=>this.gp(x,i))});
+  const a=this.xy(e);for(const g of this.gh){const b=this.xy(g);if(Math.hypot(a[0]-b[0],a[1]-b[1])<.7){if(this.fr>0&&g.fz){this.sc+=200*2**this.ch++;Object.assign(g,{c:9,r:9,dx:0,dy:0,p:0,w:2,fz:0})}else{this.lives--;if(this.lives<=0)return acEnd(this.sc);this.reset();return}}}},
+ draw(c){c.fillStyle='#05050f';c.fillRect(0,0,380,450);c.lineWidth=2;
+  for(let r=0;r<21;r++)for(let q=0;q<19;q++){const h=this.m[r][q],x=q*20,y=r*20;if(h=='#'){c.strokeStyle='#3b4cff';c.strokeRect(x+3,y+3,14,14)}else if(h=='-'){c.fillStyle='#ff9ad5';c.fillRect(x,y+8,20,4)}else if(h=='.'){c.fillStyle='#ffe9b0';c.beginPath();c.arc(x+10,y+10,2,0,7);c.fill()}else if(h=='o'&&Math.floor(Date.now()/250)%2){c.fillStyle='#ffe9b0';c.beginPath();c.arc(x+10,y+10,6,0,7);c.fill()}}
+  const P=this.pc,[px,py]=this.xy(P),m=.06+.24*Math.abs(Math.sin(this.t*14))*(P.dx||P.dy?1:0);c.fillStyle='#ffd43b';c.beginPath();c.moveTo(px*20+10,py*20+10);c.arc(px*20+10,py*20+10,9,P.a+m*Math.PI,P.a-m*Math.PI+6.2832);c.fill();
+  this.gh.forEach((g,i)=>{const[gx,gy]=this.xy(g),x=gx*20+10,y=gy*20+10,fr=this.fr>0&&g.fz;c.fillStyle=fr?(this.fr<2&&Math.floor(this.fr*5)%2?'#fff':'#2538ff'):PCC[i];c.beginPath();c.arc(x,y-1,9,Math.PI,0);c.lineTo(x+9,y+9);c.lineTo(x+4.5,y+6);c.lineTo(x,y+9);c.lineTo(x-4.5,y+6);c.lineTo(x-9,y+9);c.closePath();c.fill();
+   c.fillStyle='#fff';[-3.5,3.5].forEach(o=>{c.beginPath();c.arc(x+o,y-3,2.6,0,7);c.fill()});c.fillStyle=fr?'#fff':'#12206b';[-3.5,3.5].forEach(o=>{c.beginPath();c.arc(x+o+g.dx*1.4,y-3+g.dy*1.4,1.3,0,7);c.fill()})});
+  c.fillStyle='#ffd43b';for(let i=0;i<this.lives-1;i++){c.beginPath();c.moveTo(16+i*24,436);c.arc(16+i*24,436,8,.5,6);c.fill()}
+  if(this.pz>0){c.font='400 18px Bungee,Impact,sans-serif';c.textAlign='center';c.fillText('BEREIT!',190,232)}}},
+snake:{w:400,h:400,
+ init(){this.b=[[10,10],[9,10],[8,10]];this.d=[1,0];this.t=0;this.sc=0;this.f=this.sp();AC.d=''},
+ sp(){let p;do p=[acRnd(20),acRnd(20)];while(this.b.some(s=>s[0]==p[0]&&s[1]==p[1]));return p},
+ step(dt){this.t+=dt;if(this.t<Math.max(.06,.13-this.b.length*.0012))return;this.t=0;const m=PCD[AC.d];if(m&&!(m[0]==-this.d[0]&&m[1]==-this.d[1]))this.d=m;
+  const h=[this.b[0][0]+this.d[0],this.b[0][1]+this.d[1]];if(h[0]<0||h[1]<0||h[0]>19||h[1]>19||this.b.some(s=>s[0]==h[0]&&s[1]==h[1]))return acEnd(this.sc);
+  this.b.unshift(h);if(h[0]==this.f[0]&&h[1]==this.f[1]){this.sc+=10;this.f=this.sp()}else this.b.pop()},
+ draw(c){c.fillStyle='#0d1a12';c.fillRect(0,0,400,400);c.fillStyle='#11241a';for(let i=0;i<20;i++)for(let j=0;j<20;j++)if((i+j)%2)c.fillRect(i*20,j*20,20,20);
+  c.font='18px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('🍌',this.f[0]*20+10,this.f[1]*20+11);
+  this.b.forEach((s,i)=>{c.fillStyle=i?'#3fbf63':'#7be495';c.beginPath();c.roundRect?c.roundRect(s[0]*20+1,s[1]*20+1,18,18,5):c.rect(s[0]*20+1,s[1]*20+1,18,18);c.fill()});
+  const h=this.b[0];c.fillStyle='#000';[[-3,-3],[3,-3]].forEach(o=>{c.beginPath();c.arc(h[0]*20+10+o[0]+this.d[0]*2,h[1]*20+10+o[1]+this.d[1]*2,2,0,7);c.fill()})}},
+brk:{w:360,h:480,
+ init(){this.sc=0;this.lv=1;this.lives=3;this.px=150;this.rows();this.srv()},
+ rows(){this.br=[];for(let r=0;r<5;r++)for(let q=0;q<8;q++)this.br.push({x:q*45+3,y:50+r*22,a:1,c:['#ff4d4d','#ff9f43','#ffd43b','#51cf66','#4dabf7'][r]})},
+ srv(){this.bx=this.px+35;this.by=420;const s=250+this.lv*30;this.vx=s*.5*(Math.random()<.5?-1:1);this.vy=-s;this.hold=.8},
+ step(dt){const K=AC.k;if(K.left)this.px-=380*dt;if(K.right)this.px+=380*dt;if(AC.px!=null)this.px+=(AC.px*360-35-this.px)*Math.min(1,dt*20);this.px=Math.max(0,Math.min(290,this.px));
+  if(this.hold>0){this.hold-=dt;this.bx=this.px+35;return}
+  this.bx+=this.vx*dt;this.by+=this.vy*dt;if(this.bx<6){this.bx=6;this.vx=Math.abs(this.vx)}if(this.bx>354){this.bx=354;this.vx=-Math.abs(this.vx)}if(this.by<6){this.by=6;this.vy=Math.abs(this.vy)}
+  if(this.vy>0&&this.by>440&&this.by<456&&this.bx>this.px-4&&this.bx<this.px+74){const o=(this.bx-this.px-35)/35,s=Math.hypot(this.vx,this.vy)*1.01;this.vx=o*s*.75;this.vy=-Math.sqrt(Math.max(s*s-this.vx*this.vx,s*s*.2));this.by=440}
+  for(const b of this.br)if(b.a&&this.bx>b.x-6&&this.bx<b.x+45&&this.by>b.y-6&&this.by<b.y+22){b.a=0;this.sc+=10;const ox=Math.min(this.bx-b.x+6,b.x+45-this.bx+6),oy=Math.min(this.by-b.y+6,b.y+22-this.by+6);if(ox<oy)this.vx=-this.vx;else this.vy=-this.vy;break}
+  if(!this.br.some(b=>b.a)){this.lv++;this.rows();this.srv()}
+  if(this.by>490){this.lives--;if(this.lives<=0)return acEnd(this.sc);this.srv()}},
+ draw(c){c.fillStyle='#10131f';c.fillRect(0,0,360,480);this.br.forEach(b=>{if(b.a){c.fillStyle=b.c;c.fillRect(b.x,b.y,39,16)}});c.fillStyle='#f26b1d';c.fillRect(this.px,448,70,10);c.fillStyle='#fff';c.beginPath();c.arc(this.bx,this.by,6,0,7);c.fill();c.fillStyle='#ffffffaa';c.font='14px Inter,sans-serif';c.textAlign='left';c.textBaseline='alphabetic';c.fillText('♥'.repeat(this.lives),10,24)}},
+flap:{w:320,h:480,
+ init(){this.y=220;this.v=0;this.ps=[];this.t=0;this.sc=0;this.go=0;AC.tap=0},
+ step(dt){this.t+=dt;if(AC.tap||AC.k.up){this.v=-310;AC.tap=0}this.v+=980*dt;this.y+=this.v*dt;
+  if(this.t>1.35){this.t=0;this.ps.push({x:340,g:90+acRnd(220),s:0})}
+  this.ps.forEach(p=>{p.x-=150*dt;if(!p.s&&p.x<60){p.s=1;this.sc++}if(p.x<96&&p.x>34&&(this.y<p.g-62||this.y>p.g+62))this.dead=1});this.ps=this.ps.filter(p=>p.x>-60);
+  if(this.y>460||this.y<-10)this.dead=1;if(this.dead){this.dead=0;acEnd(this.sc)}},
+ draw(c){const g=c.createLinearGradient(0,0,0,480);g.addColorStop(0,'#5ec8ff');g.addColorStop(1,'#d8f3ff');c.fillStyle=g;c.fillRect(0,0,320,480);c.fillStyle='#4caf50';
+  this.ps.forEach(p=>{c.fillRect(p.x,0,52,p.g-62);c.fillRect(p.x,p.g+62,52,480);c.fillStyle='#388e3c';c.fillRect(p.x-4,p.g-82,60,20);c.fillRect(p.x-4,p.g+62,60,20);c.fillStyle='#4caf50'});
+  c.save();c.translate(70,this.y);c.rotate(Math.max(-.5,Math.min(1,this.v/500)));c.font='34px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('🍌',0,0);c.restore();
+  c.fillStyle='#fff';c.strokeStyle='#0006';c.lineWidth=4;c.font='400 40px Bungee,Impact,sans-serif';c.textAlign='center';c.textBaseline='alphabetic';c.strokeText(this.sc,160,60);c.fillText(this.sc,160,60)}}
+};
+function acPick(g){AC.g=g;render()}
+function acBack(){acKill();AC.g=null;render()}
+function acKill(){cancelAnimationFrame(AC.raf);AC.raf=0;AC.run=0;AC.G=null;AC.px=null}
+function acOv(t,s,b){const o=$('#acov');if(!o)return;o.style.display='grid';o.innerHTML=`<b>${t}</b><span>${s}</span><button class="btn o" style="justify-self:center" onclick="acGo()">${b}</button>`}
+function acGo(){const o=$('#acov');if(!AC.G)return;if(o)o.style.display='none';AC.G.init();AC.k={};AC.d='';AC.run=1;AC.t=0}
+function acEnd(s){AC.run=0;const h=acHs(AC.g);if(s>h)acSetHs(AC.g,s);acOv('Game Over','Punkte '+s+' · Rekord '+Math.max(s,h),'Nochmal')}
+function acK(n,on){AC.k[n]=on;if(on){AC.d=n;if(n=='up')AC.tap=1}}
+function acLoop(ts){if(V!='arcade'||!$('#acc')){acKill();AC.g=null;return}
+ const G=AC.G;if(!G)return;const dt=Math.min(.05,(ts-(AC.t||ts))/1000);AC.t=ts;if(AC.run)G.step(dt);G.draw(AC.c);
+ if(G.sc!==AC.shown){AC.shown=G.sc;const e=$('#acsc');if(e)e.textContent='Punkte '+(G.sc||0)+' · Rekord '+Math.max(acHs(AC.g),G.sc||0)}
+ AC.raf=requestAnimationFrame(acLoop)}
+function acInit(){acKill();if(!AC.g||!$('#acc'))return;const cv=$('#acc'),G=ACM[AC.g];AC.G=G;cv.width=G.w;cv.height=G.h;AC.c=cv.getContext('2d');AC.k={};AC.d='';AC.shown=null;G.init();
+ if(!AC.bound){AC.bound=1;const M={arrowleft:'left',a:'left',arrowright:'right',d:'right',arrowup:'up',w:'up',arrowdown:'down',s:'down'};
+  addEventListener('keydown',e=>{if(V!='arcade'||!AC.G||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const k=e.key.toLowerCase();if(k=='escape')return $('#acgame')?.classList.remove('acfs');
+   if(M[k]){e.preventDefault();if(!e.repeat)acK(M[k],1)}else if(k==' '||k=='enter'){e.preventDefault();if(!AC.run)acGo();else AC.tap=1}});
+  addEventListener('keyup',e=>{const m=M[e.key.toLowerCase()];if(m&&AC.k)AC.k[m]=0})}
+ let sx,sy;cv.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY;AC.tap=1;if(AC.g=='brk'){const r=cv.getBoundingClientRect();AC.px=(e.clientX-r.left)/r.width}try{cv.setPointerCapture(e.pointerId)}catch(x){}});
+ cv.addEventListener('pointermove',e=>{if(sx==null)return;const r=cv.getBoundingClientRect();if(AC.g=='brk'){AC.px=(e.clientX-r.left)/r.width;return}const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.hypot(dx,dy)>22){AC.d=Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up');sx=e.clientX;sy=e.clientY}});
+ ['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>{sx=null;AC.px=null}));
+ acOv(ACG[AC.g].n,'Rekord '+acHs(AC.g)+'. Steuern mit Pfeiltasten, WASD oder Wischen.','Start');AC.raf=requestAnimationFrame(acLoop)}
+function acFS(){const g=$('#acgame');if(!g)return;const fe=document.fullscreenElement||document.webkitFullscreenElement,fb=()=>g.classList.add('acfs');if(g.classList.contains('acfs')){g.classList.remove('acfs');return}if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}const rq=g.requestFullscreen||g.webkitRequestFullscreen;if(!rq){fb();return}try{const p=rq.call(g);if(p&&p.catch)p.catch(fb)}catch(e){fb()}}
+const acMenu=()=>`<div class="card" style="max-width:none;padding:6px 24px">${Object.keys(ACG).map(k=>`<div class="row"><span><b style="font-weight:500">${ACG[k].e} ${ACG[k].n}</b><br><span class="m" style="font-size:14px">${ACG[k].d} Rekord: ${acHs(k)}</span></span><button class="btn o" onclick="acPick('${k}')">Spielen</button></div>`).join('')}</div>`;
+const acPlay=()=>`<div class="bar" style="margin-top:0"><button class="btn g" onclick="acBack()">Alle Spiele</button><button class="btn g" onclick="acFS()">Vollbild</button><span class="m" id="acsc"></span></div><div id="acgame"><canvas id="acc"></canvas><div id="acov"></div></div><div id="acpad"><span></span><button aria-label="Hoch" onpointerdown="acK('up',1)" onpointerup="acK('up',0)">▲</button><span></span><button aria-label="Links" onpointerdown="acK('left',1)" onpointerup="acK('left',0)" onpointerleave="acK('left',0)">◀</button><button aria-label="Runter" onpointerdown="acK('down',1)" onpointerup="acK('down',0)">▼</button><button aria-label="Rechts" onpointerdown="acK('right',1)" onpointerup="acK('right',0)" onpointerleave="acK('right',0)">▶</button></div>`;
+
 /* ===== Hausaufgaben ===== */
 const HW={list:[],done:new Set(),cc:{},cm:{},img:{},m:null,sel:null,loaded:0,uid:null,f:{},t:0,sig:''};
 const hwP=n=>String(n).padStart(2,'0'),hwLoc=d=>`${d.getFullYear()}-${hwP(d.getMonth()+1)}-${hwP(d.getDate())}`,hwDate=s=>new Date(s+'T12:00:00');
@@ -2974,7 +3076,8 @@ casino:()=>`<h1>Casino Round</h1><p class="m">Eine ruhige 3D-Casino-Halle, die d
 bmem:()=>`<h1>Bananen-Memory</h1><p class="m">Ein schnelles Spiel für zwischendurch: Alle spielen dasselbe Memory-Brett, und wer am schnellsten alle 8 Paare findet, bekommt die meisten Punkte (3, 2, 1). Drei Runden dauern etwa drei Minuten. Allein kannst du üben, mit Freunden wird es ein Rennen.</p><div id="bm"></div>`,
 kbest:()=>{const t=P.t||0,rows=KB.filter(r=>r.track==t).sort((a,b)=>a.ms-b.ms).slice(0,20);
 return `<h1>Bestenliste</h1><p class="m">Die schnellste Zeit jedes Spielers für 3 Runden.</p><div class="bar" style="margin-top:0">${KTR.map((x,i)=>`<button class="btn ${i==t?'o':'g'}" onclick="go('kbest',{t:${i}},1)">${x.n}</button>`).join('')}</div><div class="card" style="padding:6px 24px;max-width:none">${rows.length?rows.map((r,i)=>`<div class="row"><span><b>${i+1}.</b> ${r.user_id==ME.id?'<b>Du</b>':esc(nm(r.user_id))}<span class="m" style="font-size:13px"> · ${KCAR[r.car]?KCAR[r.car].n:''}</span></span><b>${kFmt(r.ms)}</b></div>`).join(''):'<p class="m">Noch keine Zeiten. Fahr das erste Rennen!</p>'}</div>`},
-spiele:()=>`<h1>Spiele</h1><p class="m">Eine kleine Pause zwischendurch.</p><div class="tiles" style="margin-top:20px">${tl([['game','Tic Tac Toe','Gegen den Computer, zu zweit oder online','ttt'],['game','Banana Boost','Gegen den Computer oder online mit Freunden','kart'],['chess','Schach','Gegen den Computer, zu zweit oder online','chess'],['book','Bookie Clicker','Klicke Bücher und baue deine Bibliothek aus','clicker'],['game','Bookie Slots','Dreh die Maschine und vermehre deine Bookies','slots'],['game','Banana Fight','Online-Shooter als Banane, mit Bots oder Freunden','bf'],['game','Casino Round','Ruhiges 3D-Casino mit Roulette, Würfeln, Slots und einer goldenen Banane','casino'],['game','Bananen-Memory','Schnelles Memory-Rennen mit Freunden, ein paar Minuten Spaß','bmem']])}</div>`,
+arcade:()=>`<h1>Arcade</h1><p class="m" style="margin-top:0">Klassiker für zwischendurch. Steuern mit Pfeiltasten oder W A S D, am iPad und Handy wischen oder die Pfeile unten tippen. Leertaste oder Tippen startet.</p>${AC.g?acPlay():acMenu()}`,
+spiele:()=>`<h1>Spiele</h1><p class="m">Eine kleine Pause zwischendurch.</p><div class="tiles" style="margin-top:20px">${tl([['game','Tic Tac Toe','Gegen den Computer, zu zweit oder online','ttt'],['game','Banana Boost','Gegen den Computer oder online mit Freunden','kart'],['chess','Schach','Gegen den Computer, zu zweit oder online','chess'],['book','Bookie Clicker','Klicke Bücher und baue deine Bibliothek aus','clicker'],['game','Bookie Slots','Dreh die Maschine und vermehre deine Bookies','slots'],['game','Banana Fight','Online-Shooter als Banane, mit Bots oder Freunden','bf'],['game','Casino Round','Ruhiges 3D-Casino mit Roulette, Würfeln, Slots und einer goldenen Banane','casino'],['game','Bananen-Memory','Schnelles Memory-Rennen mit Freunden, ein paar Minuten Spaß','bmem'],['game','Arcade','Pac-Banana, Snake, Ziegel-Ausbruch und Flappy Banane','arcade']])}</div>`,
 chess:()=>{
  if(CH.gid!='l'){CH.gid='l';CH.sel=-1;CH.pm=null}
  const C=chLocal(),cpu=C.mode=='cpu',R=chRep(C.hist.join(' ')),st=chStat(R.s,R.keys),think=cpu&&!st&&R.s.t!=C.me,sg=(a,v,f)=>`<div class="seg" role="group">${a.map(([k,l])=>`<button class="${v==k?'on':''}" onclick="${f}('${k}')">${l}</button>`).join('')}</div>`,
