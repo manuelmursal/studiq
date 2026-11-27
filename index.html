@@ -519,6 +519,7 @@ header .ib{width:38px;height:38px;padding:0;align-items:center;justify-content:c
 @keyframes cgl{0%{opacity:0;transform:scale(.4) rotate(-8deg)}15%{opacity:1;transform:scale(1.1)}25%{transform:scale(1)}85%{opacity:1}100%{opacity:0;transform:scale(1.2)}}
 #cft{position:absolute;inset:0;display:none;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #cft.on{display:block}
+#cprompt,#cbtn,#cemo,#cme{z-index:5}
 #cft .czl,#cft .czr{position:absolute;top:70px;bottom:70px;pointer-events:auto;touch-action:none}
 #cft .czl{left:0;width:44%}#cft .czr{right:0;width:56%}
 #cft .cjs{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid #fff6;background:radial-gradient(circle,#fff1,#0004);opacity:.4;pointer-events:none}
@@ -637,8 +638,9 @@ const ROLEN={admin:'Admin',moderator:'Moderator',schueler:'Schüler',gesperrt:'G
 const TY={book:{n:'Schulbücher',s:'Alle Schulbücher online',one:'Neues Buch'},stoff:{n:'Stoff',s:'Zusammenfassungen und Material',one:'Neuer Stoff'},notes:{n:'Mitschriften',s:'Arbeitsblätter, Tafelbilder und Notizen, nach Datum sortiert',one:'Neues Material'},all:{n:'Suche'}};
 
 /* ===== Version und Neuerungen: bei jedem Update VERSION erhöhen und oben einen Eintrag in CHANGELOG ergänzen ===== */
-const VERSION='2026-11-28.2';
+const VERSION='2026-11-28.3';
 const CHANGELOG=[
+ {v:'2026-11-28.3',t:'Casino auf dem iPad repariert',items:['Auf dem iPad lag die Touch-Steuerung über dem Knopf zum Spielen und über Bruno, deshalb ließen sich Tische nicht öffnen. Der Knopf ist jetzt immer antippbar.']},
  {v:'2026-11-28.2',t:'Schach: Zuganimation und Vollbild',items:['Die Figuren gleiten jetzt auf ihr Zielfeld, auch der Turm beim Rochieren. Beim Computer-Gegner wartet der Zug kurz, bis deine Animation fertig ist.','Neu: Vollbild-Knopf unter dem Brett. Im Vollbild siehst du nur Brett und Status, mit "Vollbild beenden" oben rechts kommst du zurück.']},
  {v:'2026-11-28.1',t:'Hausaufgaben werden zum Kalender',items:['Auf der Startseite heißt es jetzt Kalender. Beim Eintragen wählst du, ob es eine Hausaufgabe (Standard) oder eine Klausur ist.','Neu bei jedem Eintrag: Lehrer, LK oder GK und ein Link.','Bei Klausuren schlägt STUDIQ passenden Stoff vor, den du als wichtig markieren kannst. Er ist dann im Eintrag mit einem Tipp erreichbar. Dafür musst du update21.sql in Supabase ausführen.']},
  {v:'2026-11-25.1',t:'Schulbücher: Status vollständig oder unvollständig',items:['Beim Bearbeiten eines Schulbuchs gibt es jetzt einen Hebel: grün heißt vollständig, orange heißt, es fehlen noch Seiten. In der Bücherbibliothek sieht man den Status auf jedem Buch.']},
